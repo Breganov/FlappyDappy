@@ -1,0 +1,14 @@
+# Target labels
+ catch2-populate
+# Source files and their labels
+D:/Code/C++/MultiFlappyBird/build-ninja/_deps/catch2-subbuild/CMakeFiles/catch2-populate
+D:/Code/C++/MultiFlappyBird/build-ninja/_deps/catch2-subbuild/CMakeFiles/catch2-populate.rule
+D:/Code/C++/MultiFlappyBird/build-ninja/_deps/catch2-subbuild/CMakeFiles/catch2-populate-complete.rule
+D:/Code/C++/MultiFlappyBird/build-ninja/_deps/catch2-subbuild/catch2-populate-prefix/src/catch2-populate-stamp/catch2-populate-build.rule
+D:/Code/C++/MultiFlappyBird/build-ninja/_deps/catch2-subbuild/catch2-populate-prefix/src/catch2-populate-stamp/catch2-populate-configure.rule
+D:/Code/C++/MultiFlappyBird/build-ninja/_deps/catch2-subbuild/catch2-populate-prefix/src/catch2-populate-stamp/catch2-populate-download.rule
+D:/Code/C++/MultiFlappyBird/build-ninja/_deps/catch2-subbuild/catch2-populate-prefix/src/catch2-populate-stamp/catch2-populate-install.rule
+D:/Code/C++/MultiFlappyBird/build-ninja/_deps/catch2-subbuild/catch2-populate-prefix/src/catch2-populate-stamp/catch2-populate-mkdir.rule
+D:/Code/C++/MultiFlappyBird/build-ninja/_deps/catch2-subbuild/catch2-populate-prefix/src/catch2-populate-stamp/catch2-populate-patch.rule
+D:/Code/C++/MultiFlappyBird/build-ninja/_deps/catch2-subbuild/catch2-populate-prefix/src/catch2-populate-stamp/catch2-populate-test.rule
+D:/Code/C++/MultiFlappyBird/build-ninja/_deps/catch2-subbuild/catch2-populate-prefix/src/catch2-populate-stamp/catch2-populate-update.rule

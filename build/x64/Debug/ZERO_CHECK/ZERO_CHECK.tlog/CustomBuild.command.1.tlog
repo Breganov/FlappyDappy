@@ -1,0 +1,10 @@
+^D:\CODE\C++\MULTIFLAPPYBIRD\BUILD\CMAKEFILES\D553D48C6DA5ABEE849C1E023EB46F93\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/Code/C++/MultiFlappyBird -BD:/Code/C++/MultiFlappyBird/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file D:/Code/C++/MultiFlappyBird/build/flappy_server.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

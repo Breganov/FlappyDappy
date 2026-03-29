@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "D:/Code/C++/MultiFlappyBird/build/_deps/catch2-subbuild/CMakeFiles/catch2-populate"
+		},
+		{
+			"file" : "D:/Code/C++/MultiFlappyBird/build/_deps/catch2-subbuild/CMakeFiles/3690c8338b7bb6fdc8e4def6723de9f7/catch2-populate.rule"
+		},
+		{
+			"file" : "D:/Code/C++/MultiFlappyBird/build/_deps/catch2-subbuild/CMakeFiles/89bf9003219b2d6eb3f7940def7bd94f/catch2-populate-complete.rule"
+		},
+		{
+			"file" : "D:/Code/C++/MultiFlappyBird/build/_deps/catch2-subbuild/CMakeFiles/d03963ef6001cf569af885afdb17570b/catch2-populate-build.rule"
+		},
+		{
+			"file" : "D:/Code/C++/MultiFlappyBird/build/_deps/catch2-subbuild/CMakeFiles/d03963ef6001cf569af885afdb17570b/catch2-populate-configure.rule"
+		},
+		{
+			"file" : "D:/Code/C++/MultiFlappyBird/build/_deps/catch2-subbuild/CMakeFiles/d03963ef6001cf569af885afdb17570b/catch2-populate-download.rule"
+		},
+		{
+			"file" : "D:/Code/C++/MultiFlappyBird/build/_deps/catch2-subbuild/CMakeFiles/d03963ef6001cf569af885afdb17570b/catch2-populate-install.rule"
+		},
+		{
+			"file" : "D:/Code/C++/MultiFlappyBird/build/_deps/catch2-subbuild/CMakeFiles/d03963ef6001cf569af885afdb17570b/catch2-populate-mkdir.rule"
+		},
+		{
+			"file" : "D:/Code/C++/MultiFlappyBird/build/_deps/catch2-subbuild/CMakeFiles/d03963ef6001cf569af885afdb17570b/catch2-populate-patch.rule"
+		},
+		{
+			"file" : "D:/Code/C++/MultiFlappyBird/build/_deps/catch2-subbuild/CMakeFiles/d03963ef6001cf569af885afdb17570b/catch2-populate-test.rule"
+		},
+		{
+			"file" : "D:/Code/C++/MultiFlappyBird/build/_deps/catch2-subbuild/CMakeFiles/d03963ef6001cf569af885afdb17570b/catch2-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"catch2-populate"
+		],
+		"name" : "catch2-populate"
+	}
+}

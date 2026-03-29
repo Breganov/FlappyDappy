@@ -1,0 +1,28 @@
+Bird 0 0
+Bird 0 0
+Bird 0 0
+Bird 0 0
+Bird 0 0
+Bird 0 0
+Bird 0 0
+Bird 0 0
+Bird 0 0
+Bird 0 0
+Bird 0 0
+Bird 0 0
+Bird 0 0
+Bird 0 0
+Bird 0 0
+Bird 0 0
+Bird 0 0
+Bird 0 0
+Bird 0 0
+Bird 0 0
+Bird 0 0
+Bird 0 0
+Bird 0 0
+Bird 0 0
+Bird hits top bound 1 0.0135803
+Bird does not collide inside the gap 1 0.012269
+Bird collides with pipe when outside gap 1 0.0129418
+---

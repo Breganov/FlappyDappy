@@ -1,0 +1,14 @@
+D:/Code/C++/MultiFlappyBird/build/CMakeFiles/flappy_domain.dir
+D:/Code/C++/MultiFlappyBird/build/CMakeFiles/flappy_tests.dir
+D:/Code/C++/MultiFlappyBird/build/CMakeFiles/Experimental.dir
+D:/Code/C++/MultiFlappyBird/build/CMakeFiles/Nightly.dir
+D:/Code/C++/MultiFlappyBird/build/CMakeFiles/Continuous.dir
+D:/Code/C++/MultiFlappyBird/build/CMakeFiles/NightlyMemoryCheck.dir
+D:/Code/C++/MultiFlappyBird/build/CMakeFiles/RUN_TESTS.dir
+D:/Code/C++/MultiFlappyBird/build/CMakeFiles/ALL_BUILD.dir
+D:/Code/C++/MultiFlappyBird/build/CMakeFiles/ZERO_CHECK.dir
+D:/Code/C++/MultiFlappyBird/build/_deps/catch2-build/CMakeFiles/RUN_TESTS.dir
+D:/Code/C++/MultiFlappyBird/build/_deps/catch2-build/CMakeFiles/ALL_BUILD.dir
+D:/Code/C++/MultiFlappyBird/build/_deps/catch2-build/src/CMakeFiles/Catch2.dir
+D:/Code/C++/MultiFlappyBird/build/_deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir
+D:/Code/C++/MultiFlappyBird/build/_deps/catch2-build/src/CMakeFiles/RUN_TESTS.dir

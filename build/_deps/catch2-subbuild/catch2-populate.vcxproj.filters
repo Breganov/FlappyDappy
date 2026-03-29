@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\Code\C++\MultiFlappyBird\build\_deps\catch2-subbuild\CMakeFiles\d03963ef6001cf569af885afdb17570b\catch2-populate-mkdir.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\Code\C++\MultiFlappyBird\build\_deps\catch2-subbuild\CMakeFiles\d03963ef6001cf569af885afdb17570b\catch2-populate-download.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\Code\C++\MultiFlappyBird\build\_deps\catch2-subbuild\CMakeFiles\d03963ef6001cf569af885afdb17570b\catch2-populate-update.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\Code\C++\MultiFlappyBird\build\_deps\catch2-subbuild\CMakeFiles\d03963ef6001cf569af885afdb17570b\catch2-populate-patch.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\Code\C++\MultiFlappyBird\build\_deps\catch2-subbuild\CMakeFiles\d03963ef6001cf569af885afdb17570b\catch2-populate-configure.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\Code\C++\MultiFlappyBird\build\_deps\catch2-subbuild\CMakeFiles\d03963ef6001cf569af885afdb17570b\catch2-populate-build.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\Code\C++\MultiFlappyBird\build\_deps\catch2-subbuild\CMakeFiles\d03963ef6001cf569af885afdb17570b\catch2-populate-install.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\Code\C++\MultiFlappyBird\build\_deps\catch2-subbuild\CMakeFiles\d03963ef6001cf569af885afdb17570b\catch2-populate-test.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\Code\C++\MultiFlappyBird\build\_deps\catch2-subbuild\CMakeFiles\89bf9003219b2d6eb3f7940def7bd94f\catch2-populate-complete.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\Code\C++\MultiFlappyBird\build\_deps\catch2-subbuild\CMakeFiles\3690c8338b7bb6fdc8e4def6723de9f7\catch2-populate.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\Code\C++\MultiFlappyBird\build\_deps\catch2-subbuild\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="D:\Code\C++\MultiFlappyBird\build\_deps\catch2-subbuild\CMakeFiles\catch2-populate" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{09A7C2FB-8277-3A30-A183-14929C7AB701}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

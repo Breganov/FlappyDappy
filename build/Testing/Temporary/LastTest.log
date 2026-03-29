@@ -1,0 +1,63 @@
+Start testing: Mar 29 03:56 Russia TZ 2 Standard Time
+----------------------------------------------------------
+1/3 Testing: Bird hits top bound
+1/3 Test: Bird hits top bound
+Command: "D:/Code/C++/MultiFlappyBird/build/Debug/flappy_tests.exe" "Bird hits top bound"
+Directory: D:/Code/C++/MultiFlappyBird/build
+"Bird hits top bound" start time: Mar 29 03:56 Russia TZ 2 Standard Time
+Output:
+----------------------------------------------------------
+Filters: "Bird hits top bound"
+Randomness seeded to: 1560887713
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"Bird hits top bound" end time: Mar 29 03:56 Russia TZ 2 Standard Time
+"Bird hits top bound" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/3 Testing: Bird does not collide inside the gap
+2/3 Test: Bird does not collide inside the gap
+Command: "D:/Code/C++/MultiFlappyBird/build/Debug/flappy_tests.exe" "Bird does not collide inside the gap"
+Directory: D:/Code/C++/MultiFlappyBird/build
+"Bird does not collide inside the gap" start time: Mar 29 03:56 Russia TZ 2 Standard Time
+Output:
+----------------------------------------------------------
+Filters: "Bird does not collide inside the gap"
+Randomness seeded to: 648278180
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"Bird does not collide inside the gap" end time: Mar 29 03:56 Russia TZ 2 Standard Time
+"Bird does not collide inside the gap" time elapsed: 00:00:00
+----------------------------------------------------------
+
+3/3 Testing: Bird collides with pipe when outside gap
+3/3 Test: Bird collides with pipe when outside gap
+Command: "D:/Code/C++/MultiFlappyBird/build/Debug/flappy_tests.exe" "Bird collides with pipe when outside gap"
+Directory: D:/Code/C++/MultiFlappyBird/build
+"Bird collides with pipe when outside gap" start time: Mar 29 03:56 Russia TZ 2 Standard Time
+Output:
+----------------------------------------------------------
+Filters: "Bird collides with pipe when outside gap"
+Randomness seeded to: 3045058888
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"Bird collides with pipe when outside gap" end time: Mar 29 03:56 Russia TZ 2 Standard Time
+"Bird collides with pipe when outside gap" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Mar 29 03:56 Russia TZ 2 Standard Time

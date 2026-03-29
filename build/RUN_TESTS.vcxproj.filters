@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\Code\C++\MultiFlappyBird\build\CMakeFiles\d553d48c6da5abee849c1e023eb46f93\RUN_TESTS_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{5AD7460E-E8A2-3DD7-95E6-B77A2D2E7728}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

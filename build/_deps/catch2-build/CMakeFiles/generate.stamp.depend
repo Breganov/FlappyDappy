@@ -1,0 +1,7 @@
+# CMake generation dependency list for this directory.
+C:/Program Files/CMake/share/cmake-3.29/Modules/CMakeDependentOption.cmake
+C:/Program Files/CMake/share/cmake-3.29/Modules/CMakePackageConfigHelpers.cmake
+C:/Program Files/CMake/share/cmake-3.29/Modules/GNUInstallDirs.cmake
+C:/Program Files/CMake/share/cmake-3.29/Modules/WriteBasicConfigVersionFile.cmake
+D:/Code/C++/MultiFlappyBird/build/_deps/catch2-src/CMake/CatchConfigOptions.cmake
+D:/Code/C++/MultiFlappyBird/build/_deps/catch2-src/CMakeLists.txt

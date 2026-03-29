@@ -3,4 +3,5 @@ struct PhysicsConfig {
   double jump_velocity = -300.0;
   double world_height = 600.0;
   double scroll_spedd = 120.0;
+  double bird_x = 100.0f;
 };
