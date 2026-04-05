@@ -8,7 +8,7 @@ public:
 
   virtual void BroadcastMatchFinished(
     const SessionId& session_id,
-    const MathcResult& result) = 0;
+    const MatchResult& result) = 0;
 
   virtual void NotifyPlayerJoined(
     const SessionId& session_id,

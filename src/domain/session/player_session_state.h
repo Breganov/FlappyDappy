@@ -1,3 +1,7 @@
+#pragma once
+
+#include "../../domain/player/player_id.h"
+// #include "../session/player_id.h"
 #include "../game/bird_state.h" // для BirdState
 
 class PlayerSessionState {
@@ -19,5 +23,5 @@ private:
   PlayerId player_id_;
   BirdState bird_;
   bool ready_ = false;
-  bool connecte_ = true;
-}
+  bool connect_ = true;
+};

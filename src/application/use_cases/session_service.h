@@ -6,7 +6,7 @@
 class SessionService {
 public:
   GameSession& CreateSession();
-  std::optional<std::reference_wrapper<GameSession>> FindSession(const SessinId& id);
+  std::optional<std::reference_wrapper<GameSession>> FindSession(const Session& id);
   void RemoveSession(const Session& id);
 
 private:

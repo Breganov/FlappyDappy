@@ -1,6 +1,9 @@
+# pragma once
+
 #include "session_state.h"
 #include "player_session_state.h"
-#include "../game/Pipe.h"
+#include "../game/pipe.h"
+#include "input_command.h"
 #include <chrono>
 #include <cstdint>
 #include <queue>
@@ -37,6 +40,6 @@ private:
   SessionState state_ = SessionState::WaitingForPlayers;
   std::vector<PlayerSessionState> players_;
   std::vector<Pipe> pipes_;
-  std::queue<InputCommand> pendign_inputs_;
+  std::queue<InputCommand> pending_inputs_;
   std::uint32_t seed_;
 };
