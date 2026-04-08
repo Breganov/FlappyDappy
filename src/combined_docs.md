@@ -97,7 +97,7 @@ public:
 ### `application/ports/match_repository.h`
 
 ```cpp
-class IMatchRepository {
+
 public:
   virtual ~IMatchRepository() = default;
   virtual void SaveMatchResult(const MatchResult& result) = 0;
@@ -129,7 +129,7 @@ public:
 
   virtual void BroadcastMatchFinished(
     const SessionId& session_id,
-    const MathcResult& result) = 0;
+    const MatchResult& result) = 0;
 
   virtual void NotifyPlayerJoined(
     const SessionId& session_id,
@@ -146,10 +146,12 @@ public:
 
 ```cpp
 // для того, чтобы придерживаться ACID
+#pragma once
+
 class IUnitOfWork {
 public:
   virtual ~IUnitOfWork() = default;
-  virtual IPlayerRepository& Players = 0;
+  // virtual IPlayerRepository& Players = 0;
   virtual IMatchRepository& Matches() = 0;
   virtual ILeaderboardRepository& Leaderboard() = 0;
   virtual void Commit() = 0;
@@ -405,7 +407,7 @@ struct PhysicsConfig {
   double gravity = 900.0;
   double jump_velocity = -300.0;
   double world_height = 600.0;
-  double scroll_spedd = 120.0;
+  double scroll_speed = 120.0;
   double bird_x = 100.0f;
 };
 ```
@@ -462,6 +464,7 @@ private:
 ### `domain/game/pipe.h`
 
 ```cpp
+// TODO: replace per-pipe global marker with per-player scoring state
 struct Pipe {
   double x = 0.0f;
   double width = 60.0f;
@@ -552,6 +555,7 @@ class Player {
 ### `domain/player/player_id.h`
 
 ```cpp
+// src\domain\player\player_id.h
 #pragma once
 #include <string>
 
@@ -569,9 +573,12 @@ private:
 ### `domain/session/game_session.h`
 
 ```cpp
+# pragma once
+
 #include "session_state.h"
 #include "player_session_state.h"
-#include "../game/Pipe.h"
+#include "../game/pipe.h"
+#include "input_command.h"
 #include <chrono>
 #include <cstdint>
 #include <queue>
@@ -608,7 +615,7 @@ private:
   SessionState state_ = SessionState::WaitingForPlayers;
   std::vector<PlayerSessionState> players_;
   std::vector<Pipe> pipes_;
-  std::queue<InputCommand> pendign_inputs_;
+  std::queue<InputCommand> pending_inputs_;
   std::uint32_t seed_;
 };
 ```
@@ -616,6 +623,9 @@ private:
 ### `domain/session/input_command.h`
 
 ```cpp
+// src\domain\session\input_command.h
+#pragma once
+#include "../../domain/player/player_id.h"
 enum class InputType{
   Jump
 };
@@ -630,6 +640,10 @@ struct InputCommand {
 ### `domain/session/player_session_state.h`
 
 ```cpp
+#pragma once
+
+#include "../../domain/player/player_id.h"
+// #include "../session/player_id.h"
 #include "../game/bird_state.h" // для BirdState
 
 class PlayerSessionState {
@@ -651,8 +665,8 @@ private:
   PlayerId player_id_;
   BirdState bird_;
   bool ready_ = false;
-  bool connecte_ = true;
-}
+  bool connect_ = true;
+};
 ```
 
 ### `domain/session/session_state.h`

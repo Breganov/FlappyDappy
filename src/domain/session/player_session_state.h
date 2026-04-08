@@ -9,7 +9,7 @@ public:
   PlayerSessionState(PlayerId player_id, BirdState bird);
 
   const PlayerId& GetPlayerId() const;
-  const BirdState& GetBirdId() const;
+  const BirdState& GetBird() const;
   BirdState& GetBird();
 
   bool IsReady() const;

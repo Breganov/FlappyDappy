@@ -1,13 +1,27 @@
+// domain\session\games_session.h
 # pragma once
 
-#include "session_state.h"
-#include "player_session_state.h"
-#include "../game/pipe.h"
-#include "input_command.h"
+// #include <algorithm>
 #include <chrono>
 #include <cstdint>
 #include <queue>
+// #include <utility>
 #include <vector>
+
+#include "input_command.h"
+#include "input_command.h"
+#include "player_session_state.h"
+#include "player_session_state.h"
+#include "session_state.h"
+
+#include "../game/collision_service.h"
+#include "../game/obstacle_generator.h"
+#include "../game/physics_config.h"
+#include "../game/physics_engine.h"
+#include "../game/pipe.h"
+#include "../game/world_snapshot.h"
+#include "../match/match_result.h"
+#include "../session/session_id.h"
 
 class GameSession {
 public:
@@ -42,4 +56,6 @@ private:
   std::vector<Pipe> pipes_;
   std::queue<InputCommand> pending_inputs_;
   std::uint32_t seed_;
+  std::uint64_t current_tick_ = 0;
+  ObstacleGenerator obstacle_generator_;
 };

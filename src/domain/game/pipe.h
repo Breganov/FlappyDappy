@@ -1,3 +1,4 @@
+#pragma once
 // TODO: replace per-pipe global marker with per-player scoring state
 struct Pipe {
   double x = 0.0f;

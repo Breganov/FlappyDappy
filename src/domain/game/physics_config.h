@@ -1,3 +1,5 @@
+#pragma once
+
 struct PhysicsConfig {
   double gravity = 900.0;
   double jump_velocity = -300.0;
