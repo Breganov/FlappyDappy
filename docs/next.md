@@ -4,6 +4,9 @@
 - CollisionService;
 - unit test для collision;
 - Catch2 + CTest;
+- начата application-архитектура через порты и use case;
+- заготовки WebSocket и HTTP;
+vbybvfkmysq CMakeLists.txt;
 
 # Что не закончено:
 

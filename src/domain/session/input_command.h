@@ -1,9 +1,11 @@
 // src\domain\session\input_command.h
 #pragma once
+
 #include "../../domain/player/player_id.h"
-enum class InputType{
-  Jump
-};
+
+#include <cstdint>
+
+enum class InputType { Jump };
 
 struct InputCommand {
   PlayerId player_id;

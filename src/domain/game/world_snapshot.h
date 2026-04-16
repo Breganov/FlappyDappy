@@ -1,8 +1,10 @@
 #pragma once
 
+#include "../session/session_state.h"
+
+#include <cstdint>
 #include <string>
 #include <vector>
-#include <cstdint>
 
 struct PlayerSnapshot {
   std::string player_id;
