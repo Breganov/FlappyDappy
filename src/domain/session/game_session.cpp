@@ -16,14 +16,6 @@ void GameSession::AddPlayer(PlayerId player_id) {
       physics_config_.initial_bird_y, 0.0f, 0.0f, true, 0, 0.0,
       physics_config_.bird_radius};
 
-  // initial_bird.y = 300.0;           // центр экрана
-  // initial_bird.x = 0.0;             // не используется (bird_x в config)
-  // initial_bird.velocity_y = 0.0;
-  // initial_bird.alive = true;
-  // initial_bird.passed_pipes = 0;
-  // initial_bird.distance = 0.0;
-  // initial_bird.radius = 20.0;
-
   players_.emplace_back(std::move(player_id), initial_bird);
 }
 
@@ -113,8 +105,6 @@ MatchResult GameSession::BuildResult() const {
 // ==================== PRIVATE ====================
 
 void GameSession::ApplyInputs_() {
-  PhysicsEngine engine(900.0, -300.0); // из PhysicsConfig
-
   while (!pending_inputs_.empty()) {
     InputCommand cmd = pending_inputs_.front();
     pending_inputs_.pop();
@@ -124,32 +114,28 @@ void GameSession::ApplyInputs_() {
 
     for (auto &player : players_) {
       if (player.GetPlayerId() == cmd.player_id && player.GetBird().alive) {
-        engine.ApplyJump(player.GetBird());
+        physics_engine_.ApplyJump(player.GetBird());
       }
     }
   }
 }
 
 void GameSession::UpdateBirds_(double dt) {
-  PhysicsEngine engine(900.0, -300.0);
-  PhysicsConfig phys{900.0, -300.0, 600.0, 120.0, 100.0};
-
   for (auto &player : players_) {
     auto &bird = player.GetBird();
     if (!bird.alive)
       continue;
 
-    engine.ApplyGravity(bird, dt);
-    engine.UpdatePosition(bird, dt);
+    physics_engine_.ApplyGravity(bird, dt);
+    physics_engine_.UpdatePosition(bird, dt);
 
     // distance — просто накопленное расстояние мира (для UI/тай-брейка)
-    bird.distance += phys.scroll_speed * dt;
+    bird.distance += physics_config_.scroll_speed * dt;
   }
 }
 
 void GameSession::UpdatePipes_(double dt) {
-  PhysicsConfig phys{900.0, -300.0, 600.0, 120.0, 100.0};
-  double scroll = phys.scroll_speed * dt;
+  double scroll = physics_config_.scroll_speed * dt;
 
   for (auto &pipe : pipes_) {
     pipe.x -= scroll;
@@ -166,25 +152,21 @@ void GameSession::UpdatePipes_(double dt) {
 
 void GameSession::DetectCollisions_() {
   CollisionService collision;
-  PhysicsConfig phys{900.0, -300.0, 600.0, 120.0, 100.0};
 
   for (auto &player : players_) {
     auto &bird = player.GetBird();
-    if (collision.HasCollided(bird, phys, pipes_)) {
+    if (collision.HasCollided(bird, physics_config_, pipes_)) {
       bird.alive = false;
     }
   }
 }
 
 void GameSession::UpdateScores_() {
-  // ← Вот и решение "score rules" из next.md
-  PhysicsConfig phys{900.0, -300.0, 600.0, 120.0, 100.0};
-
   for (auto &pipe : pipes_) {
     if (pipe.passed_by_player_logic_marker)
       continue;
 
-    if (pipe.x + pipe.width < phys.bird_x) {
+    if (pipe.x + pipe.width < physics_config_.bird_x) {
       // Труба прошла bird_x — даём очко всем, кто ещё жив
       for (auto &player : players_) {
         if (player.GetBird().alive) {

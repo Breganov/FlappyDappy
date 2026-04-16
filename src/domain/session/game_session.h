@@ -10,6 +10,7 @@
 #include "player_session_state.h"
 #include "session_state.h"
 
+#include "../game/collision_service.h"
 #include "../game/obstacle_generator.h"
 #include "../game/physics_config.h"
 #include "../game/physics_engine.h"
