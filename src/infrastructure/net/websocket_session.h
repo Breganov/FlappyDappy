@@ -1,4 +1,9 @@
+#pragma once
+
+#include <memory>
 #include <string>
+#include <string_view>
+
 class WebSocketSession : public std::enable_shared_from_this<WebSocketSession> {
 public:
   void Start();
@@ -6,6 +11,6 @@ public:
 
 private:
   void DoRead();
-  void OnRead(...);
+  void OnRead();
   void HandleMessage(std::string_view json);
-}
+};

@@ -1,7 +1,7 @@
 # Distributed under the OSI-approved BSD 3-Clause License.  See accompanying
-# file Copyright.txt or https://cmake.org/licensing for details.
+# file LICENSE.rst or https://cmake.org/licensing for details.
 
-cmake_minimum_required(VERSION 3.29.9)
+cmake_minimum_required(VERSION 4.2.3)
 
 # Reject any attempt to use a toolchain file. We must not use one because
 # we could be downloading it here. If the CMAKE_TOOLCHAIN_FILE environment
@@ -18,18 +18,18 @@ project(catch2-populate NONE)
 
 # Pass through things we've already detected in the main project to avoid
 # paying the cost of redetecting them again in ExternalProject_Add()
-set(GIT_EXECUTABLE [==[C:/Users/abreg/scoop/shims/git.exe]==])
-set(GIT_VERSION_STRING [==[2.51.0.windows.1]==])
+set(GIT_EXECUTABLE [==[C:/Program Files/Git/cmd/git.exe]==])
+set(Git_VERSION [==[2.52.0.windows.1]==])
 set_property(GLOBAL PROPERTY _CMAKE_FindGit_GIT_EXECUTABLE_VERSION
-  [==[C:/Users/abreg/scoop/shims/git.exe;2.51.0.windows.1]==]
+  [==[C:/Program Files/Git/cmd/git.exe;2.52.0.windows.1]==]
 )
 
 
 include(ExternalProject)
 ExternalProject_Add(catch2-populate
                      "UPDATE_DISCONNECTED" "False" "GIT_REPOSITORY" "https://github.com/catchorg/Catch2.git" "EXTERNALPROJECT_INTERNAL_ARGUMENT_SEPARATOR" "GIT_TAG" "v3.5.3"
-                    SOURCE_DIR          "D:/Code/C++/MultiFlappyBird/build-ninja/_deps/catch2-src"
-                    BINARY_DIR          "D:/Code/C++/MultiFlappyBird/build-ninja/_deps/catch2-build"
+                    SOURCE_DIR          "C:/Code/C++/FlappyDappy/build-ninja/_deps/catch2-src"
+                    BINARY_DIR          "C:/Code/C++/FlappyDappy/build-ninja/_deps/catch2-build"
                     CONFIGURE_COMMAND   ""
                     BUILD_COMMAND       ""
                     INSTALL_COMMAND     ""

@@ -3,13 +3,13 @@
 # No other meaning or use of this file is supported.
 
 method=git
-command=C:/Program Files/CMake/bin/cmake.exe;-P;D:/Code/C++/MultiFlappyBird/build-ninja/_deps/catch2-subbuild/catch2-populate-prefix/tmp/catch2-populate-gitclone.cmake
-source_dir=D:/Code/C++/MultiFlappyBird/build-ninja/_deps/catch2-src
-work_dir=D:/Code/C++/MultiFlappyBird/build-ninja/_deps
+command=C:/Program Files/CMake/bin/cmake.exe;-DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE;-P;C:/Code/C++/FlappyDappy/build-ninja/_deps/catch2-subbuild/catch2-populate-prefix/tmp/catch2-populate-gitclone.cmake
+source_dir=C:/Code/C++/FlappyDappy/build-ninja/_deps/catch2-src
+work_dir=C:/Code/C++/FlappyDappy/build-ninja/_deps
 repository=https://github.com/catchorg/Catch2.git
 remote=origin
 init_submodules=TRUE
 recurse_submodules=--recursive
 submodules=
 CMP0097=NEW
-
+      

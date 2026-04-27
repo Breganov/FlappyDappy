@@ -1,4 +1,6 @@
+// domain\session\games_session.cpp
 #include "game_session.h"
+#include "domain/match/match_result.h"
 
 GameSession::GameSession(SessionId id, std::uint32_t seed, double gravity,
                          double jump_velocity)
@@ -13,8 +15,14 @@ SessionState GameSession::GetState() const { return state_; }
 
 void GameSession::AddPlayer(PlayerId player_id) {
   BirdState initial_bird{
-      physics_config_.initial_bird_y, 0.0f, 0.0f, true, 0, 0.0,
-      physics_config_.bird_radius};
+      .y = 300.0f,
+      .x = 100.0f,
+      .velocity_y = 0.0f,
+      .alive = true,
+      .passed_pipes = 0,
+      .distance = 0.0f,
+      .radius = 20.0f,
+  };
 
   players_.emplace_back(std::move(player_id), initial_bird);
 }
@@ -55,7 +63,7 @@ void GameSession::Tick(std::chrono::milliseconds delta) {
   UpdateBirds_(dt);
   UpdatePipes_(dt);
   DetectCollisions_();
-  UpdateScores_();
+  // UpdateScores_(); // Удалил его в текущей реализации не нужен.
   CheckFinishConditions_();
 }
 
@@ -72,6 +80,7 @@ WorldSnapshot GameSession::BuildSnapshot() const {
   for (const auto &player : players_) {
     const auto &bird = player.GetBird();
     PlayerSnapshot ps{player.GetPlayerId().ToString(),
+                      bird.x,
                       bird.y,
                       bird.velocity_y,
                       bird.alive,
@@ -89,20 +98,21 @@ WorldSnapshot GameSession::BuildSnapshot() const {
 
 MatchResult GameSession::BuildResult() const {
   MatchResult result;
-  std::vector<std::pair<PlayerId, int>> temp;
-  for (const auto &p : players_) {
-    temp.emplace_back(p.GetPlayerId(), p.GetBird().passed_pipes);
-  }
-  std::sort(temp.begin(), temp.end(),
-            [](const auto &a, const auto &b) { return a.second > b.second; });
+  // std::vector<std::pair<PlayerId, int>> temp;
 
-  for (auto &pr : temp) {
-    result.rankings.push_back({std::move(pr.first), pr.second});
+  for (const auto &p : players_) {
+    // temp.emplace_back(p.GetPlayerId(), p.GetBird().distance);
+    result.rankings.push_back(MatchResult::Entry{
+        p.GetPlayerId(), p.GetBird().distance, p.GetBird().passed_pipes});
   }
+  std::sort(result.rankings.begin(), result.rankings.end(),
+            [](const MatchResult::Entry &a, const MatchResult::Entry &b) {
+              return a.distance > b.distance;
+            });
   return result;
 }
 
-// ==================== PRIVATE ====================
+// ==================== PRIVATE METHODS ====================
 
 void GameSession::ApplyInputs_() {
   while (!pending_inputs_.empty()) {
@@ -161,22 +171,25 @@ void GameSession::DetectCollisions_() {
   }
 }
 
-void GameSession::UpdateScores_() {
-  for (auto &pipe : pipes_) {
-    if (pipe.passed_by_player_logic_marker)
-      continue;
-
-    if (pipe.x + pipe.width < physics_config_.bird_x) {
-      // Труба прошла bird_x — даём очко всем, кто ещё жив
-      for (auto &player : players_) {
-        if (player.GetBird().alive) {
-          player.GetBird().passed_pipes++;
-        }
-      }
-      pipe.passed_by_player_logic_marker = true;
-    }
-  }
-}
+// void GameSession::UpdateScores_() {
+//   for (auto &pipe : pipes_) {
+//     if (pipe.passed_by_player_logic_marker)
+//       continue;
+//
+//     if (pipe.x + pipe.width < players_.bird.x) {
+//       // Труба прошла bird_x — даём очко всем, кто ещё жив
+//       for (auto &player : players_) {
+//         if (!player.GetBird().alive)
+//           continue;
+//
+//         if (player.GetBird().alive) {
+//           player.GetBird().passed_pipes++;
+//         }
+//       }
+//       pipe.passed_by_player_logic_marker = true;
+//     }
+//   }
+// }
 
 void GameSession::CheckFinishConditions_() {
   bool anyone_alive = false;

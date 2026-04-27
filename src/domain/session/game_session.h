@@ -44,18 +44,18 @@ private:
   void UpdateBirds_(double dt);
   void UpdatePipes_(double dt);
   void DetectCollisions_();
-  void UpdateScores_();
+  // void UpdateScores_();
   void CheckFinishConditions_();
 
 private:
   SessionId id_;
   SessionState state_ = SessionState::WaitingForPlayers;
   std::vector<PlayerSessionState> players_;
-  std::vector<Pipe> pipes_;
   std::queue<InputCommand> pending_inputs_;
   std::uint32_t seed_;
   std::uint64_t current_tick_ = 0;
   ObstacleGenerator obstacle_generator_;
   PhysicsConfig physics_config_;
   PhysicsEngine physics_engine_;
+  std::vector<Pipe> pipes_;
 };

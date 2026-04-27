@@ -10,7 +10,8 @@ struct MatchResult {
      * session_id, finished_at;
      */
     PlayerId player_id;
-    int score;
+    double distance;
+    int passed_pipes;
   };
-  std::vector<Entry> rankings; // отсортировано по убыванию score
+  std::vector<Entry> rankings; // отсортировано уже по distance
 };

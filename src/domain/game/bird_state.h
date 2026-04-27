@@ -5,7 +5,7 @@ struct BirdState {
   double x = 0.0;
   double velocity_y = 0.0;
   bool alive = true;
-  int passed_pipes = 0;
+  int passed_pipes = 0; // но это временно
   double distance = 0.0;
   double radius = 0.0;
 };

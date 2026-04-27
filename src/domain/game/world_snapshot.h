@@ -8,10 +8,11 @@
 
 struct PlayerSnapshot {
   std::string player_id;
+  double x;
   double y;
   double velocity_y;
   bool alive;
-  int score;
+  int passed_pipes;
   double distance;
 };
 

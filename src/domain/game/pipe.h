@@ -5,5 +5,6 @@ struct Pipe {
   double width = 60.0f;
   double gap_y = 120.0f;
   double gap_height = 140.0f;
-  bool passed_by_player_logic_marker = false;
+  // bool passed_by_player_logic_marker = false; // тоже теперь не нужен.
+  // так как считать будем по Distance пройденной живым пользователем
 };
