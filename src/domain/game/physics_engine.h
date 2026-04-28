@@ -4,13 +4,14 @@
 
 class PhysicsEngine {
 public:
-  PhysicsEngine(double gravity, double jump_velocity);
+  PhysicsEngine(double gravity, double jump_velocity, double scroll_speed);
 
-  void ApplyJump(BirdState& bird) const;
-  void ApplyGravity(BirdState& bird, double dt) const;
-  void UpdatePosition(BirdState& bird, double dt) const;
+  void ApplyJump(BirdState &bird) const;
+  void ApplyGravity(BirdState &bird, double dt) const;
+  void UpdatePosition(BirdState &bird, double dt) const;
 
 private:
   double gravity_;
   double jump_velocity_;
+  double scroll_speed_;
 };

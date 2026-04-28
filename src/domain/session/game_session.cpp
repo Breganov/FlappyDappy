@@ -3,11 +3,11 @@
 #include "domain/match/match_result.h"
 
 GameSession::GameSession(SessionId id, std::uint32_t seed, double gravity,
-                         double jump_velocity)
+                         double jump_velocity, double scroll_speed)
     : id_(std::move(id)), seed_(seed), obstacle_generator_(seed),
       pipes_(obstacle_generator_.InitialPipes()), current_tick_(0),
       physics_config_(),
-      physics_engine_(PhysicsEngine{gravity, jump_velocity}) {}
+      physics_engine_(PhysicsEngine{gravity, jump_velocity, scroll_speed}) {}
 
 const SessionId &GameSession::GetId() const { return id_; }
 

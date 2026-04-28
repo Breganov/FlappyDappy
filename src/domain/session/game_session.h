@@ -23,7 +23,7 @@
 class GameSession {
 public:
   GameSession(SessionId id, std::uint32_t seed, double gravity,
-              double jump_velocity);
+              double jump_velocity, double scroll_speed);
   const SessionId &GetId() const;
   SessionState GetState() const;
 

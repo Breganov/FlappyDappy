@@ -5,7 +5,7 @@ int main() {
   ConsoleLogger logger(LogLevel::Debug);
   logger.Info("FlappyDappy server starting");
 
-  GameSession gs;
+  GameSession gs(SessionId("First id"), 42u, 900.0f, -300.0f);
   gs.AddPlayer(PlayerId("First player"));
   gs.AddPlayer(PlayerId("Second player"));
   // create services, sessions, etc.

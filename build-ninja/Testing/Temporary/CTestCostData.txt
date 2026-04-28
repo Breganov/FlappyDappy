@@ -1,8 +1,12 @@
-Bird hits top bound 1 0.0105005
-Bird hits bottom bound 1 0.0087377
-Bird does not collide inside the gap 1 0.008061
-Bird collides with pipe when outside gap 1 0.0100672
-GameSession starts match only after countdown 1 0.0099644
-GameSession tick updates snapshot when match is in progress 1 0.0084126
-GameSession eventually finishes 1 0.0088087
+Bird hits top bound 25 0.00116739
+Bird hits bottom bound 25 0.000429288
+Bird does not collide inside the gap 25 0.000387036
+Bird collides with pipe when outside gap 25 0.000544364
+GameSession starts match only after countdown 25 0.000457472
+GameSession tick updates snapshot when match is in progress 25 0.000361224
+GameSession eventually finishes 25 0.000442416
+Tick does nothing before StartMatch 20 0.00052212
+Jump affect only the targeted player 1 0.0101328
+Jump affects only the targeted player 16 0.00063135
+Distance increases while player is alive 3 0.00381817
 ---

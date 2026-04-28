@@ -1,9 +1,13 @@
 // C:\Code\C++\FlappyDappy\tests\domain
 // #include "catch2/catch_session.hpp"
+#include "domain/game/physics_engine.h"
 #include "domain/session/game_session.h"
+#include "domain/session/input_command.h"
 #include "domain/session/session_id.h"
 #include "domain/session/session_state.h"
+#include <catch2/catch_all.hpp>
 #include <catch2/catch_test_macros.hpp>
+#include <catch2/matchers/catch_matchers_floating_point.hpp>
 #include <chrono>
 #include <cstdint>
 // #include <ratio>
@@ -13,8 +17,9 @@ TEST_CASE("GameSession starts match only after countdown") {
   const std::uint32_t seed = 42u;
   const double gravity = 900.0f;
   const double jump_velocity = -300.0f;
+  const double scroll_speed = 120.0f;
 
-  GameSession session(sid, seed, gravity, jump_velocity);
+  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed);
 
   session.StartMatch();
   REQUIRE(session.GetState() == SessionState::WaitingForPlayers);
@@ -31,8 +36,9 @@ TEST_CASE("GameSession tick updates snapshot when match is in progress") {
   const std::uint32_t seed = 42u;
   const double gravity = 900.0f;
   const double jump_velocity = -300.0f;
+  const double scroll_speed = 120.0f;
 
-  GameSession session(sid, seed, gravity, jump_velocity);
+  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed);
 
   session.AddPlayer(PlayerId("player1"));
   session.AddPlayer(PlayerId("player2"));
@@ -57,8 +63,9 @@ TEST_CASE("GameSession eventually finishes") {
   const std::uint32_t seed = 42u;
   const double gravity = 900.0f;
   const double jump_velocity = -300.0f;
+  const double scroll_speed = 120.0f;
 
-  GameSession session(sid, seed, gravity, jump_velocity);
+  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed);
 
   session.AddPlayer(PlayerId("player1"));
   session.AddPlayer(PlayerId("player2"));
@@ -74,4 +81,90 @@ TEST_CASE("GameSession eventually finishes") {
 
   auto result = session.BuildResult();
   REQUIRE(result.rankings.size() == 2);
+}
+
+TEST_CASE("Tick does nothing before StartMatch") {
+  SessionId sid("test-session");
+  const std::uint32_t seed = 42u;
+  const double gravity = 900.0f;
+  const double jump_velocity = -300.0f;
+  const double scroll_speed = 120.0f;
+
+  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed);
+
+  session.AddPlayer(PlayerId("player1"));
+
+  auto y_before = session.BuildSnapshot().players[0].y;
+
+  for (int i = 0; i < 500 && !session.IsFinished(); ++i) {
+    session.Tick(std::chrono::milliseconds(16));
+  }
+
+  auto y_after = session.BuildSnapshot().players[0].y;
+
+  REQUIRE(y_before == y_after);
+}
+
+TEST_CASE("Jump affects only the targeted player") {
+  SessionId sid("test-session");
+  const std::uint32_t seed = 42u;
+  const double gravity = 900.0f;
+  const double jump_velocity = -300.0f;
+  const double scroll_speed = 120.0f;
+
+  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed);
+
+  session.AddPlayer(PlayerId("player1"));
+  session.AddPlayer(PlayerId("player2"));
+
+  session.StartCountdown();
+  session.StartMatch();
+
+  InputCommand p1_command = {PlayerId("player1"), InputType::Jump, 0u};
+  session.EnqueueInput(p1_command);
+
+  auto snap_before = session.BuildSnapshot();
+
+  for (int i = 0; i < 20 && !session.IsFinished();
+       ++i) { // а больше заставит птицу падать
+    session.Tick(std::chrono::milliseconds(16));
+  }
+
+  auto snap_after = session.BuildSnapshot();
+
+  REQUIRE(snap_before.players[0].y >= snap_after.players[0].y); // поднялся
+  REQUIRE(snap_before.players[1].y <= snap_after.players[1].y); // упал
+}
+
+TEST_CASE("Distance increases while player is alive") {
+  SessionId sid("test-session");
+  const std::uint32_t seed = 42u;
+  const double gravity = 900.0f;
+  const double jump_velocity = -300.0f;
+  const double scroll_speed = 120.0f;
+
+  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed);
+
+  session.AddPlayer(PlayerId("player1"));
+
+  session.StartCountdown();
+  session.StartMatch();
+
+  // InputCommand p1_command = {PlayerId("player1"), InputType::Jump, 0u};
+  // session.EnqueueInput(p1_command);
+
+  auto snap_before = session.BuildSnapshot();
+
+  for (int i = 0; i < 30 && !session.IsFinished();
+       ++i) { // а больше заставит птицу падать
+    session.Tick(std::chrono::milliseconds(16));
+  }
+
+  auto snap_after = session.BuildSnapshot();
+
+  REQUIRE(snap_after.players[0].alive);
+  REQUIRE(snap_after.players[0].x >= snap_before.players[0].x);
+  const double expected_x =
+      snap_before.players[0].x + snap_after.players[0].distance;
+  REQUIRE(snap_after.players[0].x == Catch::Approx(expected_x).margin(0.01));
 }

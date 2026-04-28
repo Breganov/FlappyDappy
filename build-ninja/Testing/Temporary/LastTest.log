@@ -1,34 +1,34 @@
-Start testing: Apr 16 22:14 RTZ 2 (çèìà)
+Start testing: Apr 28 03:56 RTZ 2 (çèìà)
 ----------------------------------------------------------
-1/7 Testing: Bird hits top bound
-1/7 Test: Bird hits top bound
+1/10 Testing: Bird hits top bound
+1/10 Test: Bird hits top bound
 Command: "C:/Code/C++/FlappyDappy/build-ninja/flappy_tests.exe" "Bird hits top bound"
 Directory: C:/Code/C++/FlappyDappy/build-ninja
-"Bird hits top bound" start time: Apr 16 22:14 RTZ 2 (çèìà)
+"Bird hits top bound" start time: Apr 28 03:56 RTZ 2 (çèìà)
 Output:
 ----------------------------------------------------------
 Filters: "Bird hits top bound"
-Randomness seeded to: 3741184239
+Randomness seeded to: 3778391184
 ===============================================================================
 All tests passed (1 assertion in 1 test case)
 
 <end of output>
-Test time =   0.01 sec
+Test time =   0.03 sec
 ----------------------------------------------------------
 Test Passed.
-"Bird hits top bound" end time: Apr 16 22:14 RTZ 2 (çèìà)
+"Bird hits top bound" end time: Apr 28 03:56 RTZ 2 (çèìà)
 "Bird hits top bound" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-2/7 Testing: Bird hits bottom bound
-2/7 Test: Bird hits bottom bound
+2/10 Testing: Bird hits bottom bound
+2/10 Test: Bird hits bottom bound
 Command: "C:/Code/C++/FlappyDappy/build-ninja/flappy_tests.exe" "Bird hits bottom bound"
 Directory: C:/Code/C++/FlappyDappy/build-ninja
-"Bird hits bottom bound" start time: Apr 16 22:14 RTZ 2 (çèìà)
+"Bird hits bottom bound" start time: Apr 28 03:56 RTZ 2 (çèìà)
 Output:
 ----------------------------------------------------------
 Filters: "Bird hits bottom bound"
-Randomness seeded to: 1741969666
+Randomness seeded to: 4125964903
 ===============================================================================
 All tests passed (1 assertion in 1 test case)
 
@@ -36,19 +36,19 @@ All tests passed (1 assertion in 1 test case)
 Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"Bird hits bottom bound" end time: Apr 16 22:14 RTZ 2 (çèìà)
+"Bird hits bottom bound" end time: Apr 28 03:56 RTZ 2 (çèìà)
 "Bird hits bottom bound" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-3/7 Testing: Bird does not collide inside the gap
-3/7 Test: Bird does not collide inside the gap
+3/10 Testing: Bird does not collide inside the gap
+3/10 Test: Bird does not collide inside the gap
 Command: "C:/Code/C++/FlappyDappy/build-ninja/flappy_tests.exe" "Bird does not collide inside the gap"
 Directory: C:/Code/C++/FlappyDappy/build-ninja
-"Bird does not collide inside the gap" start time: Apr 16 22:14 RTZ 2 (çèìà)
+"Bird does not collide inside the gap" start time: Apr 28 03:56 RTZ 2 (çèìà)
 Output:
 ----------------------------------------------------------
 Filters: "Bird does not collide inside the gap"
-Randomness seeded to: 1359667647
+Randomness seeded to: 3791212154
 ===============================================================================
 All tests passed (1 assertion in 1 test case)
 
@@ -56,19 +56,19 @@ All tests passed (1 assertion in 1 test case)
 Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"Bird does not collide inside the gap" end time: Apr 16 22:14 RTZ 2 (çèìà)
+"Bird does not collide inside the gap" end time: Apr 28 03:56 RTZ 2 (çèìà)
 "Bird does not collide inside the gap" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-4/7 Testing: Bird collides with pipe when outside gap
-4/7 Test: Bird collides with pipe when outside gap
+4/10 Testing: Bird collides with pipe when outside gap
+4/10 Test: Bird collides with pipe when outside gap
 Command: "C:/Code/C++/FlappyDappy/build-ninja/flappy_tests.exe" "Bird collides with pipe when outside gap"
 Directory: C:/Code/C++/FlappyDappy/build-ninja
-"Bird collides with pipe when outside gap" start time: Apr 16 22:14 RTZ 2 (çèìà)
+"Bird collides with pipe when outside gap" start time: Apr 28 03:56 RTZ 2 (çèìà)
 Output:
 ----------------------------------------------------------
 Filters: "Bird collides with pipe when outside gap"
-Randomness seeded to: 2399769948
+Randomness seeded to: 875169563
 ===============================================================================
 All tests passed (1 assertion in 1 test case)
 
@@ -76,19 +76,19 @@ All tests passed (1 assertion in 1 test case)
 Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"Bird collides with pipe when outside gap" end time: Apr 16 22:14 RTZ 2 (çèìà)
+"Bird collides with pipe when outside gap" end time: Apr 28 03:56 RTZ 2 (çèìà)
 "Bird collides with pipe when outside gap" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-5/7 Testing: GameSession starts match only after countdown
-5/7 Test: GameSession starts match only after countdown
+5/10 Testing: GameSession starts match only after countdown
+5/10 Test: GameSession starts match only after countdown
 Command: "C:/Code/C++/FlappyDappy/build-ninja/flappy_tests.exe" "GameSession starts match only after countdown"
 Directory: C:/Code/C++/FlappyDappy/build-ninja
-"GameSession starts match only after countdown" start time: Apr 16 22:14 RTZ 2 (çèìà)
+"GameSession starts match only after countdown" start time: Apr 28 03:56 RTZ 2 (çèìà)
 Output:
 ----------------------------------------------------------
 Filters: "GameSession starts match only after countdown"
-Randomness seeded to: 1043624404
+Randomness seeded to: 3538330550
 ===============================================================================
 All tests passed (3 assertions in 1 test case)
 
@@ -96,19 +96,19 @@ All tests passed (3 assertions in 1 test case)
 Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"GameSession starts match only after countdown" end time: Apr 16 22:14 RTZ 2 (çèìà)
+"GameSession starts match only after countdown" end time: Apr 28 03:56 RTZ 2 (çèìà)
 "GameSession starts match only after countdown" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-6/7 Testing: GameSession tick updates snapshot when match is in progress
-6/7 Test: GameSession tick updates snapshot when match is in progress
+6/10 Testing: GameSession tick updates snapshot when match is in progress
+6/10 Test: GameSession tick updates snapshot when match is in progress
 Command: "C:/Code/C++/FlappyDappy/build-ninja/flappy_tests.exe" "GameSession tick updates snapshot when match is in progress"
 Directory: C:/Code/C++/FlappyDappy/build-ninja
-"GameSession tick updates snapshot when match is in progress" start time: Apr 16 22:14 RTZ 2 (çèìà)
+"GameSession tick updates snapshot when match is in progress" start time: Apr 28 03:56 RTZ 2 (çèìà)
 Output:
 ----------------------------------------------------------
 Filters: "GameSession tick updates snapshot when match is in progress"
-Randomness seeded to: 574242199
+Randomness seeded to: 3737652475
 ===============================================================================
 All tests passed (5 assertions in 1 test case)
 
@@ -116,19 +116,19 @@ All tests passed (5 assertions in 1 test case)
 Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"GameSession tick updates snapshot when match is in progress" end time: Apr 16 22:14 RTZ 2 (çèìà)
+"GameSession tick updates snapshot when match is in progress" end time: Apr 28 03:56 RTZ 2 (çèìà)
 "GameSession tick updates snapshot when match is in progress" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-7/7 Testing: GameSession eventually finishes
-7/7 Test: GameSession eventually finishes
+7/10 Testing: GameSession eventually finishes
+7/10 Test: GameSession eventually finishes
 Command: "C:/Code/C++/FlappyDappy/build-ninja/flappy_tests.exe" "GameSession eventually finishes"
 Directory: C:/Code/C++/FlappyDappy/build-ninja
-"GameSession eventually finishes" start time: Apr 16 22:14 RTZ 2 (çèìà)
+"GameSession eventually finishes" start time: Apr 28 03:56 RTZ 2 (çèìà)
 Output:
 ----------------------------------------------------------
 Filters: "GameSession eventually finishes"
-Randomness seeded to: 2063674949
+Randomness seeded to: 758194133
 ===============================================================================
 All tests passed (2 assertions in 1 test case)
 
@@ -136,8 +136,68 @@ All tests passed (2 assertions in 1 test case)
 Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"GameSession eventually finishes" end time: Apr 16 22:14 RTZ 2 (çèìà)
+"GameSession eventually finishes" end time: Apr 28 03:56 RTZ 2 (çèìà)
 "GameSession eventually finishes" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: Apr 16 22:14 RTZ 2 (çèìà)
+8/10 Testing: Tick does nothing before StartMatch
+8/10 Test: Tick does nothing before StartMatch
+Command: "C:/Code/C++/FlappyDappy/build-ninja/flappy_tests.exe" "Tick does nothing before StartMatch"
+Directory: C:/Code/C++/FlappyDappy/build-ninja
+"Tick does nothing before StartMatch" start time: Apr 28 03:56 RTZ 2 (çèìà)
+Output:
+----------------------------------------------------------
+Filters: "Tick does nothing before StartMatch"
+Randomness seeded to: 1170054059
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"Tick does nothing before StartMatch" end time: Apr 28 03:56 RTZ 2 (çèìà)
+"Tick does nothing before StartMatch" time elapsed: 00:00:00
+----------------------------------------------------------
+
+9/10 Testing: Jump affects only the targeted player
+9/10 Test: Jump affects only the targeted player
+Command: "C:/Code/C++/FlappyDappy/build-ninja/flappy_tests.exe" "Jump affects only the targeted player"
+Directory: C:/Code/C++/FlappyDappy/build-ninja
+"Jump affects only the targeted player" start time: Apr 28 03:56 RTZ 2 (çèìà)
+Output:
+----------------------------------------------------------
+Filters: "Jump affects only the targeted player"
+Randomness seeded to: 1592197834
+===============================================================================
+All tests passed (2 assertions in 1 test case)
+
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"Jump affects only the targeted player" end time: Apr 28 03:56 RTZ 2 (çèìà)
+"Jump affects only the targeted player" time elapsed: 00:00:00
+----------------------------------------------------------
+
+10/10 Testing: Distance increases while player is alive
+10/10 Test: Distance increases while player is alive
+Command: "C:/Code/C++/FlappyDappy/build-ninja/flappy_tests.exe" "Distance increases while player is alive"
+Directory: C:/Code/C++/FlappyDappy/build-ninja
+"Distance increases while player is alive" start time: Apr 28 03:56 RTZ 2 (çèìà)
+Output:
+----------------------------------------------------------
+Filters: "Distance increases while player is alive"
+Randomness seeded to: 880386718
+===============================================================================
+All tests passed (3 assertions in 1 test case)
+
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"Distance increases while player is alive" end time: Apr 28 03:56 RTZ 2 (çèìà)
+"Distance increases while player is alive" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Apr 28 03:56 RTZ 2 (çèìà)
