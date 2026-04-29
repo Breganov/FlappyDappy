@@ -1,29 +1,22 @@
 // domain\session\games_session.cpp
 #include "game_session.h"
+#include "domain/game/collision_service.h"
 #include "domain/match/match_result.h"
 
 GameSession::GameSession(SessionId id, std::uint32_t seed, double gravity,
-                         double jump_velocity, double scroll_speed)
+                         double jump_velocity, double scroll_speed,
+                         CollisionService collision)
     : id_(std::move(id)), seed_(seed), obstacle_generator_(seed),
       pipes_(obstacle_generator_.InitialPipes()), current_tick_(0),
-      physics_config_(),
-      physics_engine_(PhysicsEngine{gravity, jump_velocity, scroll_speed}) {}
+      physics_config_(), physics_engine_(gravity, jump_velocity, scroll_speed),
+      collision_() {}
 
 const SessionId &GameSession::GetId() const { return id_; }
 
 SessionState GameSession::GetState() const { return state_; }
 
 void GameSession::AddPlayer(PlayerId player_id) {
-  BirdState initial_bird{
-      .y = 300.0f,
-      .x = 100.0f,
-      .velocity_y = 0.0f,
-      .alive = true,
-      .passed_pipes = 0,
-      .distance = 0.0f,
-      .radius = 20.0f,
-  };
-
+  BirdState initial_bird;
   players_.emplace_back(std::move(player_id), initial_bird);
 }
 
@@ -161,35 +154,13 @@ void GameSession::UpdatePipes_(double dt) {
 }
 
 void GameSession::DetectCollisions_() {
-  CollisionService collision;
-
   for (auto &player : players_) {
     auto &bird = player.GetBird();
-    if (collision.HasCollided(bird, physics_config_, pipes_)) {
+    if (collision_.HasCollided(bird, physics_config_, pipes_)) {
       bird.alive = false;
     }
   }
 }
-
-// void GameSession::UpdateScores_() {
-//   for (auto &pipe : pipes_) {
-//     if (pipe.passed_by_player_logic_marker)
-//       continue;
-//
-//     if (pipe.x + pipe.width < players_.bird.x) {
-//       // Труба прошла bird_x — даём очко всем, кто ещё жив
-//       for (auto &player : players_) {
-//         if (!player.GetBird().alive)
-//           continue;
-//
-//         if (player.GetBird().alive) {
-//           player.GetBird().passed_pipes++;
-//         }
-//       }
-//       pipe.passed_by_player_logic_marker = true;
-//     }
-//   }
-// }
 
 void GameSession::CheckFinishConditions_() {
   bool anyone_alive = false;

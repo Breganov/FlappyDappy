@@ -23,9 +23,11 @@
 class GameSession {
 public:
   GameSession(SessionId id, std::uint32_t seed, double gravity,
-              double jump_velocity, double scroll_speed);
+              double jump_velocity, double scroll_speed,
+              CollisionService collision);
   const SessionId &GetId() const;
   SessionState GetState() const;
+  std::vector<PlayerSessionState> GetPlayers() const { return players_; };
 
   void AddPlayer(PlayerId player_id);
   void MarkPlayerReady(const PlayerId &player_id);
@@ -44,7 +46,6 @@ private:
   void UpdateBirds_(double dt);
   void UpdatePipes_(double dt);
   void DetectCollisions_();
-  // void UpdateScores_();
   void CheckFinishConditions_();
 
 private:
@@ -58,4 +59,5 @@ private:
   PhysicsConfig physics_config_;
   PhysicsEngine physics_engine_;
   std::vector<Pipe> pipes_;
+  CollisionService collision_;
 };

@@ -184651,8 +184651,8 @@ CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 //Enable/Disable output of build database during the build.
 CMAKE_EXPORT_BUILD_DATABASE:BOOL=
 
-//Enable/Disable output of compile commands during generation.
-CMAKE_EXPORT_COMPILE_COMMANDS:BOOL=
+//No help, variable specified on the command line.
+CMAKE_EXPORT_COMPILE_COMMANDS:UNINITIALIZED=ON
 
 //Value Computed by CMake.
 CMAKE_FIND_PACKAGE_REDIRECTS_DIR:STATIC=C:/Code/C++/FlappyDappy/build-ninja/CMakeFiles/pkgRedirects
@@ -186270,13 +186270,20 @@ C:/Code/C++/FlappyDappy/build-ninja/_deps/catch2-build/src/CMakeFiles/rebuild_ca
 ### `build-ninja/Testing/Temporary/CTestCostData.txt`
 
 ```
-Bird hits top bound 1 0.0105005
-Bird hits bottom bound 1 0.0087377
-Bird does not collide inside the gap 1 0.008061
-Bird collides with pipe when outside gap 1 0.0100672
-GameSession starts match only after countdown 1 0.0099644
-GameSession tick updates snapshot when match is in progress 1 0.0084126
-GameSession eventually finishes 1 0.0088087
+Bird hits top bound 37 0.00115373
+Bird hits bottom bound 37 0.000408086
+Bird does not collide inside the gap 37 0.000463816
+Bird collides with pipe when outside gap 37 0.000412816
+GameSession starts match only after countdown 37 0.000381011
+GameSession tick updates snapshot when match is in progress 37 0.000349562
+GameSession eventually finishes 37 0.000363932
+Tick does nothing before StartMatch 32 0.00048105
+Jump affect only the targeted player 1 0.0101328
+Jump affects only the targeted player 28 0.000503321
+Distance increases while player is alive 15 0.000793393
+Player dies on collision 12 0.00120994
+BuildResult sorts players by distance 8 0.00199446
+BuildSnapshot conatains x position 6 0.00251232
 ---
 ```
 
@@ -186657,13 +186664,13 @@ public:
 #pragma once
 
 struct BirdState {
-  double y = 0.0;
-  double x = 0.0;
-  double velocity_y = 0.0;
+  double y = 300.0f;
+  double x = 100.0f;
+  double velocity_y = 0.0f;
   bool alive = true;
-  int passed_pipes = 0; // но это временно
-  double distance = 0.0;
-  double radius = 0.0;
+  int passed_pipes = 0;
+  double distance = 0.0f;
+  double radius = 20.0f;
 };
 ```
 
@@ -186728,7 +186735,7 @@ bool CollisionService::HasHitPipe(const BirdState &bird,
   //   return true;
   // }
 
-  return inside_gap;
+  return !inside_gap;
 }
 ```
 
@@ -186852,26 +186859,29 @@ struct PhysicsConfig {
 #include "physics_engine.h"
 #include "bird_state.h"
 
-PhysicsEngine::PhysicsEngine(double gravity, double jump_velocity) : gravity_(gravity), jump_velocity_(jump_velocity) {}
+PhysicsEngine::PhysicsEngine(double gravity, double jump_velocity,
+                             double scroll_speed)
+    : gravity_(gravity), jump_velocity_(jump_velocity),
+      scroll_speed_(scroll_speed) {}
 
-void PhysicsEngine::ApplyJump(BirdState& bird) const {
+void PhysicsEngine::ApplyJump(BirdState &bird) const {
   bird.velocity_y = jump_velocity_;
 }
 
-void PhysicsEngine::ApplyGravity(BirdState& bird, double dt) const {
+void PhysicsEngine::ApplyGravity(BirdState &bird, double dt) const {
   if (!bird.alive) {
     return;
   }
   bird.velocity_y += gravity_ * dt;
 }
 
-void PhysicsEngine::UpdatePosition(BirdState& bird, double dt) const {
+void PhysicsEngine::UpdatePosition(BirdState &bird, double dt) const {
   if (!bird.alive) {
     return;
   }
   bird.y += bird.velocity_y * dt;
+  bird.x += scroll_speed_ * dt;
 }
-
 ```
 
 ### `src/domain/game/physics_engine.h`
@@ -186883,15 +186893,16 @@ void PhysicsEngine::UpdatePosition(BirdState& bird, double dt) const {
 
 class PhysicsEngine {
 public:
-  PhysicsEngine(double gravity, double jump_velocity);
+  PhysicsEngine(double gravity, double jump_velocity, double scroll_speed);
 
-  void ApplyJump(BirdState& bird) const;
-  void ApplyGravity(BirdState& bird, double dt) const;
-  void UpdatePosition(BirdState& bird, double dt) const;
+  void ApplyJump(BirdState &bird) const;
+  void ApplyGravity(BirdState &bird, double dt) const;
+  void UpdatePosition(BirdState &bird, double dt) const;
 
 private:
   double gravity_;
   double jump_velocity_;
+  double scroll_speed_;
 };
 ```
 
@@ -186927,12 +186938,17 @@ public:
 ### `src/domain/game/world_snapshot.h`
 
 ```cpp
+// domain\game\world_snapshot.h
 #pragma once
 
 #include "../session/session_state.h"
 
 #include <cstdint>
+#include <iostream>
+// #include <iterator>
+#include <ostream>
 #include <string>
+#include <string_view>
 #include <vector>
 
 struct PlayerSnapshot {
@@ -186958,6 +186974,52 @@ struct WorldSnapshot {
   std::vector<PlayerSnapshot> players;
   std::vector<PipeSnapshot> pipes;
 };
+
+// ============================== inline methods ==============================
+
+inline std::string_view ToString(SessionState state) {
+  switch (state) {
+  case SessionState::WaitingForPlayers:
+    return "Waiting";
+  case SessionState::Countdown:
+    return "Countdown";
+  case SessionState::InProgress:
+    return "InProgress";
+  case SessionState::Finished:
+    return "Finished";
+  }
+  return "Unknown";
+}
+
+inline std::ostream &operator<<(std::ostream &out, const WorldSnapshot &ws) {
+  out << "\n============ WorldSnapshot ============\n";
+  out << "Session ID: " << ws.session_id << '\n';
+  out << "Tick: " << ws.tick << '\n';
+  out << "State: " << ToString(ws.state) << '\n';
+
+  out << "\nPlayers: " << ws.players.size() << '\n';
+
+  for (const auto &player : ws.players) {
+    out << "\n  Player ID: " << player.player_id << '\n';
+    out << "    x: " << player.x << '\n';
+    out << "    y: " << player.y << '\n';
+    out << "    velocity_y: " << player.velocity_y << '\n';
+    out << "    alive: " << player.alive << '\n';
+    out << "    passed_pipes: " << player.passed_pipes << '\n';
+    out << "    distance: " << player.distance << '\n';
+  }
+
+  out << "\nPipes: " << ws.pipes.size() << '\n';
+  for (const auto &pipe : ws.pipes) {
+    out << "\n  Pipe:\n";
+    out << "    x: " << pipe.x << '\n';
+    out << "    gap_y: " << pipe.gap_y << '\n';
+    out << "    gap_height: " << pipe.gap_height << '\n';
+  }
+
+  out << "========================================\n\n";
+  return out;
+}
 ```
 
 ### `src/domain/match/match_result.h`
@@ -186999,6 +187061,43 @@ public:
 ### `src/domain/player/nickname.h`
 
 ```cpp
+// src\domain\player\nickname.h
+#pragma once
+
+#include <stdexcept>
+#include <string>
+#include <string_view>
+#include <utility>
+
+class Nickname {
+public:
+  Nickname() = default;
+
+  explicit Nickname(std::string value) : value_(std::move(value)) {
+    Validate_(value_);
+  }
+
+  const std::string &ToString() const noexcept { return value_; }
+
+  bool Empty() const noexcept { return value_.empty(); }
+
+  bool operator==(const Nickname &) const = default;
+  bool operator!=(const Nickname &) const = default;
+
+private:
+  static void Validate_(std::string_view value) {
+    if (value.empty()) {
+      throw std::invalid_argument("Nickname must not be empty");
+    }
+
+    if (value.size() > 32) {
+      throw std::invalid_argument("Nickname must be at most 32 characters");
+    }
+  }
+
+private:
+  std::string value_;
+};
 ```
 
 ### `src/domain/player/player.h`
@@ -187006,20 +187105,20 @@ public:
 ```cpp
 #pragma once
 
+#include "domain/player/nickname.h"
 #include "player_id.h"
-#include <string>
 #include <utility>
 
 class Player {
 public:
-  Player(PlayerId id, std::string nickname)
+  Player(PlayerId id, Nickname nickname)
       : id_(std::move(id)), nickname_(std::move(nickname)) {}
   const PlayerId &GetId() const { return id_; }
-  const std::string &GetNickname() const { return nickname_; }
+  const Nickname &GetNickname() const { return nickname_; }
 
 private:
   PlayerId id_;
-  std::string nickname_;
+  Nickname nickname_;
 };
 ```
 
@@ -187048,30 +187147,23 @@ private:
 ```cpp
 // domain\session\games_session.cpp
 #include "game_session.h"
+#include "domain/game/collision_service.h"
 #include "domain/match/match_result.h"
 
 GameSession::GameSession(SessionId id, std::uint32_t seed, double gravity,
-                         double jump_velocity)
+                         double jump_velocity, double scroll_speed,
+                         CollisionService collision)
     : id_(std::move(id)), seed_(seed), obstacle_generator_(seed),
       pipes_(obstacle_generator_.InitialPipes()), current_tick_(0),
-      physics_config_(),
-      physics_engine_(PhysicsEngine{gravity, jump_velocity}) {}
+      physics_config_(), physics_engine_(gravity, jump_velocity, scroll_speed),
+      collision_() {}
 
 const SessionId &GameSession::GetId() const { return id_; }
 
 SessionState GameSession::GetState() const { return state_; }
 
 void GameSession::AddPlayer(PlayerId player_id) {
-  BirdState initial_bird{
-      .y = 300.0f,
-      .x = 100.0f,
-      .velocity_y = 0.0f,
-      .alive = true,
-      .passed_pipes = 0,
-      .distance = 0.0f,
-      .radius = 20.0f,
-  };
-
+  BirdState initial_bird;
   players_.emplace_back(std::move(player_id), initial_bird);
 }
 
@@ -187209,35 +187301,13 @@ void GameSession::UpdatePipes_(double dt) {
 }
 
 void GameSession::DetectCollisions_() {
-  CollisionService collision;
-
   for (auto &player : players_) {
     auto &bird = player.GetBird();
-    if (collision.HasCollided(bird, physics_config_, pipes_)) {
+    if (collision_.HasCollided(bird, physics_config_, pipes_)) {
       bird.alive = false;
     }
   }
 }
-
-// void GameSession::UpdateScores_() {
-//   for (auto &pipe : pipes_) {
-//     if (pipe.passed_by_player_logic_marker)
-//       continue;
-//
-//     if (pipe.x + pipe.width < players_.bird.x) {
-//       // Труба прошла bird_x — даём очко всем, кто ещё жив
-//       for (auto &player : players_) {
-//         if (!player.GetBird().alive)
-//           continue;
-//
-//         if (player.GetBird().alive) {
-//           player.GetBird().passed_pipes++;
-//         }
-//       }
-//       pipe.passed_by_player_logic_marker = true;
-//     }
-//   }
-// }
 
 void GameSession::CheckFinishConditions_() {
   bool anyone_alive = false;
@@ -187281,9 +187351,11 @@ void GameSession::CheckFinishConditions_() {
 class GameSession {
 public:
   GameSession(SessionId id, std::uint32_t seed, double gravity,
-              double jump_velocity);
+              double jump_velocity, double scroll_speed,
+              CollisionService collision);
   const SessionId &GetId() const;
   SessionState GetState() const;
+  std::vector<PlayerSessionState> GetPlayers() const { return players_; };
 
   void AddPlayer(PlayerId player_id);
   void MarkPlayerReady(const PlayerId &player_id);
@@ -187302,7 +187374,6 @@ private:
   void UpdateBirds_(double dt);
   void UpdatePipes_(double dt);
   void DetectCollisions_();
-  // void UpdateScores_();
   void CheckFinishConditions_();
 
 private:
@@ -187316,6 +187387,7 @@ private:
   PhysicsConfig physics_config_;
   PhysicsEngine physics_engine_;
   std::vector<Pipe> pipes_;
+  CollisionService collision_;
 };
 ```
 
@@ -187544,22 +187616,72 @@ private:
 ### `src/main.cpp`
 
 ```cpp
+// main.cpp
+#include "domain/session/game_session.h"
 #include "infrastructure/logging/console_logger.h"
+
+#include <chrono>
+#include <iostream>
+#include <string>
 
 int main() {
   ConsoleLogger logger(LogLevel::Debug);
   logger.Info("FlappyDappy server starting");
+  SessionId sid("test-session");
+  const std::uint32_t seed = 42u;
+  double gravity = 900.0f;
+  const double jump_velocity = -300.0f;
+  const double scroll_speed = 120.0f;
 
-  // create services, sessions, etc.
+  GameSession gs(sid, seed, gravity, jump_velocity, scroll_speed);
+
+  gs.AddPlayer(PlayerId("p1"));
+  gs.AddPlayer(PlayerId("p2"));
+  for (const auto &player : gs.GetPlayers()) {
+    logger.Info("Added player: " + player.GetPlayerId().ToString());
+  }
+
+  gs.StartCountdown();
+  if (gs.GetState() != SessionState::Countdown) {
+    logger.Error("GameSession.StartCountdown didn't started.");
+  }
+
+  gs.StartMatch();
+  if (gs.GetState() != SessionState::InProgress) {
+    logger.Error("GameSession.StartMatch didn't started.");
+  }
 
   logger.Info("Server initialized");
 
-  // TODO
-  // - session created;
-  // - palyer added;
-  // - match started;
-  // - palyer died;
-  // - match finished;
+  logger.Info("Match Started");
+  int ticks_done = 0;
+  constexpr auto tick_duration = std::chrono::milliseconds(16);
+
+  for (int i = 0; i < 500 && !gs.IsFinished(); ++i) {
+    if (gs.IsFinished()) {
+      logger.Info("Match finished before tick: " + std::to_string(i + 1));
+      break;
+    }
+
+    if (i % 50 == 0) {
+      InputCommand cmd = {PlayerId("p1"), InputType::Jump, 0u};
+      gs.EnqueueInput(cmd);
+    }
+
+    gs.Tick(std::chrono::milliseconds(tick_duration));
+    ++ticks_done;
+
+    if ((i + 1) % 10 == 0 || gs.IsFinished()) {
+      WorldSnapshot ws = gs.BuildSnapshot();
+      logger.Info(std::to_string(ws.tick) + " ticks");
+      std::cout << ws;
+    }
+  }
+
+  logger.Info("Loop finished.");
+  logger.Info("Ticks done: " + std::to_string(ticks_done));
+  logger.Info("IsFinished: " + std::to_string(gs.IsFinished()));
+
   return 0;
 }
 ```
@@ -187674,10 +187796,14 @@ TEST_CASE("Bird collides with pipe when outside gap") {
 ```cpp
 // C:\Code\C++\FlappyDappy\tests\domain
 // #include "catch2/catch_session.hpp"
+#include "domain/game/physics_engine.h"
 #include "domain/session/game_session.h"
+#include "domain/session/input_command.h"
 #include "domain/session/session_id.h"
 #include "domain/session/session_state.h"
+#include <catch2/catch_all.hpp>
 #include <catch2/catch_test_macros.hpp>
+#include <catch2/matchers/catch_matchers_floating_point.hpp>
 #include <chrono>
 #include <cstdint>
 // #include <ratio>
@@ -187687,8 +187813,9 @@ TEST_CASE("GameSession starts match only after countdown") {
   const std::uint32_t seed = 42u;
   const double gravity = 900.0f;
   const double jump_velocity = -300.0f;
+  const double scroll_speed = 120.0f;
 
-  GameSession session(sid, seed, gravity, jump_velocity);
+  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed);
 
   session.StartMatch();
   REQUIRE(session.GetState() == SessionState::WaitingForPlayers);
@@ -187705,8 +187832,9 @@ TEST_CASE("GameSession tick updates snapshot when match is in progress") {
   const std::uint32_t seed = 42u;
   const double gravity = 900.0f;
   const double jump_velocity = -300.0f;
+  const double scroll_speed = 120.0f;
 
-  GameSession session(sid, seed, gravity, jump_velocity);
+  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed);
 
   session.AddPlayer(PlayerId("player1"));
   session.AddPlayer(PlayerId("player2"));
@@ -187731,8 +187859,9 @@ TEST_CASE("GameSession eventually finishes") {
   const std::uint32_t seed = 42u;
   const double gravity = 900.0f;
   const double jump_velocity = -300.0f;
+  const double scroll_speed = 120.0f;
 
-  GameSession session(sid, seed, gravity, jump_velocity);
+  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed);
 
   session.AddPlayer(PlayerId("player1"));
   session.AddPlayer(PlayerId("player2"));
@@ -187748,6 +187877,180 @@ TEST_CASE("GameSession eventually finishes") {
 
   auto result = session.BuildResult();
   REQUIRE(result.rankings.size() == 2);
+}
+
+TEST_CASE("Tick does nothing before StartMatch") {
+  SessionId sid("test-session");
+  const std::uint32_t seed = 42u;
+  const double gravity = 900.0f;
+  const double jump_velocity = -300.0f;
+  const double scroll_speed = 120.0f;
+
+  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed);
+
+  session.AddPlayer(PlayerId("player1"));
+
+  auto y_before = session.BuildSnapshot().players[0].y;
+
+  for (int i = 0; i < 500 && !session.IsFinished(); ++i) {
+    session.Tick(std::chrono::milliseconds(16));
+  }
+
+  auto y_after = session.BuildSnapshot().players[0].y;
+
+  REQUIRE(y_before == y_after);
+}
+
+TEST_CASE("Jump affects only the targeted player") {
+  SessionId sid("test-session");
+  const std::uint32_t seed = 42u;
+  const double gravity = 900.0f;
+  const double jump_velocity = -300.0f;
+  const double scroll_speed = 120.0f;
+
+  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed);
+
+  session.AddPlayer(PlayerId("player1"));
+  session.AddPlayer(PlayerId("player2"));
+
+  session.StartCountdown();
+  session.StartMatch();
+
+  InputCommand p1_command = {PlayerId("player1"), InputType::Jump, 0u};
+  session.EnqueueInput(p1_command);
+
+  auto snap_before = session.BuildSnapshot();
+
+  for (int i = 0; i < 20 && !session.IsFinished();
+       ++i) { // а больше заставит птицу падать
+    session.Tick(std::chrono::milliseconds(16));
+  }
+
+  auto snap_after = session.BuildSnapshot();
+
+  REQUIRE(snap_before.players[0].y >= snap_after.players[0].y); // поднялся
+  REQUIRE(snap_before.players[1].y <= snap_after.players[1].y); // упал
+}
+
+TEST_CASE("Distance increases while player is alive") {
+  SessionId sid("test-session");
+  const std::uint32_t seed = 42u;
+  const double gravity = 900.0f;
+  const double jump_velocity = -300.0f;
+  const double scroll_speed = 120.0f;
+
+  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed);
+
+  session.AddPlayer(PlayerId("player1"));
+
+  session.StartCountdown();
+  session.StartMatch();
+
+  // InputCommand p1_command = {PlayerId("player1"), InputType::Jump, 0u};
+  // session.EnqueueInput(p1_command);
+
+  auto snap_before = session.BuildSnapshot();
+
+  for (int i = 0; i < 30 && !session.IsFinished();
+       ++i) { // а больше заставит птицу падать
+    session.Tick(std::chrono::milliseconds(16));
+  }
+
+  auto snap_after = session.BuildSnapshot();
+
+  REQUIRE(snap_after.players[0].alive);
+  REQUIRE(snap_after.players[0].x >= snap_before.players[0].x);
+  const double expected_x =
+      snap_before.players[0].x + snap_after.players[0].distance;
+  REQUIRE(snap_after.players[0].x == Catch::Approx(expected_x).margin(0.01));
+}
+
+TEST_CASE("Player dies on collision") {
+  SessionId sid("test-session");
+  const std::uint32_t seed = 42u;
+  const double gravity = 900.0f;
+  const double jump_velocity = -300.0f;
+  const double scroll_speed = 3000.0f; // чтобы точно ударился
+
+  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed);
+
+  session.AddPlayer(PlayerId("player1"));
+
+  session.StartCountdown();
+  session.StartMatch();
+
+  auto snap_before = session.BuildSnapshot();
+  REQUIRE(snap_before.players[0].alive);
+
+  for (int i = 0; i < 500 && !session.IsFinished(); ++i) {
+    session.Tick(std::chrono::milliseconds(16));
+  }
+
+  auto snap_after = session.BuildSnapshot();
+
+  REQUIRE(!snap_after.players[0].alive);
+}
+
+TEST_CASE("BuildResult sorts players by distance") {
+  SessionId sid("test-session");
+  const std::uint32_t seed = 42u;
+  const double gravity = 900.0f;
+  const double jump_velocity = -300.0f;
+  const double scroll_speed = 120.0f;
+
+  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed);
+
+  session.AddPlayer(PlayerId("player1"));
+  session.AddPlayer(PlayerId("player2"));
+
+  InputCommand p2_command = {PlayerId("player2"), InputType::Jump, 0u};
+  // 4 раза резко прыгаем вторым игроком, чтобы быстрее умереть
+  session.EnqueueInput(p2_command);
+  session.EnqueueInput(p2_command);
+  session.EnqueueInput(p2_command);
+  session.EnqueueInput(p2_command);
+
+  session.StartCountdown();
+  session.StartMatch();
+
+  for (int i = 0; i < 500 && !session.IsFinished(); ++i) {
+    session.Tick(std::chrono::milliseconds(16));
+  }
+
+  auto result = session.BuildResult();
+  auto snap = session.BuildSnapshot();
+
+  REQUIRE(!snap.players[1].alive);
+  REQUIRE(result.rankings[0].distance >= result.rankings[1].distance);
+}
+
+TEST_CASE("BuildSnapshot conatains x position") {
+  SessionId sid("test-session");
+  const std::uint32_t seed = 42u;
+  const double gravity = 900.0f;
+  const double jump_velocity = -300.0f;
+  const double scroll_speed = 120.0f;
+
+  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed);
+
+  session.AddPlayer(PlayerId("player1"));
+  session.AddPlayer(PlayerId("player2"));
+
+  InputCommand p2_command = {PlayerId("player2"), InputType::Jump, 0u};
+  session.EnqueueInput(p2_command);
+
+  session.StartCountdown();
+  session.StartMatch();
+
+  for (int i = 0; i < 500 && !session.IsFinished(); ++i) {
+    session.Tick(std::chrono::milliseconds(16));
+  }
+
+  auto snap = session.BuildSnapshot();
+  REQUIRE(snap.players[0].x);
+  REQUIRE(snap.players[1].x);
+  REQUIRE(snap.players[0].x > 0);
+  REQUIRE(snap.players[1].x > 0);
 }
 ```
 

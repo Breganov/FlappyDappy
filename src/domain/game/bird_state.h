@@ -1,11 +1,11 @@
 #pragma once
 
 struct BirdState {
-  double y = 0.0;
-  double x = 0.0;
-  double velocity_y = 0.0;
+  double y = 300.0f;
+  double x = 100.0f;
+  double velocity_y = 0.0f;
   bool alive = true;
-  int passed_pipes = 0; // но это временно
-  double distance = 0.0;
-  double radius = 0.0;
+  int passed_pipes = 0;
+  double distance = 0.0f;
+  double radius = 20.0f;
 };

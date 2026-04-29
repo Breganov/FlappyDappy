@@ -168,3 +168,91 @@ TEST_CASE("Distance increases while player is alive") {
       snap_before.players[0].x + snap_after.players[0].distance;
   REQUIRE(snap_after.players[0].x == Catch::Approx(expected_x).margin(0.01));
 }
+
+TEST_CASE("Player dies on collision") {
+  SessionId sid("test-session");
+  const std::uint32_t seed = 42u;
+  const double gravity = 900.0f;
+  const double jump_velocity = -300.0f;
+  const double scroll_speed = 3000.0f; // чтобы точно ударился
+
+  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed);
+
+  session.AddPlayer(PlayerId("player1"));
+
+  session.StartCountdown();
+  session.StartMatch();
+
+  auto snap_before = session.BuildSnapshot();
+  REQUIRE(snap_before.players[0].alive);
+
+  for (int i = 0; i < 500 && !session.IsFinished(); ++i) {
+    session.Tick(std::chrono::milliseconds(16));
+  }
+
+  auto snap_after = session.BuildSnapshot();
+
+  REQUIRE(!snap_after.players[0].alive);
+}
+
+TEST_CASE("BuildResult sorts players by distance") {
+  SessionId sid("test-session");
+  const std::uint32_t seed = 42u;
+  const double gravity = 900.0f;
+  const double jump_velocity = -300.0f;
+  const double scroll_speed = 120.0f;
+
+  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed);
+
+  session.AddPlayer(PlayerId("player1"));
+  session.AddPlayer(PlayerId("player2"));
+
+  InputCommand p2_command = {PlayerId("player2"), InputType::Jump, 0u};
+  // 4 раза резко прыгаем вторым игроком, чтобы быстрее умереть
+  session.EnqueueInput(p2_command);
+  session.EnqueueInput(p2_command);
+  session.EnqueueInput(p2_command);
+  session.EnqueueInput(p2_command);
+
+  session.StartCountdown();
+  session.StartMatch();
+
+  for (int i = 0; i < 500 && !session.IsFinished(); ++i) {
+    session.Tick(std::chrono::milliseconds(16));
+  }
+
+  auto result = session.BuildResult();
+  auto snap = session.BuildSnapshot();
+
+  REQUIRE(!snap.players[1].alive);
+  REQUIRE(result.rankings[0].distance >= result.rankings[1].distance);
+}
+
+TEST_CASE("BuildSnapshot conatains x position") {
+  SessionId sid("test-session");
+  const std::uint32_t seed = 42u;
+  const double gravity = 900.0f;
+  const double jump_velocity = -300.0f;
+  const double scroll_speed = 120.0f;
+
+  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed);
+
+  session.AddPlayer(PlayerId("player1"));
+  session.AddPlayer(PlayerId("player2"));
+
+  InputCommand p2_command = {PlayerId("player2"), InputType::Jump, 0u};
+  session.EnqueueInput(p2_command);
+
+  session.StartCountdown();
+  session.StartMatch();
+
+  for (int i = 0; i < 500 && !session.IsFinished(); ++i) {
+    session.Tick(std::chrono::milliseconds(16));
+  }
+
+  auto snap = session.BuildSnapshot();
+  REQUIRE(snap.players[0].x);
+  REQUIRE(snap.players[1].x);
+  REQUIRE(snap.players[0].x > 0);
+  REQUIRE(snap.players[1].x > 0);
+}
