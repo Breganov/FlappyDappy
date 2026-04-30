@@ -1,5 +1,6 @@
 // C:\Code\C++\FlappyDappy\tests\domain
 // #include "catch2/catch_session.hpp"
+#include "domain/game/collision_service.h"
 #include "domain/game/physics_engine.h"
 #include "domain/session/game_session.h"
 #include "domain/session/input_command.h"
@@ -18,8 +19,10 @@ TEST_CASE("GameSession starts match only after countdown") {
   const double gravity = 900.0f;
   const double jump_velocity = -300.0f;
   const double scroll_speed = 120.0f;
+  CollisionService collision;
 
-  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed);
+  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed,
+                      collision);
 
   session.StartMatch();
   REQUIRE(session.GetState() == SessionState::WaitingForPlayers);
@@ -37,6 +40,7 @@ TEST_CASE("GameSession tick updates snapshot when match is in progress") {
   const double gravity = 900.0f;
   const double jump_velocity = -300.0f;
   const double scroll_speed = 120.0f;
+  CollisionService collision;
 
   GameSession session(sid, seed, gravity, jump_velocity, scroll_speed);
 
@@ -64,8 +68,10 @@ TEST_CASE("GameSession eventually finishes") {
   const double gravity = 900.0f;
   const double jump_velocity = -300.0f;
   const double scroll_speed = 120.0f;
+  CollisionService collision;
 
-  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed);
+  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed,
+                      collision);
 
   session.AddPlayer(PlayerId("player1"));
   session.AddPlayer(PlayerId("player2"));
@@ -89,8 +95,10 @@ TEST_CASE("Tick does nothing before StartMatch") {
   const double gravity = 900.0f;
   const double jump_velocity = -300.0f;
   const double scroll_speed = 120.0f;
+  CollisionService collision;
 
-  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed);
+  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed,
+                      collision);
 
   session.AddPlayer(PlayerId("player1"));
 
@@ -111,8 +119,10 @@ TEST_CASE("Jump affects only the targeted player") {
   const double gravity = 900.0f;
   const double jump_velocity = -300.0f;
   const double scroll_speed = 120.0f;
+  CollisionService collision;
 
-  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed);
+  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed,
+                      collision);
 
   session.AddPlayer(PlayerId("player1"));
   session.AddPlayer(PlayerId("player2"));
@@ -142,8 +152,10 @@ TEST_CASE("Distance increases while player is alive") {
   const double gravity = 900.0f;
   const double jump_velocity = -300.0f;
   const double scroll_speed = 120.0f;
+  CollisionService collision;
 
-  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed);
+  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed,
+                      collision);
 
   session.AddPlayer(PlayerId("player1"));
 
@@ -175,8 +187,10 @@ TEST_CASE("Player dies on collision") {
   const double gravity = 900.0f;
   const double jump_velocity = -300.0f;
   const double scroll_speed = 3000.0f; // чтобы точно ударился
+  CollisionService collision;
 
-  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed);
+  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed,
+                      collision);
 
   session.AddPlayer(PlayerId("player1"));
 
@@ -201,8 +215,10 @@ TEST_CASE("BuildResult sorts players by distance") {
   const double gravity = 900.0f;
   const double jump_velocity = -300.0f;
   const double scroll_speed = 120.0f;
+  CollisionService collision;
 
-  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed);
+  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed,
+                      collision);
 
   session.AddPlayer(PlayerId("player1"));
   session.AddPlayer(PlayerId("player2"));
@@ -234,8 +250,10 @@ TEST_CASE("BuildSnapshot conatains x position") {
   const double gravity = 900.0f;
   const double jump_velocity = -300.0f;
   const double scroll_speed = 120.0f;
+  CollisionService collision;
 
-  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed);
+  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed,
+                      collision);
 
   session.AddPlayer(PlayerId("player1"));
   session.AddPlayer(PlayerId("player2"));

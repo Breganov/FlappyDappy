@@ -3,17 +3,24 @@
 #include "domain/game/collision_service.h"
 #include "domain/match/match_result.h"
 
+// =============================================================================
+
 GameSession::GameSession(SessionId id, std::uint32_t seed, double gravity,
-                         double jump_velocity, double scroll_speed,
-                         CollisionService collision)
+                         double jump_velocity, double scroll_speed)
     : id_(std::move(id)), seed_(seed), obstacle_generator_(seed),
       pipes_(obstacle_generator_.InitialPipes()), current_tick_(0),
       physics_config_(), physics_engine_(gravity, jump_velocity, scroll_speed),
       collision_() {}
 
+// =============================================================================
+
 const SessionId &GameSession::GetId() const { return id_; }
 
+// =============================================================================
+
 SessionState GameSession::GetState() const { return state_; }
+
+// =============================================================================
 
 void GameSession::AddPlayer(PlayerId player_id) {
   BirdState initial_bird;
@@ -29,6 +36,8 @@ void GameSession::MarkPlayerReady(const PlayerId &player_id) {
   }
 }
 
+// =============================================================================
+
 void GameSession::EnqueueInput(const InputCommand &command) {
   pending_inputs_.push(command);
 }
@@ -39,11 +48,15 @@ void GameSession::StartCountdown() {
   }
 }
 
+// =============================================================================
+
 void GameSession::StartMatch() {
   if (state_ == SessionState::Countdown) {
     state_ = SessionState::InProgress;
   }
 }
+
+// =============================================================================
 
 void GameSession::Tick(std::chrono::milliseconds delta) {
   if (state_ != SessionState::InProgress)
@@ -56,13 +69,16 @@ void GameSession::Tick(std::chrono::milliseconds delta) {
   UpdateBirds_(dt);
   UpdatePipes_(dt);
   DetectCollisions_();
-  // UpdateScores_(); // Удалил его в текущей реализации не нужен.
   CheckFinishConditions_();
 }
+
+// =============================================================================
 
 bool GameSession::IsFinished() const {
   return state_ == SessionState::Finished;
 }
+
+// =============================================================================
 
 WorldSnapshot GameSession::BuildSnapshot() const {
   WorldSnapshot snap;
@@ -89,12 +105,12 @@ WorldSnapshot GameSession::BuildSnapshot() const {
   return snap;
 }
 
+// =============================================================================
+
 MatchResult GameSession::BuildResult() const {
   MatchResult result;
-  // std::vector<std::pair<PlayerId, int>> temp;
 
   for (const auto &p : players_) {
-    // temp.emplace_back(p.GetPlayerId(), p.GetBird().distance);
     result.rankings.push_back(MatchResult::Entry{
         p.GetPlayerId(), p.GetBird().distance, p.GetBird().passed_pipes});
   }
@@ -123,6 +139,8 @@ void GameSession::ApplyInputs_() {
   }
 }
 
+// =============================================================================
+
 void GameSession::UpdateBirds_(double dt) {
   for (auto &player : players_) {
     auto &bird = player.GetBird();
@@ -136,6 +154,8 @@ void GameSession::UpdateBirds_(double dt) {
     bird.distance += physics_config_.scroll_speed * dt;
   }
 }
+
+// =============================================================================
 
 void GameSession::UpdatePipes_(double dt) {
   double scroll = physics_config_.scroll_speed * dt;
@@ -161,6 +181,8 @@ void GameSession::DetectCollisions_() {
     }
   }
 }
+
+// =============================================================================
 
 void GameSession::CheckFinishConditions_() {
   bool anyone_alive = false;

@@ -23,8 +23,7 @@
 class GameSession {
 public:
   GameSession(SessionId id, std::uint32_t seed, double gravity,
-              double jump_velocity, double scroll_speed,
-              CollisionService collision);
+              double jump_velocity, double scroll_speed);
   const SessionId &GetId() const;
   SessionState GetState() const;
   std::vector<PlayerSessionState> GetPlayers() const { return players_; };

@@ -3,12 +3,17 @@
 #include "../player/player_id.h"
 #include <vector>
 
+// struct MatchId {
+//   std::string id;
+//   double duration = 0.0f;
+//   std::string session_id;
+//   uint32_t finished_at;
+// };
+
 struct MatchResult {
   // это итог матча для сохранения в репозиторий
   struct Entry {
-    /* Надо добавить сюда MatchId, метаданные Match: id, duration,
-     * session_id, finished_at;
-     */
+    // MatchId match_id;
     PlayerId player_id;
     double distance;
     int passed_pipes;

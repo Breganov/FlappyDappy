@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"C:/Code/C++/FlappyDappy/build/_deps/catch2-subbuild/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

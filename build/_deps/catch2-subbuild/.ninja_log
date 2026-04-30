@@ -1,0 +1,21 @@
+# ninja log v7
+1	45	7991323632519216	catch2-populate-prefix/src/catch2-populate-stamp/catch2-populate-mkdir	a0675d8d46edf0c7
+1	45	7991323632519216	C:/Code/C++/FlappyDappy/build/_deps/catch2-subbuild/catch2-populate-prefix/src/catch2-populate-stamp/catch2-populate-mkdir	a0675d8d46edf0c7
+45	5876	7991323690833394	catch2-populate-prefix/src/catch2-populate-stamp/catch2-populate-download	487fca272bc0a7e0
+45	5876	7991323690833394	C:/Code/C++/FlappyDappy/build/_deps/catch2-subbuild/catch2-populate-prefix/src/catch2-populate-stamp/catch2-populate-download	487fca272bc0a7e0
+5876	5991	7991323690873796	catch2-populate-prefix/src/catch2-populate-stamp/catch2-populate-update	957098531e2d8370
+5876	5991	7991323690873796	C:/Code/C++/FlappyDappy/build/_deps/catch2-subbuild/catch2-populate-prefix/src/catch2-populate-stamp/catch2-populate-update	957098531e2d8370
+5991	6033	7991323692394589	catch2-populate-prefix/src/catch2-populate-stamp/catch2-populate-patch	f8dca23ef14573fb
+5991	6033	7991323692394589	C:/Code/C++/FlappyDappy/build/_deps/catch2-subbuild/catch2-populate-prefix/src/catch2-populate-stamp/catch2-populate-patch	f8dca23ef14573fb
+6033	6074	7991323692811663	catch2-populate-prefix/src/catch2-populate-stamp/catch2-populate-configure	cba389a3a083e6c3
+6033	6074	7991323692811663	C:/Code/C++/FlappyDappy/build/_deps/catch2-subbuild/catch2-populate-prefix/src/catch2-populate-stamp/catch2-populate-configure	cba389a3a083e6c3
+6074	6115	7991323693220994	catch2-populate-prefix/src/catch2-populate-stamp/catch2-populate-build	d047710aa186b1b0
+6074	6115	7991323693220994	C:/Code/C++/FlappyDappy/build/_deps/catch2-subbuild/catch2-populate-prefix/src/catch2-populate-stamp/catch2-populate-build	d047710aa186b1b0
+6115	6156	7991323693630711	catch2-populate-prefix/src/catch2-populate-stamp/catch2-populate-install	46952f45990e6369
+6115	6156	7991323693630711	C:/Code/C++/FlappyDappy/build/_deps/catch2-subbuild/catch2-populate-prefix/src/catch2-populate-stamp/catch2-populate-install	46952f45990e6369
+6157	6199	7991323694060784	catch2-populate-prefix/src/catch2-populate-stamp/catch2-populate-test	7cdf27727c92f7cd
+6157	6199	7991323694060784	C:/Code/C++/FlappyDappy/build/_deps/catch2-subbuild/catch2-populate-prefix/src/catch2-populate-stamp/catch2-populate-test	7cdf27727c92f7cd
+6199	6256	7991323694633833	CMakeFiles/catch2-populate-complete	cec944cf05b835f8
+6199	6256	7991323694633833	catch2-populate-prefix/src/catch2-populate-stamp/catch2-populate-done	cec944cf05b835f8
+6199	6256	7991323694633833	C:/Code/C++/FlappyDappy/build/_deps/catch2-subbuild/CMakeFiles/catch2-populate-complete	cec944cf05b835f8
+6199	6256	7991323694633833	C:/Code/C++/FlappyDappy/build/_deps/catch2-subbuild/catch2-populate-prefix/src/catch2-populate-stamp/catch2-populate-done	cec944cf05b835f8

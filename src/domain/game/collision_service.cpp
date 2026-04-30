@@ -9,10 +9,6 @@ bool CollisionService::HasCollided(const BirdState &bird,
     return false;
   }
 
-  if (HasHitBounds(bird, phys)) {
-    return true;
-  }
-
   for (const Pipe &pipe : pipes) {
     if (HasHitPipe(bird, phys, pipe)) {
       return true;
@@ -20,12 +16,6 @@ bool CollisionService::HasCollided(const BirdState &bird,
   }
 
   return false;
-}
-
-bool CollisionService::HasHitBounds(const BirdState &bird,
-                                    const PhysicsConfig &phys) const {
-  return bird.y - bird.radius < 0.0f ||
-         bird.y + bird.radius > phys.world_height;
 }
 
 bool CollisionService::HasHitPipe(const BirdState &bird,
@@ -50,11 +40,6 @@ bool CollisionService::HasHitPipe(const BirdState &bird,
   const float gap_bottom = pipe.gap_y + pipe.gap_height;
 
   const bool inside_gap = bird_top >= gap_top && bird_bottom <= gap_bottom;
-
-  // Оказалось, что просто можно вернуть inside_gap, код только проще будет
-  // if (!inside_gap) {
-  //   return true;
-  // }
 
   return !inside_gap;
 }

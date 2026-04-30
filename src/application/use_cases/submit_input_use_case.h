@@ -5,18 +5,16 @@
 
 class SubmitInputUseCase {
 public:
-  explicit SubmitInputUseCase(SessionService &sessions) : sessions_(sessions) {}
+  explicit SubmitInputUseCase(SessionService &sessions);
 
-  bool Execute(const SessionId &session_id, const InputCommand &command) {
-    auto session = sessions_.FindSession(session_id);
-    if (!session) {
-      return false;
-    }
-
-    session->get().EnqueueInput(command);
-    return true;
-  }
+  void Execute(const SessionId &session_id, const InputCommand &command);
 
 private:
   SessionService &sessions_;
 };
+
+/*
+ * находит сессию
+ * проверяет, что она существует
+ * передаёт `InputCommand` в `GameSession::Enqueue(...)`
+ */

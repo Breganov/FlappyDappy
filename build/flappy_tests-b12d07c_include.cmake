@@ -1,5 +1,5 @@
-if(EXISTS "D:/Code/C++/MultiFlappyBird/build/flappy_tests-b12d07c_tests.cmake")
-  include("D:/Code/C++/MultiFlappyBird/build/flappy_tests-b12d07c_tests.cmake")
+if(EXISTS "C:/Code/C++/FlappyDappy/build/flappy_tests-b12d07c_tests.cmake")
+  include("C:/Code/C++/FlappyDappy/build/flappy_tests-b12d07c_tests.cmake")
 else()
   add_test(flappy_tests_NOT_BUILT-b12d07c flappy_tests_NOT_BUILT-b12d07c)
 endif()

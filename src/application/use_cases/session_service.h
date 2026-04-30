@@ -15,7 +15,7 @@
 class SessionService {
 public:
   GameSession &CreateSession(SessionId id, std::uint32_t seed, double gravity,
-                             double jump_veloctiy);
+                             double jump_veloctiy, double scroll_speed);
 
   std::optional<std::reference_wrapper<GameSession>>
   FindSession(const SessionId &id);

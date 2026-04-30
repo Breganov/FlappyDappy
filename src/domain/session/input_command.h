@@ -1,7 +1,7 @@
 // src\domain\session\input_command.h
 #pragma once
 
-#include "../../domain/player/player_id.h"
+#include "domain/player/player_id.h"
 
 #include <cstdint>
 

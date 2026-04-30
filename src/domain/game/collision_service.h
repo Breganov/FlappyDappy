@@ -3,19 +3,15 @@
 #include <vector>
 
 #include "bird_state.h"
-#include "pipe.h"
 #include "physics_config.h"
+#include "pipe.h"
 
 class CollisionService {
 public:
-  bool HasCollided(const BirdState& bird,
-                   const PhysicsConfig& phys,
-                   const std::vector<Pipe>& pipes) const;
-private:
-  bool HasHitBounds(const BirdState& bird,
-                    const PhysicsConfig& phys) const;
+  bool HasCollided(const BirdState &bird, const PhysicsConfig &phys,
+                   const std::vector<Pipe> &pipes) const;
 
-  bool HasHitPipe(const BirdState& bird,
-                  const PhysicsConfig& phys,
-                  const Pipe& pipe) const;
+private:
+  bool HasHitPipe(const BirdState &bird, const PhysicsConfig &phys,
+                  const Pipe &pipe) const;
 };

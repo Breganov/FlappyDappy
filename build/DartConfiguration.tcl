@@ -4,17 +4,17 @@
 
 
 # Configuration directories and files
-SourceDirectory: D:/Code/C++/MultiFlappyBird
-BuildDirectory: D:/Code/C++/MultiFlappyBird/build
+SourceDirectory: C:/Code/C++/FlappyDappy
+BuildDirectory: C:/Code/C++/FlappyDappy/build
 
 # Where to place the cost data store
 CostDataFile: 
 
 # Site is something like machine.domain, i.e. pragmatic.crd
-Site: RoG-Breganov
+Site: MainFrame
 
 # Build name is osname-revision-compiler, i.e. Linux-2.4.2-2smp-c++
-BuildName: Win32-MSBuild
+BuildName: Win32-ninja
 
 # Subprojects
 LabelsForSubprojects: 
@@ -27,7 +27,7 @@ SubmitInactivityTimeout:
 NightlyStartTime: 00:00:00 EDT
 
 # Commands for the build/test/submit cycle
-ConfigureCommand: "C:/Program Files/CMake/bin/cmake.exe" "D:/Code/C++/MultiFlappyBird"
+ConfigureCommand: "C:/Program Files/CMake/bin/cmake.exe" "C:/Code/C++/FlappyDappy"
 MakeCommand: "C:\Program Files\CMake\bin\cmake.exe" --build . --config "${CTEST_CONFIGURATION_TYPE}"
 DefaultCTestConfigurationType: Release
 
@@ -45,7 +45,7 @@ SVNOptions:
 SVNUpdateOptions: 
 
 # Git options
-GITCommand: C:/Users/abreg/scoop/shims/git.exe
+GITCommand: C:/Program Files/Git/cmd/git.exe
 GITInitSubmodules: 
 GITUpdateOptions: 
 GITUpdateCustom: 
@@ -58,13 +58,13 @@ P4UpdateOptions:
 P4UpdateCustom: 
 
 # Generic update command
-UpdateCommand: C:/Users/abreg/scoop/shims/git.exe
+UpdateCommand: C:/Program Files/Git/cmd/git.exe
 UpdateOptions: 
 UpdateType: git
 
 # Compiler info
-Compiler: C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/cl.exe
-CompilerVersion: 19.44.35222.0
+Compiler: C:/Program Files/LLVM/bin/clang++.exe
+CompilerVersion: 22.1.1
 
 # Dynamic analysis (MemCheck)
 PurifyCommand: 
@@ -81,7 +81,7 @@ MemoryCheckCommandOptions:
 MemoryCheckSuppressionFile: 
 
 # Coverage
-CoverageCommand: C:/msys64/mingw64/bin/gcov.exe
+CoverageCommand: COVERAGE_COMMAND-NOTFOUND
 CoverageExtraFlags: -l
 
 # Testing options
@@ -95,7 +95,10 @@ TimeOut: 1500
 # so would cause the system load to exceed this value.
 TestLoad: 
 
-UseLaunchers: 0
+TLSVerify: 
+TLSVersion: 
+
+UseLaunchers: 
 CurlOptions: 
 # warning, if you add new options here that have to do with submit,
 # you have to update cmCTestSubmitCommand.cxx
