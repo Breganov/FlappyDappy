@@ -4,10 +4,14 @@
 #include "application/use_cases/session_service.h"
 #include "application/use_cases/tick_session_use_case.h"
 
+#include <chrono>
+
 class GameLoopService {
 public:
-  GameLoopService(const SessionService &sessions,
-                  const TickSessionUseCase ticks);
+  GameLoopService(SessionService &sessions, TickSessionUseCase &ticks);
+  void Execute(std::chrono::milliseconds delta);
 
 private:
+  SessionService &sessions_;
+  TickSessionUseCase &ticks_;
 };

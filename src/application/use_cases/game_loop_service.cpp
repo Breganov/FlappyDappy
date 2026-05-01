@@ -1,4 +1,12 @@
 // application\use_cases\game_loop_service.cpp
 #include "game_loop_service.h"
 
-GameLoopService ::GameLoopService() {}
+GameLoopService::GameLoopService(SessionService &sessions,
+                                 TickSessionUseCase &ticks)
+    : sessions_(sessions), ticks_(ticks) {};
+
+void GameLoopService::Execute(std::chrono::milliseconds delta) {
+  for (const auto &session : sessions_.GetAllSessions()) {
+    ticks_.Execute(session.get().GetId(), delta);
+  }
+}

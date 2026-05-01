@@ -514,17 +514,21 @@ FlappyDappy
 │   │       ├── application_error.h
 │   │       ├── create_session_use_case.cpp
 │   │       ├── create_session_use_case.h
+│   │       ├── finish_match_use_case.cpp
 │   │       ├── finish_match_use_case.h
+│   │       ├── game_loop_service.cpp
 │   │       ├── game_loop_service.h
 │   │       ├── get_leaderboard_use_case.h
 │   │       ├── join_session_use_case.cpp
 │   │       ├── join_session_use_case.h
 │   │       ├── leaderboard_service.h
+│   │       ├── mark_ready_use_case.cpp
 │   │       ├── mark_ready_use_case.h
 │   │       ├── matchmaking_service.h
 │   │       ├── reconnect_player_use_case.h
 │   │       ├── session_service.cpp
 │   │       ├── session_service.h
+│   │       ├── start_match_use_case.cpp
 │   │       ├── start_match_use_case.h
 │   │       ├── submit_input_use_case.cpp
 │   │       ├── submit_input_use_case.h
@@ -73198,6 +73202,7 @@ int main(){}
 ### `src/application/ports/id_generator.h`
 
 ```cpp
+// application\ports\id_generator.h
 #pragma once
 #include "application\use_cases\session_service.h"
 
@@ -73246,9 +73251,10 @@ public:
 ### `src/application/ports/session_broadcaster.h`
 
 ```cpp
+// application\ports\session_broadcaster.h
 // Application должна уметь рассылать сообщения не зная про WebSocket
-//
 #pragma once
+
 #include "domain/game/world_snapshot.h"
 #include "domain/match/match_result.h"
 #include "domain/session/session_id.h"
@@ -73293,6 +73299,7 @@ public:
 ### `src/application/use_cases/application_error.h`
 
 ```cpp
+// application\use_cases\application_error.h
 #pragma once
 
 enum class ApplicationError {
@@ -73318,7 +73325,8 @@ CreateSessionUseCase::CreateSessionUseCase(IIdGenerator &ids,
 
 SessionId CreateSessionUseCase::Execute() {
   SessionId id = ids_.NewSessionId();
-  PhysicsConfig phys;
+  PhysicsConfig
+      phys; // потом как-то надо забыть CreateSessionUseCase о PhysicsConfig
   CollisionService collision;
   sessions_.CreateSession(id, 42u, phys.gravity, phys.jump_velocity,
                           phys.scroll_speed);
@@ -73347,28 +73355,90 @@ private:
 };
 ```
 
+### `src/application/use_cases/finish_match_use_case.cpp`
+
+```cpp
+// application\use_cases\finish_match_use_case.cpp
+#include "finish_match_use_case.h"
+#include "domain/session/session_id.h"
+
+FinishMatchUseCase::FinishMatchUseCase(ISessionBroadcaster &broadcaster,
+                                       SessionService &sessions)
+    : broadcaster_(broadcaster), sessions_(sessions) {}
+
+void FinishMatchUseCase::Execute(const SessionId &session_id) {
+  const auto &session = sessions_.FindSession(session_id);
+  if (!session) {
+    return;
+  }
+  if (session->get().IsFinished()) {
+    const auto &match_result = session->get().BuildResult();
+    broadcaster_.BroadcastMatchFinished(session_id, match_result);
+    sessions_.RemoveSession(session_id);
+  }
+}
+```
+
 ### `src/application/use_cases/finish_match_use_case.h`
 
 ```cpp
+// application\use_cases\finish_match_use_case.h
 #pragma once
 #include "application/ports/session_broadcaster.h"
 #include "application/use_cases/session_service.h"
 #include "domain/session/session_id.h"
 
-class FinishMatchUseCases {
+class FinishMatchUseCase {
 public:
-  FinishMatchUseCases(
-      IUnitOfWorkFactory &uow_factory, // Не написал class UnitOfWorkFactory
-                                       // ебать
+  FinishMatchUseCase(
+      // IUnitOfWorkFactory &uow_factory, // Не написал class UnitOfWorkFactory
       ISessionBroadcaster &broadcaster, SessionService &sessions);
 
   void Execute(const SessionId &session_id);
+
+private:
+  ISessionBroadcaster &broadcaster_;
+  SessionService &sessions_;
 };
+```
+
+### `src/application/use_cases/game_loop_service.cpp`
+
+```cpp
+// application\use_cases\game_loop_service.cpp
+#include "game_loop_service.h"
+
+GameLoopService::GameLoopService(SessionService &sessions,
+                                 TickSessionUseCase &ticks)
+    : sessions_(sessions), ticks_(ticks) {};
+
+void GameLoopService::Execute(std::chrono::milliseconds delta) {
+  for (const auto &session : sessions_.GetAllSessions()) {
+    ticks_.Execute(session.get().GetId(), delta);
+  }
+}
 ```
 
 ### `src/application/use_cases/game_loop_service.h`
 
 ```cpp
+// application\use_cases\game_loop_service.h
+#pragma once
+
+#include "application/use_cases/session_service.h"
+#include "application/use_cases/tick_session_use_case.h"
+
+#include <chrono>
+
+class GameLoopService {
+public:
+  GameLoopService(SessionService &sessions, TickSessionUseCase &ticks);
+  void Execute(std::chrono::milliseconds delta);
+
+private:
+  SessionService &sessions_;
+  TickSessionUseCase &ticks_;
+};
 ```
 
 ### `src/application/use_cases/get_leaderboard_use_case.h`
@@ -73431,12 +73501,49 @@ private:
 ```cpp
 ```
 
+### `src/application/use_cases/mark_ready_use_case.cpp`
+
+```cpp
+// application\use_cases\mark_ready_use_case.cpp
+#include "mark_ready_use_case.h"
+
+MarkReadyUseCases::MarkReadyUseCases(SessionService &sessions)
+    : sessions_(sessions) {}
+
+void MarkReadyUseCases::Execute(const SessionId &session_id,
+                                const PlayerId &player_id) {
+  const auto &session = sessions_.FindSession(session_id);
+  if (!session) {
+    return;
+  }
+  session->get().MarkPlayerReady(player_id);
+
+  // возможно эта часть не нужна =========================
+  for (const auto &player : session->get().GetPlayers()) {
+    if (!player.IsReady()) {
+      return;
+    }
+  }
+  session->get().StartCountdown();
+  // конец того, что не может быть не нужно ==============
+}
+```
+
 ### `src/application/use_cases/mark_ready_use_case.h`
 
 ```cpp
+// application\use_cases\mark_ready_use_case.h
+#pragma once
+
+#include "application/use_cases/session_service.h"
+
 class MarkReadyUseCases {
 public:
-  void Execute(const SessionId& session_id, const PlayerId& player_id);
+  MarkReadyUseCases(SessionService &sessions);
+  void Execute(const SessionId &session_id, const PlayerId &player_id);
+
+private:
+  SessionService &sessions_;
 };
 ```
 
@@ -73526,10 +73633,44 @@ private:
 };
 ```
 
+### `src/application/use_cases/start_match_use_case.cpp`
+
+```cpp
+#include "start_match_use_case.h"
+
+StartMatchUseCase::StartMatchUseCase(SessionService &sessions)
+    : sessions_(sessions) {}
+
+void StartMatchUseCase::Execute(const SessionId &session_id) {
+  const auto &session = sessions_.FindSession(session_id);
+  if (!session) {
+    return;
+  }
+  session->get().StartCountdown();
+  session->get().StartMatch();
+}
+```
+
 ### `src/application/use_cases/start_match_use_case.h`
 
 ```cpp
 #pragma once
+
+#include "application/use_cases/session_service.h"
+class StartMatchUseCase {
+public:
+  explicit StartMatchUseCase(SessionService &sessions);
+  void Execute(const SessionId &session_id);
+
+private:
+  SessionService &sessions_;
+};
+
+/* 1. Находит сессию
+ * 2. Если нет сессии, return
+ * 3. Начинает отсчёт
+ * 4. Запускает матч
+ */
 ```
 
 ### `src/application/use_cases/submit_input_use_case.cpp`
@@ -73579,7 +73720,6 @@ private:
 
 ```cpp
 #include "tick_session_use_case.h"
-#include "domain/game/world_snapshot.h"
 
 TickSessionUseCase::TickSessionUseCase(SessionService &sessions,
                                        ISessionBroadcaster &broadcast)
@@ -73611,7 +73751,6 @@ void TickSessionUseCase::Execute(const SessionId &session_id,
 
 #include "application/ports/session_broadcaster.h"
 #include "application/use_cases/session_service.h"
-#include "domain/game/world_snapshot.h"
 #include "domain/session/session_id.h"
 
 class TickSessionUseCase {
@@ -73786,19 +73925,15 @@ private:
 ### `src/domain/game/physics_config.h`
 
 ```cpp
+// domain\game\physics_config.h
 #pragma once
 
 struct PhysicsConfig {
+
   double gravity = 900.0;
   double jump_velocity = -300.0;
   double world_height = 600.0;
   double scroll_speed = 120.0;
-  // double bird_x = 100.0f; // убираем отсюда
-  // Отправил в Bird.x
-
-  // double initial_bird_y = 300.0;
-  // double bird_radius = 20.0;
-  // double pipe_spawn_right_edge = 1000.0;
 };
 ```
 
@@ -74388,10 +74523,11 @@ struct InputCommand {
 ### `src/domain/session/player_session_state.h`
 
 ```cpp
+// domain\session\player_session_state.h
 #pragma once
 
-#include "../../domain/player/player_id.h"
-#include "../game/bird_state.h" // для BirdState
+#include "domain/game/bird_state.h" // для BirdState
+#include "domain/player/player_id.h"
 
 class PlayerSessionState {
 public:
