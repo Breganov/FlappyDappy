@@ -1,7 +1,8 @@
+// domain\session\player_session_state.h
 #pragma once
 
-#include "../../domain/player/player_id.h"
-#include "../game/bird_state.h" // для BirdState
+#include "domain/game/bird_state.h" // для BirdState
+#include "domain/player/player_id.h"
 
 class PlayerSessionState {
 public:

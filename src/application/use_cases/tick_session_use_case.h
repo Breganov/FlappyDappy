@@ -2,7 +2,6 @@
 
 #include "application/ports/session_broadcaster.h"
 #include "application/use_cases/session_service.h"
-#include "domain/game/world_snapshot.h"
 #include "domain/session/session_id.h"
 
 class TickSessionUseCase {

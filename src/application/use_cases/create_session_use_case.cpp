@@ -10,7 +10,8 @@ CreateSessionUseCase::CreateSessionUseCase(IIdGenerator &ids,
 
 SessionId CreateSessionUseCase::Execute() {
   SessionId id = ids_.NewSessionId();
-  PhysicsConfig phys;
+  PhysicsConfig
+      phys; // потом как-то надо забыть CreateSessionUseCase о PhysicsConfig
   CollisionService collision;
   sessions_.CreateSession(id, 42u, phys.gravity, phys.jump_velocity,
                           phys.scroll_speed);

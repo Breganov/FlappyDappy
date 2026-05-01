@@ -1,5 +1,4 @@
 #include "tick_session_use_case.h"
-#include "domain/game/world_snapshot.h"
 
 TickSessionUseCase::TickSessionUseCase(SessionService &sessions,
                                        ISessionBroadcaster &broadcast)
