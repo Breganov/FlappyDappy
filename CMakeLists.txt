@@ -40,7 +40,19 @@ target_compile_features(flappy_domain
 
 add_executable(flappy_server
     src/main.cpp
+
     src/infrastructure/logging/console_logger.cpp
+    src/infrastructure/logging/console_session_broadcaster.cpp
+
+    src/application/ports/simple_id_generator.cpp
+
+    src/application/use_cases/session_service.cpp
+    src/application/use_cases/create_session_use_case.cpp
+    src/application/use_cases/join_session_use_case.cpp
+    src/application/use_cases/start_match_use_case.cpp
+    src/application/use_cases/submit_input_use_case.cpp
+    src/application/use_cases/tick_session_use_case.cpp
+    src/application/use_cases/finish_match_use_case.cpp
 )
 
 target_include_directories(flappy_server

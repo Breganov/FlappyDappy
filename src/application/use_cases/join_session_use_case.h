@@ -1,3 +1,4 @@
+// application/use_cases/join_session_use_case.h
 #pragma once
 
 #include "application/ports/session_broadcaster.h"

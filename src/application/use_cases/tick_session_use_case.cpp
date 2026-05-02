@@ -6,18 +6,18 @@ TickSessionUseCase::TickSessionUseCase(SessionService &sessions,
 
 void TickSessionUseCase::Execute(const SessionId &session_id,
                                  std::chrono::milliseconds delta) {
-  auto sessions = sessions_.FindSession(session_id);
-  if (!sessions) {
+  auto session = sessions_.FindSession(session_id);
+  if (!session) {
     return;
   }
 
-  sessions->get().Tick(delta);
+  session->get().Tick(delta);
 
-  auto snapshot = sessions->get().BuildSnapshot();
+  auto snapshot = session->get().BuildSnapshot();
   broadcast_.BroadcastSnapshot(session_id, snapshot);
 
-  if (sessions->get().IsFinished()) {
-    auto result = sessions->get().BuildResult();
+  if (session->get().IsFinished()) {
+    auto result = session->get().BuildResult();
     broadcast_.BroadcastMatchFinished(session_id, result);
   }
 }

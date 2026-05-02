@@ -21,8 +21,7 @@ TEST_CASE("GameSession starts match only after countdown") {
   const double scroll_speed = 120.0f;
   CollisionService collision;
 
-  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed,
-                      collision);
+  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed);
 
   session.StartMatch();
   REQUIRE(session.GetState() == SessionState::WaitingForPlayers);
@@ -70,8 +69,7 @@ TEST_CASE("GameSession eventually finishes") {
   const double scroll_speed = 120.0f;
   CollisionService collision;
 
-  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed,
-                      collision);
+  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed);
 
   session.AddPlayer(PlayerId("player1"));
   session.AddPlayer(PlayerId("player2"));
@@ -97,8 +95,7 @@ TEST_CASE("Tick does nothing before StartMatch") {
   const double scroll_speed = 120.0f;
   CollisionService collision;
 
-  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed,
-                      collision);
+  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed);
 
   session.AddPlayer(PlayerId("player1"));
 
@@ -121,8 +118,7 @@ TEST_CASE("Jump affects only the targeted player") {
   const double scroll_speed = 120.0f;
   CollisionService collision;
 
-  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed,
-                      collision);
+  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed);
 
   session.AddPlayer(PlayerId("player1"));
   session.AddPlayer(PlayerId("player2"));
@@ -154,8 +150,7 @@ TEST_CASE("Distance increases while player is alive") {
   const double scroll_speed = 120.0f;
   CollisionService collision;
 
-  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed,
-                      collision);
+  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed);
 
   session.AddPlayer(PlayerId("player1"));
 
@@ -189,8 +184,7 @@ TEST_CASE("Player dies on collision") {
   const double scroll_speed = 3000.0f; // чтобы точно ударился
   CollisionService collision;
 
-  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed,
-                      collision);
+  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed);
 
   session.AddPlayer(PlayerId("player1"));
 
@@ -217,8 +211,7 @@ TEST_CASE("BuildResult sorts players by distance") {
   const double scroll_speed = 120.0f;
   CollisionService collision;
 
-  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed,
-                      collision);
+  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed);
 
   session.AddPlayer(PlayerId("player1"));
   session.AddPlayer(PlayerId("player2"));
@@ -252,8 +245,7 @@ TEST_CASE("BuildSnapshot conatains x position") {
   const double scroll_speed = 120.0f;
   CollisionService collision;
 
-  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed,
-                      collision);
+  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed);
 
   session.AddPlayer(PlayerId("player1"));
   session.AddPlayer(PlayerId("player2"));

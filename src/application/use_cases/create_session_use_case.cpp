@@ -1,4 +1,4 @@
-// application\use_cases\create_session_use_case.h
+// application/use_cases/create_session_use_case.cpp
 #include "create_session_use_case.h"
 
 #include "domain/game/physics_config.h"
@@ -12,7 +12,6 @@ SessionId CreateSessionUseCase::Execute() {
   SessionId id = ids_.NewSessionId();
   PhysicsConfig
       phys; // потом как-то надо забыть CreateSessionUseCase о PhysicsConfig
-  CollisionService collision;
   sessions_.CreateSession(id, 42u, phys.gravity, phys.jump_velocity,
                           phys.scroll_speed);
   return id;
