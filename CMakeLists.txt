@@ -40,7 +40,6 @@ target_compile_features(flappy_domain
 
 add_executable(flappy_server
     src/main.cpp
-
     src/infrastructure/logging/console_logger.cpp
     src/infrastructure/logging/console_session_broadcaster.cpp
 
@@ -68,6 +67,7 @@ target_link_libraries(flappy_server
 add_executable(flappy_tests
     tests/domain/collision_service_tests.cpp
     tests/domain/game_session_tests.cpp
+    tests/application/use_cases_tests.cpp
 )
 
 target_include_directories(flappy_tests

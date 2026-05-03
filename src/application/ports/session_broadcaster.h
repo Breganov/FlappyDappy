@@ -5,7 +5,6 @@
 #include "domain/game/world_snapshot.h"
 #include "domain/match/match_result.h"
 #include "domain/session/session_id.h"
-#include "infrastructure/logging/logger.h"
 
 class ISessionBroadcaster {
 public:

@@ -3,9 +3,9 @@
 
 #include "application/use_cases/session_service.h"
 
-class MarkReadyUseCases {
+class MarkReadyUseCase {
 public:
-  MarkReadyUseCases(SessionService &sessions);
+  MarkReadyUseCase(SessionService &sessions);
   void Execute(const SessionId &session_id, const PlayerId &player_id);
 
 private:

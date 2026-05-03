@@ -488,6 +488,9 @@ FlappyDappy
 │   │   │           └── session
 │   │   ├── flappy_server.dir
 │   │   │   └── src
+│   │   │       ├── application
+│   │   │       │   ├── ports
+│   │   │       │   └── use_cases
 │   │   │       └── infrastructure
 │   │   │           └── logging
 │   │   ├── flappy_tests.dir
@@ -509,6 +512,8 @@ FlappyDappy
 │   │   │   ├── player_repository.h
 │   │   │   ├── session_broadcaster.h
 │   │   │   ├── session_repository.h
+│   │   │   ├── simple_id_generator.cpp
+│   │   │   ├── simple_id_generator.h
 │   │   │   └── unit_of_work.h
 │   │   └── use_cases
 │   │       ├── application_error.h
@@ -565,6 +570,8 @@ FlappyDappy
 │   │   ├── logging
 │   │   │   ├── console_logger.cpp
 │   │   │   ├── console_logger.h
+│   │   │   ├── console_session_broadcaster.cpp
+│   │   │   ├── console_session_broadcaster.h
 │   │   │   └── logger.h
 │   │   └── net
 │   │       ├── websocket_message_parser.h
@@ -73204,7 +73211,7 @@ int main(){}
 ```cpp
 // application\ports\id_generator.h
 #pragma once
-#include "application\use_cases\session_service.h"
+#include "application/use_cases/session_service.h"
 
 class IIdGenerator {
 public:
@@ -73279,6 +73286,41 @@ public:
 ```cpp
 ```
 
+### `src/application/ports/simple_id_generator.cpp`
+
+```cpp
+// application\ports\sipmle_id_generator.h
+#include "simple_id_generator.h"
+#include "domain/session/session_id.h"
+
+SimpleIdGenerator::SimpleIdGenerator(std::string prefix) : prefix_(prefix) {}
+
+SessionId SimpleIdGenerator::NewSessionId() {
+  return SessionId(prefix_ + "-" + std::to_string(next_session_id_++));
+}
+```
+
+### `src/application/ports/simple_id_generator.h`
+
+```cpp
+// application\ports\sipmle_id_generator.h
+#pragma once
+
+#include "application/ports/id_generator.h"
+#include "domain/session/session_id.h"
+#include <cstdint>
+
+class SimpleIdGenerator : public IIdGenerator {
+public:
+  explicit SimpleIdGenerator(std::string prefix = "session");
+  SessionId NewSessionId() override;
+
+private:
+  std::string prefix_;
+  std::uint64_t next_session_id_ = 1;
+};
+```
+
 ### `src/application/ports/unit_of_work.h`
 
 ```cpp
@@ -73313,7 +73355,7 @@ enum class ApplicationError {
 ### `src/application/use_cases/create_session_use_case.cpp`
 
 ```cpp
-// application\use_cases\create_session_use_case.h
+// application/use_cases/create_session_use_case.cpp
 #include "create_session_use_case.h"
 
 #include "domain/game/physics_config.h"
@@ -73327,7 +73369,6 @@ SessionId CreateSessionUseCase::Execute() {
   SessionId id = ids_.NewSessionId();
   PhysicsConfig
       phys; // потом как-то надо забыть CreateSessionUseCase о PhysicsConfig
-  CollisionService collision;
   sessions_.CreateSession(id, 42u, phys.gravity, phys.jump_velocity,
                           phys.scroll_speed);
   return id;
@@ -73337,7 +73378,7 @@ SessionId CreateSessionUseCase::Execute() {
 ### `src/application/use_cases/create_session_use_case.h`
 
 ```cpp
-// application\use_cases\create_session_use_case.h
+// application/use_cases/create_session_use_case.h
 #pragma once
 
 #include "application/ports/id_generator.h"
@@ -73358,46 +73399,43 @@ private:
 ### `src/application/use_cases/finish_match_use_case.cpp`
 
 ```cpp
-// application\use_cases\finish_match_use_case.cpp
+// application/use_cases/finish_match_use_case.cpp
 #include "finish_match_use_case.h"
 #include "domain/session/session_id.h"
 
-FinishMatchUseCase::FinishMatchUseCase(ISessionBroadcaster &broadcaster,
-                                       SessionService &sessions)
-    : broadcaster_(broadcaster), sessions_(sessions) {}
+FinishMatchUseCase::FinishMatchUseCase(SessionService &sessions)
+    : sessions_(sessions) {}
 
 void FinishMatchUseCase::Execute(const SessionId &session_id) {
-  const auto &session = sessions_.FindSession(session_id);
+  auto session = sessions_.FindSession(session_id);
   if (!session) {
     return;
   }
-  if (session->get().IsFinished()) {
-    const auto &match_result = session->get().BuildResult();
-    broadcaster_.BroadcastMatchFinished(session_id, match_result);
-    sessions_.RemoveSession(session_id);
+
+  if (!session->get().IsFinished()) {
+    return;
   }
+
+  sessions_.RemoveSession(session_id);
 }
 ```
 
 ### `src/application/use_cases/finish_match_use_case.h`
 
 ```cpp
-// application\use_cases\finish_match_use_case.h
+// application/use_cases/finish_match_use_case.h
 #pragma once
-#include "application/ports/session_broadcaster.h"
+
 #include "application/use_cases/session_service.h"
 #include "domain/session/session_id.h"
 
 class FinishMatchUseCase {
 public:
-  FinishMatchUseCase(
-      // IUnitOfWorkFactory &uow_factory, // Не написал class UnitOfWorkFactory
-      ISessionBroadcaster &broadcaster, SessionService &sessions);
+  FinishMatchUseCase(SessionService &sessions);
 
   void Execute(const SessionId &session_id);
 
 private:
-  ISessionBroadcaster &broadcaster_;
   SessionService &sessions_;
 };
 ```
@@ -73409,12 +73447,16 @@ private:
 #include "game_loop_service.h"
 
 GameLoopService::GameLoopService(SessionService &sessions,
-                                 TickSessionUseCase &ticks)
-    : sessions_(sessions), ticks_(ticks) {};
+                                 TickSessionUseCase &ticks,
+                                 FinishMatchUseCase &finish)
+    : sessions_(sessions), ticks_(ticks), finish_(finish) {};
 
 void GameLoopService::Execute(std::chrono::milliseconds delta) {
   for (const auto &session : sessions_.GetAllSessions()) {
     ticks_.Execute(session.get().GetId(), delta);
+    if (session.get().IsFinished()) {
+      finish_.Execute(session.get().GetId());
+    }
   }
 }
 ```
@@ -73425,6 +73467,7 @@ void GameLoopService::Execute(std::chrono::milliseconds delta) {
 // application\use_cases\game_loop_service.h
 #pragma once
 
+#include "application/use_cases/finish_match_use_case.h"
 #include "application/use_cases/session_service.h"
 #include "application/use_cases/tick_session_use_case.h"
 
@@ -73432,12 +73475,14 @@ void GameLoopService::Execute(std::chrono::milliseconds delta) {
 
 class GameLoopService {
 public:
-  GameLoopService(SessionService &sessions, TickSessionUseCase &ticks);
+  GameLoopService(SessionService &sessions, TickSessionUseCase &ticks,
+                  FinishMatchUseCase &finish);
   void Execute(std::chrono::milliseconds delta);
 
 private:
   SessionService &sessions_;
   TickSessionUseCase &ticks_;
+  FinishMatchUseCase &finish_;
 };
 ```
 
@@ -73477,6 +73522,7 @@ void JoinSessionUseCase::Execute(const SessionId &id,
 ### `src/application/use_cases/join_session_use_case.h`
 
 ```cpp
+// application/use_cases/join_session_use_case.h
 #pragma once
 
 #include "application/ports/session_broadcaster.h"
@@ -73565,14 +73611,16 @@ public:
 ### `src/application/use_cases/session_service.cpp`
 
 ```cpp
+// application/use_cases/session_service.cpp
 #include "session_service.h"
 
 GameSession &SessionService::CreateSession(SessionId id, std::uint32_t seed,
                                            double gravity, double jump_veloctiy,
                                            double scroll_speed) {
-  auto [it, inserted] = sessions_.emplace(
-      id.ToString(),
-      GameSession(std::move(id), seed, gravity, jump_veloctiy, scroll_speed));
+  const std::string key = id.ToString();
+  auto [it, inserted] =
+      sessions_.emplace(key, GameSession(std::move(id), seed, gravity,
+                                         jump_veloctiy, scroll_speed));
   return it->second;
 }
 
@@ -73727,18 +73775,18 @@ TickSessionUseCase::TickSessionUseCase(SessionService &sessions,
 
 void TickSessionUseCase::Execute(const SessionId &session_id,
                                  std::chrono::milliseconds delta) {
-  auto sessions = sessions_.FindSession(session_id);
-  if (!sessions) {
+  auto session = sessions_.FindSession(session_id);
+  if (!session) {
     return;
   }
 
-  sessions->get().Tick(delta);
+  session->get().Tick(delta);
 
-  auto snapshot = sessions->get().BuildSnapshot();
+  auto snapshot = session->get().BuildSnapshot();
   broadcast_.BroadcastSnapshot(session_id, snapshot);
 
-  if (sessions->get().IsFinished()) {
-    auto result = sessions->get().BuildResult();
+  if (session->get().IsFinished()) {
+    auto result = session->get().BuildResult();
     broadcast_.BroadcastMatchFinished(session_id, result);
   }
 }
@@ -73747,6 +73795,7 @@ void TickSessionUseCase::Execute(const SessionId &session_id,
 ### `src/application/use_cases/tick_session_use_case.h`
 
 ```cpp
+// application/use_cases/tick_session_use_case.h
 #pragma once
 
 #include "application/ports/session_broadcaster.h"
@@ -74655,6 +74704,68 @@ private:
 };
 ```
 
+### `src/infrastructure/logging/console_session_broadcaster.cpp`
+
+```cpp
+#include "console_session_broadcaster.h"
+#include "domain/match/match_result.h"
+#include "domain/session/session_id.h"
+#include "infrastructure/logging/logger.h"
+
+#include <string>
+
+ConsoleSessionBroadcaster::ConsoleSessionBroadcaster(ILogger &logger)
+    : logger_(logger) {}
+
+void ConsoleSessionBroadcaster::BroadcastSnapshot(
+    const SessionId &session_id, const WorldSnapshot &snapshot) {
+  logger_.Info(std::string("Broadcast snapshot for session: ") +
+               session_id.ToString() +
+               ", tick=" + std::to_string(snapshot.tick));
+}
+
+void ConsoleSessionBroadcaster::BroadcastMatchFinished(
+    const SessionId &session_id, const MatchResult &result) {
+  logger_.Info(std::string("Match finished for session: ") +
+               session_id.ToString() +
+               ", players ranked=" + std::to_string(result.rankings.size()));
+}
+
+void ConsoleSessionBroadcaster::NotifyPlayerJoined(const SessionId &session_id,
+                                                   const PlayerId &player_id) {
+  logger_.Info(std::string("Player join session: ") + session_id.ToString() +
+               ", player_id=" + player_id.ToString());
+}
+```
+
+### `src/infrastructure/logging/console_session_broadcaster.h`
+
+```cpp
+// infrastructure\logging\console_session_broadcaster.h
+#pragma once
+
+#include "application/ports/session_broadcaster.h"
+#include "domain/match/match_result.h"
+#include "infrastructure/logging/logger.h"
+
+class ConsoleSessionBroadcaster : public ISessionBroadcaster {
+public:
+  explicit ConsoleSessionBroadcaster(ILogger &logger);
+
+  void BroadcastSnapshot(const SessionId &session_id,
+                         const WorldSnapshot &snapshot) override;
+
+  void BroadcastMatchFinished(const SessionId &session_id,
+                              const MatchResult &result) override;
+
+  void NotifyPlayerJoined(const SessionId &session_id,
+                          const PlayerId &player_id) override;
+
+private:
+  ILogger &logger_;
+};
+```
+
 ### `src/infrastructure/logging/logger.h`
 
 ```cpp
@@ -74729,74 +74840,82 @@ private:
 
 ```cpp
 // main.cpp
-#include "domain/game/collision_service.h"
-#include "domain/session/game_session.h"
+#include "application/ports/simple_id_generator.h"
+#include "application/use_cases/create_session_use_case.h"
+#include "application/use_cases/finish_match_use_case.h"
+#include "application/use_cases/join_session_use_case.h"
+#include "application/use_cases/session_service.h"
+#include "application/use_cases/start_match_use_case.h"
+#include "application/use_cases/submit_input_use_case.h"
+#include "application/use_cases/tick_session_use_case.h"
+#include "domain/player/player_id.h"
+#include "domain/session/input_command.h"
 #include "infrastructure/logging/console_logger.h"
+#include "infrastructure/logging/console_session_broadcaster.h"
 
 #include <chrono>
-#include <iostream>
 #include <string>
 
 int main() {
-  ConsoleLogger logger(LogLevel::Debug);
-  logger.Info("FlappyDappy server starting");
-  SessionId sid("test-session");
-  const std::uint32_t seed = 42u;
-  double gravity = 900.0f;
-  const double jump_velocity = -300.0f;
-  const double scroll_speed = 120.0f;
-  CollisionService collision_service;
+  ConsoleLogger logger;
+  logger.Info("Starting a new server.");
 
-  GameSession gs(sid, seed, gravity, jump_velocity, scroll_speed,
-                 collision_service);
+  SimpleIdGenerator ids;
+  SessionService sessions;
+  ConsoleSessionBroadcaster broadcaster(logger);
 
-  gs.AddPlayer(PlayerId("p1"));
-  gs.AddPlayer(PlayerId("p2"));
-  for (const auto &player : gs.GetPlayers()) {
-    logger.Info("Added player: " + player.GetPlayerId().ToString());
+  CreateSessionUseCase session(ids, sessions);
+  SessionId id = session.Execute();
+  auto create_session = sessions.FindSession(id);
+  if (!create_session) {
+    logger.Error("Session was not found right after creation: " +
+                 id.ToString());
+    return 1;
   }
 
-  gs.StartCountdown();
-  if (gs.GetState() != SessionState::Countdown) {
-    logger.Error("GameSession.StartCountdown didn't started.");
-  }
+  logger.Info("Session found right after creation.");
+  logger.Info("IDs generated.");
+  logger.Info("Sessions created.");
 
-  gs.StartMatch();
-  if (gs.GetState() != SessionState::InProgress) {
-    logger.Error("GameSession.StartMatch didn't started.");
-  }
+  JoinSessionUseCase join_session_use_case(sessions, broadcaster);
 
-  logger.Info("Server initialized");
+  PlayerId player_id("player-1");
+  join_session_use_case.Execute(id, player_id);
+  logger.Info("Player " + player_id.ToString() + " added.");
 
-  logger.Info("Match Started");
-  int ticks_done = 0;
-  constexpr auto tick_duration = std::chrono::milliseconds(16);
+  StartMatchUseCase start_match_use_case(sessions);
+  start_match_use_case.Execute(id);
+  logger.Info("Match " + id.ToString() + " started.");
 
-  for (int i = 0; i < 500 && !gs.IsFinished(); ++i) {
-    if (gs.IsFinished()) {
-      logger.Info("Match finished before tick: " + std::to_string(i + 1));
+  SubmitInputUseCase submit_input_use_case(sessions);
+  TickSessionUseCase tick_session_use_case(sessions, broadcaster);
+  FinishMatchUseCase finish_match_use_case(sessions);
+
+  for (int i = 0; i < 300; ++i) {
+    auto session_instance = sessions.FindSession(id);
+    if (!session_instance) {
+      logger.Info("Session wasn't found.");
       break;
     }
 
-    if (i % 50 == 0) {
-      InputCommand cmd = {PlayerId("p1"), InputType::Jump, 0u};
-      gs.EnqueueInput(cmd);
+    if (session_instance->get().IsFinished()) {
+      logger.Info("Session is finished.");
+      break;
     }
 
-    gs.Tick(std::chrono::milliseconds(tick_duration));
-    ++ticks_done;
-
-    if ((i + 1) % 10 == 0 || gs.IsFinished()) {
-      WorldSnapshot ws = gs.BuildSnapshot();
-      logger.Info(std::to_string(ws.tick) + " ticks");
-      std::cout << ws;
+    logger.Info("tick=" + std::to_string(i));
+    if ((i + 1) % 20 == 0) {
+      submit_input_use_case.Execute(id,
+                                    InputCommand{player_id, InputType::Jump});
+      logger.Info("Jump by " + player_id.ToString() +
+                  " sent at tick=" + std::to_string(i));
     }
+
+    tick_session_use_case.Execute(id, std::chrono::milliseconds(16));
   }
 
-  logger.Info("Loop finished.");
-  logger.Info("Ticks done: " + std::to_string(ticks_done));
-  logger.Info("IsFinished: " + std::to_string(gs.IsFinished()));
-
+  finish_match_use_case.Execute(id);
+  logger.Info("Session " + id.ToString() + " finished.");
   return 0;
 }
 ```
@@ -74932,8 +75051,7 @@ TEST_CASE("GameSession starts match only after countdown") {
   const double scroll_speed = 120.0f;
   CollisionService collision;
 
-  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed,
-                      collision);
+  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed);
 
   session.StartMatch();
   REQUIRE(session.GetState() == SessionState::WaitingForPlayers);
@@ -74981,8 +75099,7 @@ TEST_CASE("GameSession eventually finishes") {
   const double scroll_speed = 120.0f;
   CollisionService collision;
 
-  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed,
-                      collision);
+  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed);
 
   session.AddPlayer(PlayerId("player1"));
   session.AddPlayer(PlayerId("player2"));
@@ -75008,8 +75125,7 @@ TEST_CASE("Tick does nothing before StartMatch") {
   const double scroll_speed = 120.0f;
   CollisionService collision;
 
-  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed,
-                      collision);
+  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed);
 
   session.AddPlayer(PlayerId("player1"));
 
@@ -75032,8 +75148,7 @@ TEST_CASE("Jump affects only the targeted player") {
   const double scroll_speed = 120.0f;
   CollisionService collision;
 
-  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed,
-                      collision);
+  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed);
 
   session.AddPlayer(PlayerId("player1"));
   session.AddPlayer(PlayerId("player2"));
@@ -75065,8 +75180,7 @@ TEST_CASE("Distance increases while player is alive") {
   const double scroll_speed = 120.0f;
   CollisionService collision;
 
-  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed,
-                      collision);
+  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed);
 
   session.AddPlayer(PlayerId("player1"));
 
@@ -75100,8 +75214,7 @@ TEST_CASE("Player dies on collision") {
   const double scroll_speed = 3000.0f; // чтобы точно ударился
   CollisionService collision;
 
-  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed,
-                      collision);
+  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed);
 
   session.AddPlayer(PlayerId("player1"));
 
@@ -75128,8 +75241,7 @@ TEST_CASE("BuildResult sorts players by distance") {
   const double scroll_speed = 120.0f;
   CollisionService collision;
 
-  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed,
-                      collision);
+  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed);
 
   session.AddPlayer(PlayerId("player1"));
   session.AddPlayer(PlayerId("player2"));
@@ -75163,8 +75275,7 @@ TEST_CASE("BuildSnapshot conatains x position") {
   const double scroll_speed = 120.0f;
   CollisionService collision;
 
-  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed,
-                      collision);
+  GameSession session(sid, seed, gravity, jump_velocity, scroll_speed);
 
   session.AddPlayer(PlayerId("player1"));
   session.AddPlayer(PlayerId("player2"));
