@@ -1,5 +1,6 @@
 // domain\session\games_session.cpp
 #include "game_session.h"
+#include "domain/game/bird_state.h"
 #include "domain/game/collision_service.h"
 #include "domain/match/match_result.h"
 
@@ -23,8 +24,7 @@ SessionState GameSession::GetState() const { return state_; }
 // =============================================================================
 
 void GameSession::AddPlayer(PlayerId player_id) {
-  BirdState initial_bird;
-  players_.emplace_back(std::move(player_id), initial_bird);
+  players_.emplace_back(std::move(player_id), BirdState());
 }
 
 void GameSession::MarkPlayerReady(const PlayerId &player_id) {

@@ -1,4 +1,4 @@
-// domain\session\player_session_state.h
+// domain/session/player_session_state.h
 #pragma once
 
 #include "domain/game/bird_state.h" // для BirdState

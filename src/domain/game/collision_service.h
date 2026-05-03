@@ -14,4 +14,6 @@ public:
 private:
   bool HasHitPipe(const BirdState &bird, const PhysicsConfig &phys,
                   const Pipe &pipe) const;
+
+  bool HasHitBounds(const BirdState &bird, const PhysicsConfig &phys) const;
 };

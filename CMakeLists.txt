@@ -25,7 +25,6 @@ add_library(flappy_domain
     src/domain/game/obstacle_generator.cpp
     src/domain/game/physics_engine.cpp
     src/domain/session/game_session.cpp
-    # src/domain/player/player_id.cpp
 )
 
 target_include_directories(flappy_domain
@@ -38,11 +37,7 @@ target_compile_features(flappy_domain
         cxx_std_20
 )
 
-add_executable(flappy_server
-    src/main.cpp
-    src/infrastructure/logging/console_logger.cpp
-    src/infrastructure/logging/console_session_broadcaster.cpp
-
+add_library(flappy_application
     src/application/ports/simple_id_generator.cpp
 
     src/application/use_cases/session_service.cpp
@@ -52,6 +47,24 @@ add_executable(flappy_server
     src/application/use_cases/submit_input_use_case.cpp
     src/application/use_cases/tick_session_use_case.cpp
     src/application/use_cases/finish_match_use_case.cpp
+    src/application/use_cases/game_loop_service.cpp
+
+    src/infrastructure/logging/console_logger.cpp
+    src/infrastructure/logging/console_session_broadcaster.cpp
+)
+
+target_include_directories(flappy_application
+    PUBLIC
+        ${PROJECT_SOURCE_DIR}/src
+)
+
+target_link_libraries(flappy_application
+    PUBLIC
+        flappy_domain
+)
+
+add_executable(flappy_server
+    src/main.cpp
 )
 
 target_include_directories(flappy_server
@@ -61,7 +74,7 @@ target_include_directories(flappy_server
 
 target_link_libraries(flappy_server
     PRIVATE
-        flappy_domain
+        flappy_application
 )
 
 add_executable(flappy_tests
@@ -77,7 +90,7 @@ target_include_directories(flappy_tests
 
 target_link_libraries(flappy_tests
     PRIVATE
-        flappy_domain
+        flappy_application
         Catch2::Catch2WithMain
 )
 

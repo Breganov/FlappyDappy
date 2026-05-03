@@ -1,15 +1,25 @@
-Bird hits top bound 38 0.000479103
-Bird hits bottom bound 38 0.000419784
-Bird does not collide inside the gap 38 0.000467524
-Bird collides with pipe when outside gap 38 0.000527055
-GameSession starts match only after countdown 38 0.000473413
-GameSession tick updates snapshot when match is in progress 38 0.000406503
-GameSession eventually finishes 38 0.000387253
-Tick does nothing before StartMatch 33 0.000430333
+Bird hits top bound 42 0.000357257
+Bird hits bottom bound 42 0.000422483
+Bird does not collide inside the gap 50 0.000326272
+Bird collides with pipe when outside gap 50 0.000314742
+GameSession starts match only after countdown 50 0.000333982
+GameSession tick updates snapshot when match is in progress 50 0.000261718
+GameSession eventually finishes 50 0.00030843
+Tick does nothing before StartMatch 45 0.000290002
 Jump affect only the targeted player 1 0.0101328
-Jump affects only the targeted player 29 0.000566117
-Distance increases while player is alive 16 0.00102078
-Player dies on collision 13 0.00104333
-BuildResult sorts players by distance 9 0.00140483
-BuildSnapshot conatains x position 7 0.00180349
+Jump affects only the targeted player 41 0.000348463
+Distance increases while player is alive 28 0.000514696
+Player dies on collision 25 0.000597164
+BuildResult sorts players by distance 21 0.000722605
+BuildSnapshot conatains x position 19 0.000790489
+CreateSessionUseCase creates session in SessionService 6 0.00237443
+JoinSessionUseCase adds player and notifies broadcaster 2 0.0080277
+StartMatchUseCase transitions session to running state 6 0.00280215
+SubmitInputUseCase applies jump after tick 2 0.0074412
+TickSessionUseCase broadcasts snapshot 6 0.00246888
+TickSessionUseCase broadcasts match finished when session is finished 0 0
+FinishMatchUseCase removes finished session 6 0.00225262
+GameLoopService ticks all sessions and cleans finished ones 0 0
 ---
+TickSessionUseCase broadcasts match finished when session is finished
+GameLoopService ticks all sessions and cleans finished ones

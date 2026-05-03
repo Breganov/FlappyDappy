@@ -1,3 +1,4 @@
+// domain/game/bird_state.h
 #pragma once
 
 struct BirdState {

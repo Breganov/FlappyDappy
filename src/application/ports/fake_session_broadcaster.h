@@ -25,7 +25,7 @@ public:
   void NotifyPlayerJoined(const SessionId &session_id,
                           const PlayerId &player_id) override {
     player_joined_called = true;
-    last_joined_player_id = session_id.ToString();
+    last_joined_session_id = session_id.ToString();
     last_joined_player_id = player_id.ToString();
   }
 

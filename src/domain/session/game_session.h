@@ -26,7 +26,9 @@ public:
               double jump_velocity, double scroll_speed);
   const SessionId &GetId() const;
   SessionState GetState() const;
-  std::vector<PlayerSessionState> GetPlayers() const { return players_; };
+  const std::vector<PlayerSessionState> &GetPlayers() const {
+    return players_;
+  };
 
   void AddPlayer(PlayerId player_id);
   void MarkPlayerReady(const PlayerId &player_id);

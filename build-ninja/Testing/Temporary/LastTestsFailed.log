@@ -1,1 +1,2 @@
-12:BuildResult sorts players by distance
+19:TickSessionUseCase broadcasts match finished when session is finished
+21:GameLoopService ticks all sessions and cleans finished ones

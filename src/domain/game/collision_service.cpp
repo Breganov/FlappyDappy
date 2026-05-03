@@ -9,6 +9,10 @@ bool CollisionService::HasCollided(const BirdState &bird,
     return false;
   }
 
+  if (HasHitBounds(bird, phys)) {
+    return true;
+  }
+
   for (const Pipe &pipe : pipes) {
     if (HasHitPipe(bird, phys, pipe)) {
       return true;
@@ -16,6 +20,12 @@ bool CollisionService::HasCollided(const BirdState &bird,
   }
 
   return false;
+}
+
+bool CollisionService::HasHitBounds(const BirdState &bird,
+                                    const PhysicsConfig &phys) const {
+  return bird.y - bird.radius < 0.0f ||
+         bird.y + bird.radius > phys.world_height;
 }
 
 bool CollisionService::HasHitPipe(const BirdState &bird,

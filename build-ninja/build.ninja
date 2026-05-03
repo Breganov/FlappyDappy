@@ -113,13 +113,162 @@ build flappy_domain.lib: CXX_STATIC_LIBRARY_LINKER__flappy_domain_Debug CMakeFil
   TARGET_SUPPORT_DIR = CMakeFiles\flappy_domain.dir
 
 # =============================================================================
+# Object build statements for STATIC_LIBRARY target flappy_application
+
+
+#############################################
+# Order-only phony target for flappy_application
+
+build cmake_object_order_depends_target_flappy_application: phony || cmake_object_order_depends_target_flappy_domain
+
+build CMakeFiles/flappy_application.dir/src/application/ports/simple_id_generator.cpp.obj: CXX_COMPILER__flappy_application_unscanned_Debug C$:/Code/C++/FlappyDappy/src/application/ports/simple_id_generator.cpp || cmake_object_order_depends_target_flappy_application
+  CONFIG = Debug
+  DEP_FILE = CMakeFiles\flappy_application.dir\src\application\ports\simple_id_generator.cpp.obj.d
+  FLAGS = -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
+  INCLUDES = -IC:/Code/C++/FlappyDappy/src
+  OBJECT_DIR = CMakeFiles\flappy_application.dir
+  OBJECT_FILE_DIR = CMakeFiles\flappy_application.dir\src\application\ports
+  TARGET_COMPILE_PDB = CMakeFiles\flappy_application.dir\flappy_application.pdb
+  TARGET_PDB = flappy_application.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\flappy_application.dir
+
+build CMakeFiles/flappy_application.dir/src/application/use_cases/session_service.cpp.obj: CXX_COMPILER__flappy_application_unscanned_Debug C$:/Code/C++/FlappyDappy/src/application/use_cases/session_service.cpp || cmake_object_order_depends_target_flappy_application
+  CONFIG = Debug
+  DEP_FILE = CMakeFiles\flappy_application.dir\src\application\use_cases\session_service.cpp.obj.d
+  FLAGS = -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
+  INCLUDES = -IC:/Code/C++/FlappyDappy/src
+  OBJECT_DIR = CMakeFiles\flappy_application.dir
+  OBJECT_FILE_DIR = CMakeFiles\flappy_application.dir\src\application\use_cases
+  TARGET_COMPILE_PDB = CMakeFiles\flappy_application.dir\flappy_application.pdb
+  TARGET_PDB = flappy_application.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\flappy_application.dir
+
+build CMakeFiles/flappy_application.dir/src/application/use_cases/create_session_use_case.cpp.obj: CXX_COMPILER__flappy_application_unscanned_Debug C$:/Code/C++/FlappyDappy/src/application/use_cases/create_session_use_case.cpp || cmake_object_order_depends_target_flappy_application
+  CONFIG = Debug
+  DEP_FILE = CMakeFiles\flappy_application.dir\src\application\use_cases\create_session_use_case.cpp.obj.d
+  FLAGS = -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
+  INCLUDES = -IC:/Code/C++/FlappyDappy/src
+  OBJECT_DIR = CMakeFiles\flappy_application.dir
+  OBJECT_FILE_DIR = CMakeFiles\flappy_application.dir\src\application\use_cases
+  TARGET_COMPILE_PDB = CMakeFiles\flappy_application.dir\flappy_application.pdb
+  TARGET_PDB = flappy_application.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\flappy_application.dir
+
+build CMakeFiles/flappy_application.dir/src/application/use_cases/join_session_use_case.cpp.obj: CXX_COMPILER__flappy_application_unscanned_Debug C$:/Code/C++/FlappyDappy/src/application/use_cases/join_session_use_case.cpp || cmake_object_order_depends_target_flappy_application
+  CONFIG = Debug
+  DEP_FILE = CMakeFiles\flappy_application.dir\src\application\use_cases\join_session_use_case.cpp.obj.d
+  FLAGS = -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
+  INCLUDES = -IC:/Code/C++/FlappyDappy/src
+  OBJECT_DIR = CMakeFiles\flappy_application.dir
+  OBJECT_FILE_DIR = CMakeFiles\flappy_application.dir\src\application\use_cases
+  TARGET_COMPILE_PDB = CMakeFiles\flappy_application.dir\flappy_application.pdb
+  TARGET_PDB = flappy_application.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\flappy_application.dir
+
+build CMakeFiles/flappy_application.dir/src/application/use_cases/start_match_use_case.cpp.obj: CXX_COMPILER__flappy_application_unscanned_Debug C$:/Code/C++/FlappyDappy/src/application/use_cases/start_match_use_case.cpp || cmake_object_order_depends_target_flappy_application
+  CONFIG = Debug
+  DEP_FILE = CMakeFiles\flappy_application.dir\src\application\use_cases\start_match_use_case.cpp.obj.d
+  FLAGS = -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
+  INCLUDES = -IC:/Code/C++/FlappyDappy/src
+  OBJECT_DIR = CMakeFiles\flappy_application.dir
+  OBJECT_FILE_DIR = CMakeFiles\flappy_application.dir\src\application\use_cases
+  TARGET_COMPILE_PDB = CMakeFiles\flappy_application.dir\flappy_application.pdb
+  TARGET_PDB = flappy_application.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\flappy_application.dir
+
+build CMakeFiles/flappy_application.dir/src/application/use_cases/submit_input_use_case.cpp.obj: CXX_COMPILER__flappy_application_unscanned_Debug C$:/Code/C++/FlappyDappy/src/application/use_cases/submit_input_use_case.cpp || cmake_object_order_depends_target_flappy_application
+  CONFIG = Debug
+  DEP_FILE = CMakeFiles\flappy_application.dir\src\application\use_cases\submit_input_use_case.cpp.obj.d
+  FLAGS = -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
+  INCLUDES = -IC:/Code/C++/FlappyDappy/src
+  OBJECT_DIR = CMakeFiles\flappy_application.dir
+  OBJECT_FILE_DIR = CMakeFiles\flappy_application.dir\src\application\use_cases
+  TARGET_COMPILE_PDB = CMakeFiles\flappy_application.dir\flappy_application.pdb
+  TARGET_PDB = flappy_application.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\flappy_application.dir
+
+build CMakeFiles/flappy_application.dir/src/application/use_cases/tick_session_use_case.cpp.obj: CXX_COMPILER__flappy_application_unscanned_Debug C$:/Code/C++/FlappyDappy/src/application/use_cases/tick_session_use_case.cpp || cmake_object_order_depends_target_flappy_application
+  CONFIG = Debug
+  DEP_FILE = CMakeFiles\flappy_application.dir\src\application\use_cases\tick_session_use_case.cpp.obj.d
+  FLAGS = -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
+  INCLUDES = -IC:/Code/C++/FlappyDappy/src
+  OBJECT_DIR = CMakeFiles\flappy_application.dir
+  OBJECT_FILE_DIR = CMakeFiles\flappy_application.dir\src\application\use_cases
+  TARGET_COMPILE_PDB = CMakeFiles\flappy_application.dir\flappy_application.pdb
+  TARGET_PDB = flappy_application.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\flappy_application.dir
+
+build CMakeFiles/flappy_application.dir/src/application/use_cases/finish_match_use_case.cpp.obj: CXX_COMPILER__flappy_application_unscanned_Debug C$:/Code/C++/FlappyDappy/src/application/use_cases/finish_match_use_case.cpp || cmake_object_order_depends_target_flappy_application
+  CONFIG = Debug
+  DEP_FILE = CMakeFiles\flappy_application.dir\src\application\use_cases\finish_match_use_case.cpp.obj.d
+  FLAGS = -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
+  INCLUDES = -IC:/Code/C++/FlappyDappy/src
+  OBJECT_DIR = CMakeFiles\flappy_application.dir
+  OBJECT_FILE_DIR = CMakeFiles\flappy_application.dir\src\application\use_cases
+  TARGET_COMPILE_PDB = CMakeFiles\flappy_application.dir\flappy_application.pdb
+  TARGET_PDB = flappy_application.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\flappy_application.dir
+
+build CMakeFiles/flappy_application.dir/src/application/use_cases/game_loop_service.cpp.obj: CXX_COMPILER__flappy_application_unscanned_Debug C$:/Code/C++/FlappyDappy/src/application/use_cases/game_loop_service.cpp || cmake_object_order_depends_target_flappy_application
+  CONFIG = Debug
+  DEP_FILE = CMakeFiles\flappy_application.dir\src\application\use_cases\game_loop_service.cpp.obj.d
+  FLAGS = -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
+  INCLUDES = -IC:/Code/C++/FlappyDappy/src
+  OBJECT_DIR = CMakeFiles\flappy_application.dir
+  OBJECT_FILE_DIR = CMakeFiles\flappy_application.dir\src\application\use_cases
+  TARGET_COMPILE_PDB = CMakeFiles\flappy_application.dir\flappy_application.pdb
+  TARGET_PDB = flappy_application.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\flappy_application.dir
+
+build CMakeFiles/flappy_application.dir/src/infrastructure/logging/console_logger.cpp.obj: CXX_COMPILER__flappy_application_unscanned_Debug C$:/Code/C++/FlappyDappy/src/infrastructure/logging/console_logger.cpp || cmake_object_order_depends_target_flappy_application
+  CONFIG = Debug
+  DEP_FILE = CMakeFiles\flappy_application.dir\src\infrastructure\logging\console_logger.cpp.obj.d
+  FLAGS = -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
+  INCLUDES = -IC:/Code/C++/FlappyDappy/src
+  OBJECT_DIR = CMakeFiles\flappy_application.dir
+  OBJECT_FILE_DIR = CMakeFiles\flappy_application.dir\src\infrastructure\logging
+  TARGET_COMPILE_PDB = CMakeFiles\flappy_application.dir\flappy_application.pdb
+  TARGET_PDB = flappy_application.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\flappy_application.dir
+
+build CMakeFiles/flappy_application.dir/src/infrastructure/logging/console_session_broadcaster.cpp.obj: CXX_COMPILER__flappy_application_unscanned_Debug C$:/Code/C++/FlappyDappy/src/infrastructure/logging/console_session_broadcaster.cpp || cmake_object_order_depends_target_flappy_application
+  CONFIG = Debug
+  DEP_FILE = CMakeFiles\flappy_application.dir\src\infrastructure\logging\console_session_broadcaster.cpp.obj.d
+  FLAGS = -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
+  INCLUDES = -IC:/Code/C++/FlappyDappy/src
+  OBJECT_DIR = CMakeFiles\flappy_application.dir
+  OBJECT_FILE_DIR = CMakeFiles\flappy_application.dir\src\infrastructure\logging
+  TARGET_COMPILE_PDB = CMakeFiles\flappy_application.dir\flappy_application.pdb
+  TARGET_PDB = flappy_application.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\flappy_application.dir
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target flappy_application
+
+
+#############################################
+# Link the static library flappy_application.lib
+
+build flappy_application.lib: CXX_STATIC_LIBRARY_LINKER__flappy_application_Debug CMakeFiles/flappy_application.dir/src/application/ports/simple_id_generator.cpp.obj CMakeFiles/flappy_application.dir/src/application/use_cases/session_service.cpp.obj CMakeFiles/flappy_application.dir/src/application/use_cases/create_session_use_case.cpp.obj CMakeFiles/flappy_application.dir/src/application/use_cases/join_session_use_case.cpp.obj CMakeFiles/flappy_application.dir/src/application/use_cases/start_match_use_case.cpp.obj CMakeFiles/flappy_application.dir/src/application/use_cases/submit_input_use_case.cpp.obj CMakeFiles/flappy_application.dir/src/application/use_cases/tick_session_use_case.cpp.obj CMakeFiles/flappy_application.dir/src/application/use_cases/finish_match_use_case.cpp.obj CMakeFiles/flappy_application.dir/src/application/use_cases/game_loop_service.cpp.obj CMakeFiles/flappy_application.dir/src/infrastructure/logging/console_logger.cpp.obj CMakeFiles/flappy_application.dir/src/infrastructure/logging/console_session_broadcaster.cpp.obj || flappy_domain.lib
+  CONFIG = Debug
+  LANGUAGE_COMPILE_FLAGS = -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
+  OBJECT_DIR = CMakeFiles\flappy_application.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_COMPILE_PDB = CMakeFiles\flappy_application.dir\flappy_application.pdb
+  TARGET_FILE = flappy_application.lib
+  TARGET_PDB = flappy_application.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\flappy_application.dir
+
+# =============================================================================
 # Object build statements for EXECUTABLE target flappy_server
 
 
 #############################################
 # Order-only phony target for flappy_server
 
-build cmake_object_order_depends_target_flappy_server: phony || cmake_object_order_depends_target_flappy_domain
+build cmake_object_order_depends_target_flappy_server: phony || cmake_object_order_depends_target_flappy_application cmake_object_order_depends_target_flappy_domain
 
 build CMakeFiles/flappy_server.dir/src/main.cpp.obj: CXX_COMPILER__flappy_server_unscanned_Debug C$:/Code/C++/FlappyDappy/src/main.cpp || cmake_object_order_depends_target_flappy_server
   CONFIG = Debug
@@ -132,116 +281,6 @@ build CMakeFiles/flappy_server.dir/src/main.cpp.obj: CXX_COMPILER__flappy_server
   TARGET_PDB = flappy_server.pdb
   TARGET_SUPPORT_DIR = CMakeFiles\flappy_server.dir
 
-build CMakeFiles/flappy_server.dir/src/infrastructure/logging/console_logger.cpp.obj: CXX_COMPILER__flappy_server_unscanned_Debug C$:/Code/C++/FlappyDappy/src/infrastructure/logging/console_logger.cpp || cmake_object_order_depends_target_flappy_server
-  CONFIG = Debug
-  DEP_FILE = CMakeFiles\flappy_server.dir\src\infrastructure\logging\console_logger.cpp.obj.d
-  FLAGS = -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
-  INCLUDES = -IC:/Code/C++/FlappyDappy/src
-  OBJECT_DIR = CMakeFiles\flappy_server.dir
-  OBJECT_FILE_DIR = CMakeFiles\flappy_server.dir\src\infrastructure\logging
-  TARGET_COMPILE_PDB = CMakeFiles\flappy_server.dir\
-  TARGET_PDB = flappy_server.pdb
-  TARGET_SUPPORT_DIR = CMakeFiles\flappy_server.dir
-
-build CMakeFiles/flappy_server.dir/src/infrastructure/logging/console_session_broadcaster.cpp.obj: CXX_COMPILER__flappy_server_unscanned_Debug C$:/Code/C++/FlappyDappy/src/infrastructure/logging/console_session_broadcaster.cpp || cmake_object_order_depends_target_flappy_server
-  CONFIG = Debug
-  DEP_FILE = CMakeFiles\flappy_server.dir\src\infrastructure\logging\console_session_broadcaster.cpp.obj.d
-  FLAGS = -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
-  INCLUDES = -IC:/Code/C++/FlappyDappy/src
-  OBJECT_DIR = CMakeFiles\flappy_server.dir
-  OBJECT_FILE_DIR = CMakeFiles\flappy_server.dir\src\infrastructure\logging
-  TARGET_COMPILE_PDB = CMakeFiles\flappy_server.dir\
-  TARGET_PDB = flappy_server.pdb
-  TARGET_SUPPORT_DIR = CMakeFiles\flappy_server.dir
-
-build CMakeFiles/flappy_server.dir/src/application/ports/simple_id_generator.cpp.obj: CXX_COMPILER__flappy_server_unscanned_Debug C$:/Code/C++/FlappyDappy/src/application/ports/simple_id_generator.cpp || cmake_object_order_depends_target_flappy_server
-  CONFIG = Debug
-  DEP_FILE = CMakeFiles\flappy_server.dir\src\application\ports\simple_id_generator.cpp.obj.d
-  FLAGS = -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
-  INCLUDES = -IC:/Code/C++/FlappyDappy/src
-  OBJECT_DIR = CMakeFiles\flappy_server.dir
-  OBJECT_FILE_DIR = CMakeFiles\flappy_server.dir\src\application\ports
-  TARGET_COMPILE_PDB = CMakeFiles\flappy_server.dir\
-  TARGET_PDB = flappy_server.pdb
-  TARGET_SUPPORT_DIR = CMakeFiles\flappy_server.dir
-
-build CMakeFiles/flappy_server.dir/src/application/use_cases/session_service.cpp.obj: CXX_COMPILER__flappy_server_unscanned_Debug C$:/Code/C++/FlappyDappy/src/application/use_cases/session_service.cpp || cmake_object_order_depends_target_flappy_server
-  CONFIG = Debug
-  DEP_FILE = CMakeFiles\flappy_server.dir\src\application\use_cases\session_service.cpp.obj.d
-  FLAGS = -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
-  INCLUDES = -IC:/Code/C++/FlappyDappy/src
-  OBJECT_DIR = CMakeFiles\flappy_server.dir
-  OBJECT_FILE_DIR = CMakeFiles\flappy_server.dir\src\application\use_cases
-  TARGET_COMPILE_PDB = CMakeFiles\flappy_server.dir\
-  TARGET_PDB = flappy_server.pdb
-  TARGET_SUPPORT_DIR = CMakeFiles\flappy_server.dir
-
-build CMakeFiles/flappy_server.dir/src/application/use_cases/create_session_use_case.cpp.obj: CXX_COMPILER__flappy_server_unscanned_Debug C$:/Code/C++/FlappyDappy/src/application/use_cases/create_session_use_case.cpp || cmake_object_order_depends_target_flappy_server
-  CONFIG = Debug
-  DEP_FILE = CMakeFiles\flappy_server.dir\src\application\use_cases\create_session_use_case.cpp.obj.d
-  FLAGS = -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
-  INCLUDES = -IC:/Code/C++/FlappyDappy/src
-  OBJECT_DIR = CMakeFiles\flappy_server.dir
-  OBJECT_FILE_DIR = CMakeFiles\flappy_server.dir\src\application\use_cases
-  TARGET_COMPILE_PDB = CMakeFiles\flappy_server.dir\
-  TARGET_PDB = flappy_server.pdb
-  TARGET_SUPPORT_DIR = CMakeFiles\flappy_server.dir
-
-build CMakeFiles/flappy_server.dir/src/application/use_cases/join_session_use_case.cpp.obj: CXX_COMPILER__flappy_server_unscanned_Debug C$:/Code/C++/FlappyDappy/src/application/use_cases/join_session_use_case.cpp || cmake_object_order_depends_target_flappy_server
-  CONFIG = Debug
-  DEP_FILE = CMakeFiles\flappy_server.dir\src\application\use_cases\join_session_use_case.cpp.obj.d
-  FLAGS = -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
-  INCLUDES = -IC:/Code/C++/FlappyDappy/src
-  OBJECT_DIR = CMakeFiles\flappy_server.dir
-  OBJECT_FILE_DIR = CMakeFiles\flappy_server.dir\src\application\use_cases
-  TARGET_COMPILE_PDB = CMakeFiles\flappy_server.dir\
-  TARGET_PDB = flappy_server.pdb
-  TARGET_SUPPORT_DIR = CMakeFiles\flappy_server.dir
-
-build CMakeFiles/flappy_server.dir/src/application/use_cases/start_match_use_case.cpp.obj: CXX_COMPILER__flappy_server_unscanned_Debug C$:/Code/C++/FlappyDappy/src/application/use_cases/start_match_use_case.cpp || cmake_object_order_depends_target_flappy_server
-  CONFIG = Debug
-  DEP_FILE = CMakeFiles\flappy_server.dir\src\application\use_cases\start_match_use_case.cpp.obj.d
-  FLAGS = -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
-  INCLUDES = -IC:/Code/C++/FlappyDappy/src
-  OBJECT_DIR = CMakeFiles\flappy_server.dir
-  OBJECT_FILE_DIR = CMakeFiles\flappy_server.dir\src\application\use_cases
-  TARGET_COMPILE_PDB = CMakeFiles\flappy_server.dir\
-  TARGET_PDB = flappy_server.pdb
-  TARGET_SUPPORT_DIR = CMakeFiles\flappy_server.dir
-
-build CMakeFiles/flappy_server.dir/src/application/use_cases/submit_input_use_case.cpp.obj: CXX_COMPILER__flappy_server_unscanned_Debug C$:/Code/C++/FlappyDappy/src/application/use_cases/submit_input_use_case.cpp || cmake_object_order_depends_target_flappy_server
-  CONFIG = Debug
-  DEP_FILE = CMakeFiles\flappy_server.dir\src\application\use_cases\submit_input_use_case.cpp.obj.d
-  FLAGS = -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
-  INCLUDES = -IC:/Code/C++/FlappyDappy/src
-  OBJECT_DIR = CMakeFiles\flappy_server.dir
-  OBJECT_FILE_DIR = CMakeFiles\flappy_server.dir\src\application\use_cases
-  TARGET_COMPILE_PDB = CMakeFiles\flappy_server.dir\
-  TARGET_PDB = flappy_server.pdb
-  TARGET_SUPPORT_DIR = CMakeFiles\flappy_server.dir
-
-build CMakeFiles/flappy_server.dir/src/application/use_cases/tick_session_use_case.cpp.obj: CXX_COMPILER__flappy_server_unscanned_Debug C$:/Code/C++/FlappyDappy/src/application/use_cases/tick_session_use_case.cpp || cmake_object_order_depends_target_flappy_server
-  CONFIG = Debug
-  DEP_FILE = CMakeFiles\flappy_server.dir\src\application\use_cases\tick_session_use_case.cpp.obj.d
-  FLAGS = -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
-  INCLUDES = -IC:/Code/C++/FlappyDappy/src
-  OBJECT_DIR = CMakeFiles\flappy_server.dir
-  OBJECT_FILE_DIR = CMakeFiles\flappy_server.dir\src\application\use_cases
-  TARGET_COMPILE_PDB = CMakeFiles\flappy_server.dir\
-  TARGET_PDB = flappy_server.pdb
-  TARGET_SUPPORT_DIR = CMakeFiles\flappy_server.dir
-
-build CMakeFiles/flappy_server.dir/src/application/use_cases/finish_match_use_case.cpp.obj: CXX_COMPILER__flappy_server_unscanned_Debug C$:/Code/C++/FlappyDappy/src/application/use_cases/finish_match_use_case.cpp || cmake_object_order_depends_target_flappy_server
-  CONFIG = Debug
-  DEP_FILE = CMakeFiles\flappy_server.dir\src\application\use_cases\finish_match_use_case.cpp.obj.d
-  FLAGS = -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
-  INCLUDES = -IC:/Code/C++/FlappyDappy/src
-  OBJECT_DIR = CMakeFiles\flappy_server.dir
-  OBJECT_FILE_DIR = CMakeFiles\flappy_server.dir\src\application\use_cases
-  TARGET_COMPILE_PDB = CMakeFiles\flappy_server.dir\
-  TARGET_PDB = flappy_server.pdb
-  TARGET_SUPPORT_DIR = CMakeFiles\flappy_server.dir
-
 
 # =============================================================================
 # Link build statements for EXECUTABLE target flappy_server
@@ -250,11 +289,11 @@ build CMakeFiles/flappy_server.dir/src/application/use_cases/finish_match_use_ca
 #############################################
 # Link the executable flappy_server.exe
 
-build flappy_server.exe: CXX_EXECUTABLE_LINKER__flappy_server_Debug CMakeFiles/flappy_server.dir/src/main.cpp.obj CMakeFiles/flappy_server.dir/src/infrastructure/logging/console_logger.cpp.obj CMakeFiles/flappy_server.dir/src/infrastructure/logging/console_session_broadcaster.cpp.obj CMakeFiles/flappy_server.dir/src/application/ports/simple_id_generator.cpp.obj CMakeFiles/flappy_server.dir/src/application/use_cases/session_service.cpp.obj CMakeFiles/flappy_server.dir/src/application/use_cases/create_session_use_case.cpp.obj CMakeFiles/flappy_server.dir/src/application/use_cases/join_session_use_case.cpp.obj CMakeFiles/flappy_server.dir/src/application/use_cases/start_match_use_case.cpp.obj CMakeFiles/flappy_server.dir/src/application/use_cases/submit_input_use_case.cpp.obj CMakeFiles/flappy_server.dir/src/application/use_cases/tick_session_use_case.cpp.obj CMakeFiles/flappy_server.dir/src/application/use_cases/finish_match_use_case.cpp.obj | flappy_domain.lib || flappy_domain.lib
+build flappy_server.exe: CXX_EXECUTABLE_LINKER__flappy_server_Debug CMakeFiles/flappy_server.dir/src/main.cpp.obj | flappy_application.lib flappy_domain.lib || flappy_application.lib flappy_domain.lib
   CONFIG = Debug
   FLAGS = -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
   LINK_FLAGS = -Xlinker /subsystem:console -fuse-ld=lld-link
-  LINK_LIBRARIES = flappy_domain.lib  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 -loldnames
+  LINK_LIBRARIES = flappy_application.lib  flappy_domain.lib  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 -loldnames
   OBJECT_DIR = CMakeFiles\flappy_server.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -271,7 +310,7 @@ build flappy_server.exe: CXX_EXECUTABLE_LINKER__flappy_server_Debug CMakeFiles/f
 #############################################
 # Order-only phony target for flappy_tests
 
-build cmake_object_order_depends_target_flappy_tests: phony || cmake_object_order_depends_target_Catch2 cmake_object_order_depends_target_Catch2WithMain cmake_object_order_depends_target_flappy_domain
+build cmake_object_order_depends_target_flappy_tests: phony || cmake_object_order_depends_target_Catch2 cmake_object_order_depends_target_Catch2WithMain cmake_object_order_depends_target_flappy_application cmake_object_order_depends_target_flappy_domain
 
 build CMakeFiles/flappy_tests.dir/tests/domain/collision_service_tests.cpp.obj: CXX_COMPILER__flappy_tests_unscanned_Debug C$:/Code/C++/FlappyDappy/tests/domain/collision_service_tests.cpp || cmake_object_order_depends_target_flappy_tests
   CONFIG = Debug
@@ -295,6 +334,17 @@ build CMakeFiles/flappy_tests.dir/tests/domain/game_session_tests.cpp.obj: CXX_C
   TARGET_PDB = flappy_tests.pdb
   TARGET_SUPPORT_DIR = CMakeFiles\flappy_tests.dir
 
+build CMakeFiles/flappy_tests.dir/tests/application/use_cases_tests.cpp.obj: CXX_COMPILER__flappy_tests_unscanned_Debug C$:/Code/C++/FlappyDappy/tests/application/use_cases_tests.cpp || cmake_object_order_depends_target_flappy_tests
+  CONFIG = Debug
+  DEP_FILE = CMakeFiles\flappy_tests.dir\tests\application\use_cases_tests.cpp.obj.d
+  FLAGS = -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
+  INCLUDES = -IC:/Code/C++/FlappyDappy/src -IC:/Code/C++/FlappyDappy/build-ninja/_deps/catch2-src/src/catch2/.. -IC:/Code/C++/FlappyDappy/build-ninja/_deps/catch2-build/generated-includes
+  OBJECT_DIR = CMakeFiles\flappy_tests.dir
+  OBJECT_FILE_DIR = CMakeFiles\flappy_tests.dir\tests\application
+  TARGET_COMPILE_PDB = CMakeFiles\flappy_tests.dir\
+  TARGET_PDB = flappy_tests.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\flappy_tests.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target flappy_tests
@@ -303,11 +353,11 @@ build CMakeFiles/flappy_tests.dir/tests/domain/game_session_tests.cpp.obj: CXX_C
 #############################################
 # Link the executable flappy_tests.exe
 
-build flappy_tests.exe flappy_tests-b12d07c_tests.cmake | ${cmake_ninja_workdir}flappy_tests-b12d07c_tests.cmake: CXX_EXECUTABLE_LINKER__flappy_tests_Debug CMakeFiles/flappy_tests.dir/tests/domain/collision_service_tests.cpp.obj CMakeFiles/flappy_tests.dir/tests/domain/game_session_tests.cpp.obj | flappy_domain.lib _deps/catch2-build/src/Catch2Maind.lib _deps/catch2-build/src/Catch2d.lib || _deps/catch2-build/src/Catch2Maind.lib _deps/catch2-build/src/Catch2d.lib flappy_domain.lib
+build flappy_tests.exe flappy_tests-b12d07c_tests.cmake | ${cmake_ninja_workdir}flappy_tests-b12d07c_tests.cmake: CXX_EXECUTABLE_LINKER__flappy_tests_Debug CMakeFiles/flappy_tests.dir/tests/domain/collision_service_tests.cpp.obj CMakeFiles/flappy_tests.dir/tests/domain/game_session_tests.cpp.obj CMakeFiles/flappy_tests.dir/tests/application/use_cases_tests.cpp.obj | flappy_application.lib _deps/catch2-build/src/Catch2Maind.lib flappy_domain.lib _deps/catch2-build/src/Catch2d.lib || _deps/catch2-build/src/Catch2Maind.lib _deps/catch2-build/src/Catch2d.lib flappy_application.lib flappy_domain.lib
   CONFIG = Debug
   FLAGS = -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
   LINK_FLAGS = -Xlinker /subsystem:console -fuse-ld=lld-link
-  LINK_LIBRARIES = flappy_domain.lib  _deps/catch2-build/src/Catch2Maind.lib  _deps/catch2-build/src/Catch2d.lib  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 -loldnames
+  LINK_LIBRARIES = flappy_application.lib  _deps/catch2-build/src/Catch2Maind.lib  flappy_domain.lib  _deps/catch2-build/src/Catch2d.lib  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 -loldnames
   OBJECT_DIR = CMakeFiles\flappy_tests.dir
   POST_BUILD = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Code\C++\FlappyDappy\build-ninja && "C:\Program Files\CMake\bin\cmake.exe" -D TEST_TARGET=flappy_tests -D TEST_EXECUTABLE=C:/Code/C++/FlappyDappy/build-ninja/flappy_tests.exe -D TEST_EXECUTOR= -D TEST_WORKING_DIR=C:/Code/C++/FlappyDappy/build-ninja -D TEST_SPEC= -D TEST_EXTRA_ARGS= -D TEST_PROPERTIES= -D TEST_PREFIX= -D TEST_SUFFIX= -D TEST_LIST=flappy_tests_TESTS -D TEST_REPORTER= -D TEST_OUTPUT_DIR= -D TEST_OUTPUT_PREFIX= -D TEST_OUTPUT_SUFFIX= -D TEST_DL_PATHS= -D CTEST_FILE=C:/Code/C++/FlappyDappy/build-ninja/flappy_tests-b12d07c_tests.cmake -P C:/Code/C++/FlappyDappy/build-ninja/_deps/catch2-src/extras/CatchAddTests.cmake"
   PRE_LINK = cd .
@@ -2073,6 +2123,8 @@ build Catch2WithMain: phony _deps/catch2-build/src/Catch2Maind.lib
 
 build Catch2d.lib: phony _deps/catch2-build/src/Catch2d.lib
 
+build flappy_application: phony flappy_application.lib
+
 build flappy_domain: phony flappy_domain.lib
 
 build flappy_server: phony flappy_server.exe
@@ -2087,7 +2139,7 @@ build flappy_tests: phony flappy_tests.exe
 #############################################
 # Folder: C:/Code/C++/FlappyDappy/build-ninja
 
-build all: phony flappy_domain.lib flappy_server.exe flappy_tests.exe _deps/catch2-build/all
+build all: phony flappy_domain.lib flappy_application.lib flappy_server.exe flappy_tests.exe _deps/catch2-build/all
 
 # =============================================================================
 
