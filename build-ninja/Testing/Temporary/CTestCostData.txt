@@ -1,25 +1,23 @@
-Bird hits top bound 42 0.000357257
-Bird hits bottom bound 42 0.000422483
-Bird does not collide inside the gap 50 0.000326272
-Bird collides with pipe when outside gap 50 0.000314742
-GameSession starts match only after countdown 50 0.000333982
-GameSession tick updates snapshot when match is in progress 50 0.000261718
-GameSession eventually finishes 50 0.00030843
-Tick does nothing before StartMatch 45 0.000290002
+Bird hits top bound 51 0.000711065
+Bird hits bottom bound 51 0.000330424
+Bird does not collide inside the gap 59 0.000316949
+Bird collides with pipe when outside gap 59 0.000255639
+GameSession starts match only after countdown 59 0.000316949
+GameSession tick updates snapshot when match is in progress 59 0.000297353
+GameSession eventually finishes 59 0.000315583
+Tick does nothing before StartMatch 54 0.000330654
 Jump affect only the targeted player 1 0.0101328
-Jump affects only the targeted player 41 0.000348463
-Distance increases while player is alive 28 0.000514696
-Player dies on collision 25 0.000597164
-BuildResult sorts players by distance 21 0.000722605
-BuildSnapshot conatains x position 19 0.000790489
-CreateSessionUseCase creates session in SessionService 6 0.00237443
-JoinSessionUseCase adds player and notifies broadcaster 2 0.0080277
-StartMatchUseCase transitions session to running state 6 0.00280215
-SubmitInputUseCase applies jump after tick 2 0.0074412
-TickSessionUseCase broadcasts snapshot 6 0.00246888
-TickSessionUseCase broadcasts match finished when session is finished 0 0
-FinishMatchUseCase removes finished session 6 0.00225262
-GameLoopService ticks all sessions and cleans finished ones 0 0
+Jump affects only the targeted player 50 0.000376948
+Distance increases while player is alive 37 0.000428641
+Player dies on collision 34 0.000496953
+BuildResult sorts players by distance 30 0.00066816
+BuildSnapshot conatains x position 28 0.000614171
+CreateSessionUseCase creates session in SessionService 15 0.00118933
+JoinSessionUseCase adds player and notifies broadcaster 11 0.00168462
+StartMatchUseCase transitions session to running state 15 0.00122039
+SubmitInputUseCase applies jump after tick 11 0.00152017
+TickSessionUseCase broadcasts snapshot 15 0.0012571
+TickSessionUseCase broadcasts match finished when session is finished 8 0.00220651
+FinishMatchUseCase removes finished session 15 0.00131067
+GameLoopService ticks all sessions and cleans finished ones 2 0.0101244
 ---
-TickSessionUseCase broadcasts match finished when session is finished
-GameLoopService ticks all sessions and cleans finished ones
