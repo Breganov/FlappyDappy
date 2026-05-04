@@ -3,6 +3,7 @@
 #include "application/ports/simple_id_generator.h"
 #include "application/use_cases/create_session_use_case.h"
 #include "application/use_cases/finish_match_use_case.h"
+#include "application/use_cases/game_config.h"
 #include "application/use_cases/game_loop_service.h"
 #include "application/use_cases/join_session_use_case.h"
 #include "application/use_cases/session_service.h"
@@ -18,8 +19,9 @@
 TEST_CASE("CreateSessionUseCase creates session in SessionService") {
   SessionService sessions;
   SimpleIdGenerator ids;
+  GameConfig game_config{PhysicsConfig{}};
 
-  CreateSessionUseCase create(ids, sessions);
+  CreateSessionUseCase create(ids, sessions, game_config);
   SessionId id = create.Execute();
 
   auto session = sessions.FindSession(id);
@@ -32,8 +34,9 @@ TEST_CASE("JoinSessionUseCase adds player and notifies broadcaster") {
   FakeSessionBroadcaster broadcaster;
   SessionService sessions;
   SimpleIdGenerator ids;
+  GameConfig game_config{PhysicsConfig{}};
 
-  CreateSessionUseCase create(ids, sessions);
+  CreateSessionUseCase create(ids, sessions, game_config);
   SessionId id = create.Execute();
 
   JoinSessionUseCase join_session_use_case(sessions, broadcaster);
@@ -55,8 +58,9 @@ TEST_CASE("StartMatchUseCase transitions session to running state") {
   FakeSessionBroadcaster broadcaster;
   SessionService sessions;
   SimpleIdGenerator ids;
+  GameConfig game_config{PhysicsConfig{}};
 
-  CreateSessionUseCase create(ids, sessions);
+  CreateSessionUseCase create(ids, sessions, game_config);
   SessionId id = create.Execute();
   PlayerId pid = PlayerId("player-1"); // надо написать такую же систему
                                        // для формирования как и для SessionId
@@ -76,8 +80,9 @@ TEST_CASE("SubmitInputUseCase applies jump after tick") {
   FakeSessionBroadcaster broadcaster;
   SessionService sessions;
   SimpleIdGenerator ids;
+  GameConfig game_config{PhysicsConfig{}};
 
-  CreateSessionUseCase create(ids, sessions);
+  CreateSessionUseCase create(ids, sessions, game_config);
   SessionId id = create.Execute();
   PlayerId pid = PlayerId("player-1"); // надо написать такую же систему
                                        // для формирования как и для SessionId
@@ -111,8 +116,9 @@ TEST_CASE("TickSessionUseCase broadcasts snapshot") {
   FakeSessionBroadcaster broadcaster;
   SessionService sessions;
   SimpleIdGenerator ids;
+  GameConfig game_config{PhysicsConfig{}};
 
-  CreateSessionUseCase create(ids, sessions);
+  CreateSessionUseCase create(ids, sessions, game_config);
   SessionId id = create.Execute();
 
   PlayerId pid = PlayerId("player-1"); // надо написать такую же систему
@@ -138,7 +144,9 @@ TEST_CASE(
   FakeSessionBroadcaster broadcaster;
   SessionService sessions;
   SimpleIdGenerator ids;
-  CreateSessionUseCase create(ids, sessions);
+  GameConfig game_config{PhysicsConfig{}};
+
+  CreateSessionUseCase create(ids, sessions, game_config);
   JoinSessionUseCase join(sessions, broadcaster);
 
   SessionId id = create.Execute();
@@ -219,8 +227,9 @@ TEST_CASE("GameLoopService ticks all sessions and cleans finished ones") {
   FakeSessionBroadcaster broadcaster;
   SessionService sessions;
   SimpleIdGenerator ids;
+  GameConfig game_config{PhysicsConfig{}};
 
-  CreateSessionUseCase create(ids, sessions);
+  CreateSessionUseCase create(ids, sessions, game_config);
   JoinSessionUseCase join(sessions, broadcaster);
   StartMatchUseCase start_match(sessions);
   SubmitInputUseCase input(sessions);

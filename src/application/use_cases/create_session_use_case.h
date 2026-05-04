@@ -2,15 +2,18 @@
 #pragma once
 
 #include "application/ports/id_generator.h"
+#include "application/use_cases/game_config.h"
 #include "session_service.h"
 
 class CreateSessionUseCase {
 public:
-  CreateSessionUseCase(IIdGenerator &ids, SessionService &sessions);
+  CreateSessionUseCase(IIdGenerator &ids, SessionService &sessions,
+                       GameConfig &config);
 
   SessionId Execute();
 
 private:
   IIdGenerator &ids_;
   SessionService &sessions_;
+  GameConfig &config_;
 };

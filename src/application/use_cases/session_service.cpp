@@ -2,12 +2,12 @@
 #include "session_service.h"
 
 GameSession &SessionService::CreateSession(SessionId id, std::uint32_t seed,
-                                           double gravity, double jump_veloctiy,
+                                           double gravity, double jump_velocity,
                                            double scroll_speed) {
   const std::string key = id.ToString();
   auto [it, inserted] =
       sessions_.emplace(key, GameSession(std::move(id), seed, gravity,
-                                         jump_veloctiy, scroll_speed));
+                                         jump_velocity, scroll_speed));
   return it->second;
 }
 

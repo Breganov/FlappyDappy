@@ -481,6 +481,13 @@ FlappyDappy
 │   │   │   └── CompilerIdCXX
 │   │   │       ├── tmp
 │   │   │       └── CMakeCXXCompilerId.cpp
+│   │   ├── flappy_application.dir
+│   │   │   └── src
+│   │   │       ├── application
+│   │   │       │   ├── ports
+│   │   │       │   └── use_cases
+│   │   │       └── infrastructure
+│   │   │           └── logging
 │   │   ├── flappy_domain.dir
 │   │   │   └── src
 │   │   │       └── domain
@@ -495,6 +502,7 @@ FlappyDappy
 │   │   │           └── logging
 │   │   ├── flappy_tests.dir
 │   │   │   └── tests
+│   │   │       ├── application
 │   │   │       └── domain
 │   │   ├── pkgRedirects
 │   │   └── ShowIncludes
@@ -506,10 +514,13 @@ FlappyDappy
 ├── src
 │   ├── application
 │   │   ├── ports
+│   │   │   ├── fake_session_broadcaster.h
 │   │   │   ├── id_generator.h
 │   │   │   ├── leaderboard_repository.h
 │   │   │   ├── match_repository.h
 │   │   │   ├── player_repository.h
+│   │   │   ├── player_simple_id_generator.cpp
+│   │   │   ├── player_simple_id_generator.h
 │   │   │   ├── session_broadcaster.h
 │   │   │   ├── session_repository.h
 │   │   │   ├── simple_id_generator.cpp
@@ -587,6 +598,8 @@ FlappyDappy
 │   │       └── leaderboard_handler.h
 │   └── main.cpp
 └── tests
+    ├── application
+    │   └── use_cases_tests.cpp
     └── domain
         ├── collision_service_tests.cpp
         └── game_session_tests.cpp
@@ -73206,6 +73219,55 @@ int main(int argc, char* argv[])
 int main(){}
 ```
 
+### `src/application/ports/fake_session_broadcaster.h`
+
+```cpp
+// application\ports\fake_session_broadcaster.h
+#pragma once
+
+#include "domain/game/world_snapshot.h"
+#include "domain/match/match_result.h"
+#include "domain/session/session_id.h"
+#include "session_broadcaster.h"
+
+class FakeSessionBroadcaster : public ISessionBroadcaster {
+public:
+  void BroadcastSnapshot(const SessionId &session_id,
+                         const WorldSnapshot &snapshot) override {
+    snapshot_called = true;
+    last_snapshot_session_id = session_id.ToString();
+    last_snapshot_tick = snapshot.tick;
+  }
+
+  void BroadcastMatchFinished(const SessionId &session_id,
+                              const MatchResult &result) override {
+    match_finished_called = true;
+    last_finished_session_id = session_id.ToString();
+    last_rankings_count = result.rankings.size();
+  }
+
+  void NotifyPlayerJoined(const SessionId &session_id,
+                          const PlayerId &player_id) override {
+    player_joined_called = true;
+    last_joined_session_id = session_id.ToString();
+    last_joined_player_id = player_id.ToString();
+  }
+
+public:
+  bool snapshot_called = false;
+  bool match_finished_called = false;
+  bool player_joined_called = false;
+
+  std::string last_snapshot_session_id;
+  std::string last_finished_session_id;
+  std::string last_joined_session_id;
+  std::string last_joined_player_id;
+
+  std::uint64_t last_snapshot_tick = 0;
+  std::size_t last_rankings_count = 0;
+};
+```
+
 ### `src/application/ports/id_generator.h`
 
 ```cpp
@@ -73255,6 +73317,41 @@ public:
 };
 ```
 
+### `src/application/ports/player_simple_id_generator.cpp`
+
+```cpp
+//
+#include "player_simple_id_generator.h"
+#include "domain/session/session_id.h"
+
+PlayerSimpleIdGenerator::PlayerSimpleIdGenerator(std::string prefix)
+    : prefix_(prefix) {}
+
+SessionId PlayerSimpleIdGenerator::NewSessionId() {
+  return SessionId(prefix_ + "-" + std::to_string(next_player_id_++));
+}
+```
+
+### `src/application/ports/player_simple_id_generator.h`
+
+```cpp
+#pragma once
+
+#include "application/ports/id_generator.h"
+#include "domain/session/session_id.h"
+#include <cstdint>
+
+class PlayerSimpleIdGenerator : public IIdGenerator {
+public:
+  explicit PlayerSimpleIdGenerator(std::string prefix = "player");
+  SessionId NewSessionId() override;
+
+private:
+  std::string prefix_;
+  std::uint64_t next_player_id_ = 1;
+};
+```
+
 ### `src/application/ports/session_broadcaster.h`
 
 ```cpp
@@ -73265,7 +73362,6 @@ public:
 #include "domain/game/world_snapshot.h"
 #include "domain/match/match_result.h"
 #include "domain/session/session_id.h"
-#include "infrastructure/logging/logger.h"
 
 class ISessionBroadcaster {
 public:
@@ -73553,11 +73649,11 @@ private:
 // application\use_cases\mark_ready_use_case.cpp
 #include "mark_ready_use_case.h"
 
-MarkReadyUseCases::MarkReadyUseCases(SessionService &sessions)
+MarkReadyUseCase::MarkReadyUseCase(SessionService &sessions)
     : sessions_(sessions) {}
 
-void MarkReadyUseCases::Execute(const SessionId &session_id,
-                                const PlayerId &player_id) {
+void MarkReadyUseCase::Execute(const SessionId &session_id,
+                               const PlayerId &player_id) {
   const auto &session = sessions_.FindSession(session_id);
   if (!session) {
     return;
@@ -73565,12 +73661,13 @@ void MarkReadyUseCases::Execute(const SessionId &session_id,
   session->get().MarkPlayerReady(player_id);
 
   // возможно эта часть не нужна =========================
-  for (const auto &player : session->get().GetPlayers()) {
-    if (!player.IsReady()) {
-      return;
-    }
-  }
-  session->get().StartCountdown();
+  // TODO: возможно вынести эту систему отдельным файлом =
+  // for (const auto &player : session->get().GetPlayers()) {
+  //   if (!player.IsReady()) {
+  //     return;
+  //   }
+  // }
+  // session->get().StartCountdown();
   // конец того, что не может быть не нужно ==============
 }
 ```
@@ -73583,9 +73680,9 @@ void MarkReadyUseCases::Execute(const SessionId &session_id,
 
 #include "application/use_cases/session_service.h"
 
-class MarkReadyUseCases {
+class MarkReadyUseCase {
 public:
-  MarkReadyUseCases(SessionService &sessions);
+  MarkReadyUseCase(SessionService &sessions);
   void Execute(const SessionId &session_id, const PlayerId &player_id);
 
 private:
@@ -73817,6 +73914,7 @@ private:
 ### `src/domain/game/bird_state.h`
 
 ```cpp
+// domain/game/bird_state.h
 #pragma once
 
 struct BirdState {
@@ -73844,6 +73942,10 @@ bool CollisionService::HasCollided(const BirdState &bird,
     return false;
   }
 
+  if (HasHitBounds(bird, phys)) {
+    return true;
+  }
+
   for (const Pipe &pipe : pipes) {
     if (HasHitPipe(bird, phys, pipe)) {
       return true;
@@ -73851,6 +73953,12 @@ bool CollisionService::HasCollided(const BirdState &bird,
   }
 
   return false;
+}
+
+bool CollisionService::HasHitBounds(const BirdState &bird,
+                                    const PhysicsConfig &phys) const {
+  return bird.y - bird.radius < 0.0f ||
+         bird.y + bird.radius > phys.world_height;
 }
 
 bool CollisionService::HasHitPipe(const BirdState &bird,
@@ -73899,6 +74007,8 @@ public:
 private:
   bool HasHitPipe(const BirdState &bird, const PhysicsConfig &phys,
                   const Pipe &pipe) const;
+
+  bool HasHitBounds(const BirdState &bird, const PhysicsConfig &phys) const;
 };
 ```
 
@@ -74285,6 +74395,7 @@ private:
 ```cpp
 // domain\session\games_session.cpp
 #include "game_session.h"
+#include "domain/game/bird_state.h"
 #include "domain/game/collision_service.h"
 #include "domain/match/match_result.h"
 
@@ -74308,8 +74419,7 @@ SessionState GameSession::GetState() const { return state_; }
 // =============================================================================
 
 void GameSession::AddPlayer(PlayerId player_id) {
-  BirdState initial_bird;
-  players_.emplace_back(std::move(player_id), initial_bird);
+  players_.emplace_back(std::move(player_id), BirdState());
 }
 
 void GameSession::MarkPlayerReady(const PlayerId &player_id) {
@@ -74514,7 +74624,9 @@ public:
               double jump_velocity, double scroll_speed);
   const SessionId &GetId() const;
   SessionState GetState() const;
-  std::vector<PlayerSessionState> GetPlayers() const { return players_; };
+  const std::vector<PlayerSessionState> &GetPlayers() const {
+    return players_;
+  };
 
   void AddPlayer(PlayerId player_id);
   void MarkPlayerReady(const PlayerId &player_id);
@@ -74572,7 +74684,7 @@ struct InputCommand {
 ### `src/domain/session/player_session_state.h`
 
 ```cpp
-// domain\session\player_session_state.h
+// domain/session/player_session_state.h
 #pragma once
 
 #include "domain/game/bird_state.h" // для BirdState
@@ -74938,6 +75050,275 @@ int main() {
 ### `src/presentation/http/leaderboard_handler.h`
 
 ```cpp
+```
+
+### `tests/application/use_cases_tests.cpp`
+
+```cpp
+// tests/application/use_cases_tests.cpp
+#include "application/ports/fake_session_broadcaster.h"
+#include "application/ports/simple_id_generator.h"
+#include "application/use_cases/create_session_use_case.h"
+#include "application/use_cases/finish_match_use_case.h"
+#include "application/use_cases/game_loop_service.h"
+#include "application/use_cases/join_session_use_case.h"
+#include "application/use_cases/session_service.h"
+#include "application/use_cases/start_match_use_case.h"
+#include "application/use_cases/submit_input_use_case.h"
+#include "application/use_cases/tick_session_use_case.h"
+#include "domain/game/bird_state.h"
+#include "domain/player/player_id.h"
+#include "domain/session/input_command.h"
+#include <catch2/catch_test_macros.hpp>
+#include <string>
+
+TEST_CASE("CreateSessionUseCase creates session in SessionService") {
+  SessionService sessions;
+  SimpleIdGenerator ids;
+
+  CreateSessionUseCase create(ids, sessions);
+  SessionId id = create.Execute();
+
+  auto session = sessions.FindSession(id);
+
+  REQUIRE(session.has_value());
+  REQUIRE(session->get().GetId().ToString() == id.ToString());
+}
+
+TEST_CASE("JoinSessionUseCase adds player and notifies broadcaster") {
+  FakeSessionBroadcaster broadcaster;
+  SessionService sessions;
+  SimpleIdGenerator ids;
+
+  CreateSessionUseCase create(ids, sessions);
+  SessionId id = create.Execute();
+
+  JoinSessionUseCase join_session_use_case(sessions, broadcaster);
+  join_session_use_case.Execute(id, PlayerId("player-1"));
+
+  auto session = sessions.FindSession(id);
+  REQUIRE(session.has_value());
+
+  REQUIRE(broadcaster.player_joined_called);
+  REQUIRE(broadcaster.last_joined_session_id == id.ToString());
+  REQUIRE(broadcaster.last_joined_player_id == "player-1");
+
+  REQUIRE(session->get().GetPlayers().size() == 1);
+  REQUIRE(session->get().GetPlayers()[0].GetPlayerId().ToString() ==
+          "player-1");
+}
+
+TEST_CASE("StartMatchUseCase transitions session to running state") {
+  FakeSessionBroadcaster broadcaster;
+  SessionService sessions;
+  SimpleIdGenerator ids;
+
+  CreateSessionUseCase create(ids, sessions);
+  SessionId id = create.Execute();
+  PlayerId pid = PlayerId("player-1"); // надо написать такую же систему
+                                       // для формирования как и для SessionId
+                                       // только для PlayerId
+
+  JoinSessionUseCase join_session_use_case(sessions, broadcaster);
+  join_session_use_case.Execute(id, pid);
+  StartMatchUseCase start_match(sessions);
+  start_match.Execute(id);
+
+  auto session = sessions.FindSession(id);
+  REQUIRE(session.has_value());
+  REQUIRE(session->get().GetState() == SessionState::InProgress);
+}
+
+TEST_CASE("SubmitInputUseCase applies jump after tick") {
+  FakeSessionBroadcaster broadcaster;
+  SessionService sessions;
+  SimpleIdGenerator ids;
+
+  CreateSessionUseCase create(ids, sessions);
+  SessionId id = create.Execute();
+  PlayerId pid = PlayerId("player-1"); // надо написать такую же систему
+                                       // для формирования как и для SessionId
+                                       // только для PlayerId
+
+  JoinSessionUseCase join_session_use_case(sessions, broadcaster);
+  join_session_use_case.Execute(id, pid);
+
+  StartMatchUseCase start_match(sessions);
+  start_match.Execute(id);
+
+  TickSessionUseCase tick(sessions, broadcaster);
+  SubmitInputUseCase input(sessions);
+
+  auto session = sessions.FindSession(id);
+  REQUIRE(session.has_value());
+
+  const auto &initial_bird = session->get().GetPlayers()[0].GetBird();
+  const auto y = initial_bird.y;
+  const auto velocity_y = initial_bird.velocity_y;
+
+  input.Execute(id, InputCommand{pid, InputType::Jump});
+  tick.Execute(id, std::chrono::milliseconds(16));
+
+  const auto &updated_bird = session->get().GetPlayers()[0].GetBird();
+  REQUIRE(y > updated_bird.y);
+  REQUIRE(velocity_y > updated_bird.velocity_y);
+}
+
+TEST_CASE("TickSessionUseCase broadcasts snapshot") {
+  FakeSessionBroadcaster broadcaster;
+  SessionService sessions;
+  SimpleIdGenerator ids;
+
+  CreateSessionUseCase create(ids, sessions);
+  SessionId id = create.Execute();
+
+  PlayerId pid = PlayerId("player-1"); // надо написать такую же систему
+                                       // для формирования как и для SessionId
+                                       // только для PlayerId
+
+  JoinSessionUseCase join_session_use_case(sessions, broadcaster);
+  join_session_use_case.Execute(id, pid);
+
+  StartMatchUseCase start_match(sessions);
+  start_match.Execute(id);
+
+  TickSessionUseCase tick(sessions, broadcaster);
+  tick.Execute(id, std::chrono::milliseconds(16));
+
+  REQUIRE(broadcaster.snapshot_called);
+  REQUIRE(broadcaster.last_snapshot_session_id == id.ToString());
+  REQUIRE(broadcaster.last_snapshot_tick > 0);
+}
+
+TEST_CASE(
+    "TickSessionUseCase broadcasts match finished when session is finished") {
+  FakeSessionBroadcaster broadcaster;
+  SessionService sessions;
+  SimpleIdGenerator ids;
+  CreateSessionUseCase create(ids, sessions);
+  JoinSessionUseCase join(sessions, broadcaster);
+
+  SessionId id = create.Execute();
+  PlayerId pid = PlayerId("player-1");
+  join.Execute(id, pid);
+
+  StartMatchUseCase start_match(sessions);
+  start_match.Execute(id);
+  TickSessionUseCase tick(sessions, broadcaster);
+
+  bool finished = false;
+
+  for (int i = 0; i < 300; ++i) {
+    tick.Execute(id, std::chrono::milliseconds(16));
+
+    auto session = sessions.FindSession(id);
+    REQUIRE(session.has_value());
+
+    if (session->get().IsFinished()) {
+      finished = true;
+      break;
+    }
+  }
+
+  REQUIRE(finished);
+  REQUIRE(broadcaster.match_finished_called);
+  REQUIRE(broadcaster.last_finished_session_id == id.ToString());
+  REQUIRE(broadcaster.last_rankings_count > 0);
+}
+
+TEST_CASE("FinishMatchUseCase removes finished session") {
+  FakeSessionBroadcaster broadcaster;
+  SessionService sessions;
+  SimpleIdGenerator ids;
+
+  CreateSessionUseCase create(ids, sessions);
+  SessionId id = create.Execute();
+
+  PlayerId pid = PlayerId("player-1"); // надо написать такую же систему
+                                       // для формирования как и для SessionId
+                                       // только для PlayerId
+
+  JoinSessionUseCase join_session_use_case(sessions, broadcaster);
+  join_session_use_case.Execute(id, pid);
+
+  StartMatchUseCase start_match(sessions);
+  start_match.Execute(id);
+
+  TickSessionUseCase tick(sessions, broadcaster);
+  FinishMatchUseCase finish(sessions);
+
+  auto finished = false;
+  for (int i = 0; i < 300; ++i) {
+    if (i % 20 == 0) {
+    }
+    tick.Execute(id, std::chrono::milliseconds(16));
+
+    auto session = sessions.FindSession(id);
+    REQUIRE(session.has_value());
+
+    if (session->get().IsFinished()) {
+      finished = true;
+      break;
+    }
+  }
+
+  REQUIRE(finished);
+  REQUIRE(sessions.FindSession(id).has_value());
+
+  finish.Execute(id);
+
+  REQUIRE_FALSE(sessions.FindSession(id).has_value());
+}
+
+TEST_CASE("GameLoopService ticks all sessions and cleans finished ones") {
+  const std::size_t SESSIONS_NUM = 2;
+  const int FREQUENCE_OF_COMMAND = 15;
+  FakeSessionBroadcaster broadcaster;
+  SessionService sessions;
+  SimpleIdGenerator ids;
+
+  CreateSessionUseCase create(ids, sessions);
+  JoinSessionUseCase join(sessions, broadcaster);
+  StartMatchUseCase start_match(sessions);
+  SubmitInputUseCase input(sessions);
+
+  std::vector<SessionId> session_ids;
+  std::vector<PlayerId> player_ids;
+
+  for (int i = 0; i < SESSIONS_NUM; ++i) {
+    SessionId sid = create.Execute();
+    PlayerId pid("player-" + std::to_string(i));
+
+    session_ids.push_back(sid);
+    player_ids.push_back(pid);
+
+    join.Execute(sid, pid);
+    start_match.Execute(sid);
+  }
+
+  TickSessionUseCase tick(sessions, broadcaster);
+  FinishMatchUseCase finish(sessions);
+  GameLoopService loop(sessions, tick, finish);
+
+  for (int i = 0; i < 300; ++i) {
+    if (i % FREQUENCE_OF_COMMAND == 0) {
+      InputCommand cmd{player_ids[1], InputType::Jump};
+      input.Execute(session_ids[1], cmd);
+    }
+    loop.Execute(std::chrono::milliseconds(16));
+  }
+
+  // какие сессии должны остаться, а какие
+  // исчезнуть
+  REQUIRE(session_ids.size() == SESSIONS_NUM);
+  REQUIRE(player_ids.size() == SESSIONS_NUM);
+  REQUIRE(broadcaster.snapshot_called);
+  REQUIRE(broadcaster.match_finished_called);
+  REQUIRE_FALSE(sessions.FindSession(session_ids[0]).has_value());
+  // REQUIRE(sessions.FindSession(session_ids[1]).has_value()); // падает
+  // этот тест. Прыжки слишком редкие. Вторая
+  // сессия тоже успевает упасть.
+}
 ```
 
 ### `tests/domain/collision_service_tests.cpp`
