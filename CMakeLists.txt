@@ -8,6 +8,15 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+if(POLICY CMP0167)
+  cmake_policy(SET CMP0167 NEW)
+endif()
+
+find_package(Boost CONFIG REQUIRED COMPONENTS json)
+
+message(STATUS "Boost_FOUND=${Boost_FOUND}")
+message(STATUS "Boost_DIR=${Boost_DIR}")
+
 include(FetchContent)
 
 FetchContent_Declare(
@@ -51,6 +60,8 @@ add_library(flappy_application
 
     src/infrastructure/logging/console_logger.cpp
     src/infrastructure/logging/console_session_broadcaster.cpp
+
+    src/infrastructure/net/websocket_message_parser.cpp
 )
 
 target_include_directories(flappy_application
@@ -61,6 +72,7 @@ target_include_directories(flappy_application
 target_link_libraries(flappy_application
     PUBLIC
         flappy_domain
+        Boost::json
 )
 
 add_executable(flappy_server
@@ -98,3 +110,4 @@ include(CTest)
 include(${catch2_SOURCE_DIR}/extras/Catch.cmake)
 
 catch_discover_tests(flappy_tests)
+

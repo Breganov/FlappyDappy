@@ -10,7 +10,7 @@ CreateSessionUseCase::CreateSessionUseCase(IIdGenerator &ids,
 
 SessionId CreateSessionUseCase::Execute() {
   SessionId id = ids_.NewSessionId();
-  auto phys = config_.GetPhysicsConfig();
+  const auto &phys = config_.GetPhysicsConfig();
   sessions_.CreateSession(id, config_.GetSeedNumber(), phys.gravity,
                           phys.jump_velocity, phys.scroll_speed);
   return id;

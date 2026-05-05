@@ -5,20 +5,16 @@
 
 class GameConfig {
 public:
-  GameConfig(PhysicsConfig config);
-  const PhysicsConfig &GetPhysicsConfig() { return config_; }
-  void SetPhysicsConfigGravity(double gravity) { config_.gravity = gravity; }
-  void SetPhysicsConfigJumpVelocity(double jump_velocity) {
-    config_.jump_velocity = jump_velocity;
-  }
-  void SetPhysicsConfigWorldHeight(double world_height) {
-    config_.world_height = world_height;
-  }
-  void SetPhysicsConfigScrollSpeed(double scroll_speed) {
-    config_.scroll_speed = scroll_speed;
-  }
-  const std::uint32_t GetSeedNumber() const { return 42u; }
+  GameConfig() = default;
+  explicit GameConfig(PhysicsConfig config) : config_(config) {}
+
+  PhysicsConfig &GetPhysicsConfig() { return config_; }
+  const PhysicsConfig &GetPhysicsConfig() const { return config_; }
+
+  void SetSeedUnmber(std::uint32_t seed) { seed_ = seed; }
+  std::uint32_t GetSeedNumber() const { return seed_; }
 
 private:
   PhysicsConfig config_;
+  std::uint32_t seed_ = 42u;
 };

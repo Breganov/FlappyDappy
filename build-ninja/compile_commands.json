@@ -25,91 +25,97 @@
 },
 {
   "directory": "C:/Code/C++/FlappyDappy/build-ninja",
-  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -IC:/Code/C++/FlappyDappy/src -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\flappy_application.dir\\src\\application\\ports\\simple_id_generator.cpp.obj -c C:\\Code\\C++\\FlappyDappy\\src\\application\\ports\\simple_id_generator.cpp",
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -DBOOST_CONTAINER_DYN_LINK -DBOOST_CONTAINER_NO_LIB -DBOOST_JSON_DYN_LINK=1 -DBOOST_JSON_NO_LIB=1 -IC:/Code/C++/FlappyDappy/src -isystem C:/dev/vcpkg/installed/x64-windows/include -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\flappy_application.dir\\src\\application\\ports\\simple_id_generator.cpp.obj -c C:\\Code\\C++\\FlappyDappy\\src\\application\\ports\\simple_id_generator.cpp",
   "file": "C:/Code/C++/FlappyDappy/src/application/ports/simple_id_generator.cpp",
   "output": "C:/Code/C++/FlappyDappy/build-ninja/CMakeFiles/flappy_application.dir/src/application/ports/simple_id_generator.cpp.obj"
 },
 {
   "directory": "C:/Code/C++/FlappyDappy/build-ninja",
-  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -IC:/Code/C++/FlappyDappy/src -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\flappy_application.dir\\src\\application\\use_cases\\session_service.cpp.obj -c C:\\Code\\C++\\FlappyDappy\\src\\application\\use_cases\\session_service.cpp",
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -DBOOST_CONTAINER_DYN_LINK -DBOOST_CONTAINER_NO_LIB -DBOOST_JSON_DYN_LINK=1 -DBOOST_JSON_NO_LIB=1 -IC:/Code/C++/FlappyDappy/src -isystem C:/dev/vcpkg/installed/x64-windows/include -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\flappy_application.dir\\src\\application\\use_cases\\session_service.cpp.obj -c C:\\Code\\C++\\FlappyDappy\\src\\application\\use_cases\\session_service.cpp",
   "file": "C:/Code/C++/FlappyDappy/src/application/use_cases/session_service.cpp",
   "output": "C:/Code/C++/FlappyDappy/build-ninja/CMakeFiles/flappy_application.dir/src/application/use_cases/session_service.cpp.obj"
 },
 {
   "directory": "C:/Code/C++/FlappyDappy/build-ninja",
-  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -IC:/Code/C++/FlappyDappy/src -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\flappy_application.dir\\src\\application\\use_cases\\create_session_use_case.cpp.obj -c C:\\Code\\C++\\FlappyDappy\\src\\application\\use_cases\\create_session_use_case.cpp",
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -DBOOST_CONTAINER_DYN_LINK -DBOOST_CONTAINER_NO_LIB -DBOOST_JSON_DYN_LINK=1 -DBOOST_JSON_NO_LIB=1 -IC:/Code/C++/FlappyDappy/src -isystem C:/dev/vcpkg/installed/x64-windows/include -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\flappy_application.dir\\src\\application\\use_cases\\create_session_use_case.cpp.obj -c C:\\Code\\C++\\FlappyDappy\\src\\application\\use_cases\\create_session_use_case.cpp",
   "file": "C:/Code/C++/FlappyDappy/src/application/use_cases/create_session_use_case.cpp",
   "output": "C:/Code/C++/FlappyDappy/build-ninja/CMakeFiles/flappy_application.dir/src/application/use_cases/create_session_use_case.cpp.obj"
 },
 {
   "directory": "C:/Code/C++/FlappyDappy/build-ninja",
-  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -IC:/Code/C++/FlappyDappy/src -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\flappy_application.dir\\src\\application\\use_cases\\join_session_use_case.cpp.obj -c C:\\Code\\C++\\FlappyDappy\\src\\application\\use_cases\\join_session_use_case.cpp",
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -DBOOST_CONTAINER_DYN_LINK -DBOOST_CONTAINER_NO_LIB -DBOOST_JSON_DYN_LINK=1 -DBOOST_JSON_NO_LIB=1 -IC:/Code/C++/FlappyDappy/src -isystem C:/dev/vcpkg/installed/x64-windows/include -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\flappy_application.dir\\src\\application\\use_cases\\join_session_use_case.cpp.obj -c C:\\Code\\C++\\FlappyDappy\\src\\application\\use_cases\\join_session_use_case.cpp",
   "file": "C:/Code/C++/FlappyDappy/src/application/use_cases/join_session_use_case.cpp",
   "output": "C:/Code/C++/FlappyDappy/build-ninja/CMakeFiles/flappy_application.dir/src/application/use_cases/join_session_use_case.cpp.obj"
 },
 {
   "directory": "C:/Code/C++/FlappyDappy/build-ninja",
-  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -IC:/Code/C++/FlappyDappy/src -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\flappy_application.dir\\src\\application\\use_cases\\start_match_use_case.cpp.obj -c C:\\Code\\C++\\FlappyDappy\\src\\application\\use_cases\\start_match_use_case.cpp",
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -DBOOST_CONTAINER_DYN_LINK -DBOOST_CONTAINER_NO_LIB -DBOOST_JSON_DYN_LINK=1 -DBOOST_JSON_NO_LIB=1 -IC:/Code/C++/FlappyDappy/src -isystem C:/dev/vcpkg/installed/x64-windows/include -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\flappy_application.dir\\src\\application\\use_cases\\start_match_use_case.cpp.obj -c C:\\Code\\C++\\FlappyDappy\\src\\application\\use_cases\\start_match_use_case.cpp",
   "file": "C:/Code/C++/FlappyDappy/src/application/use_cases/start_match_use_case.cpp",
   "output": "C:/Code/C++/FlappyDappy/build-ninja/CMakeFiles/flappy_application.dir/src/application/use_cases/start_match_use_case.cpp.obj"
 },
 {
   "directory": "C:/Code/C++/FlappyDappy/build-ninja",
-  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -IC:/Code/C++/FlappyDappy/src -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\flappy_application.dir\\src\\application\\use_cases\\submit_input_use_case.cpp.obj -c C:\\Code\\C++\\FlappyDappy\\src\\application\\use_cases\\submit_input_use_case.cpp",
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -DBOOST_CONTAINER_DYN_LINK -DBOOST_CONTAINER_NO_LIB -DBOOST_JSON_DYN_LINK=1 -DBOOST_JSON_NO_LIB=1 -IC:/Code/C++/FlappyDappy/src -isystem C:/dev/vcpkg/installed/x64-windows/include -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\flappy_application.dir\\src\\application\\use_cases\\submit_input_use_case.cpp.obj -c C:\\Code\\C++\\FlappyDappy\\src\\application\\use_cases\\submit_input_use_case.cpp",
   "file": "C:/Code/C++/FlappyDappy/src/application/use_cases/submit_input_use_case.cpp",
   "output": "C:/Code/C++/FlappyDappy/build-ninja/CMakeFiles/flappy_application.dir/src/application/use_cases/submit_input_use_case.cpp.obj"
 },
 {
   "directory": "C:/Code/C++/FlappyDappy/build-ninja",
-  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -IC:/Code/C++/FlappyDappy/src -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\flappy_application.dir\\src\\application\\use_cases\\tick_session_use_case.cpp.obj -c C:\\Code\\C++\\FlappyDappy\\src\\application\\use_cases\\tick_session_use_case.cpp",
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -DBOOST_CONTAINER_DYN_LINK -DBOOST_CONTAINER_NO_LIB -DBOOST_JSON_DYN_LINK=1 -DBOOST_JSON_NO_LIB=1 -IC:/Code/C++/FlappyDappy/src -isystem C:/dev/vcpkg/installed/x64-windows/include -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\flappy_application.dir\\src\\application\\use_cases\\tick_session_use_case.cpp.obj -c C:\\Code\\C++\\FlappyDappy\\src\\application\\use_cases\\tick_session_use_case.cpp",
   "file": "C:/Code/C++/FlappyDappy/src/application/use_cases/tick_session_use_case.cpp",
   "output": "C:/Code/C++/FlappyDappy/build-ninja/CMakeFiles/flappy_application.dir/src/application/use_cases/tick_session_use_case.cpp.obj"
 },
 {
   "directory": "C:/Code/C++/FlappyDappy/build-ninja",
-  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -IC:/Code/C++/FlappyDappy/src -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\flappy_application.dir\\src\\application\\use_cases\\finish_match_use_case.cpp.obj -c C:\\Code\\C++\\FlappyDappy\\src\\application\\use_cases\\finish_match_use_case.cpp",
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -DBOOST_CONTAINER_DYN_LINK -DBOOST_CONTAINER_NO_LIB -DBOOST_JSON_DYN_LINK=1 -DBOOST_JSON_NO_LIB=1 -IC:/Code/C++/FlappyDappy/src -isystem C:/dev/vcpkg/installed/x64-windows/include -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\flappy_application.dir\\src\\application\\use_cases\\finish_match_use_case.cpp.obj -c C:\\Code\\C++\\FlappyDappy\\src\\application\\use_cases\\finish_match_use_case.cpp",
   "file": "C:/Code/C++/FlappyDappy/src/application/use_cases/finish_match_use_case.cpp",
   "output": "C:/Code/C++/FlappyDappy/build-ninja/CMakeFiles/flappy_application.dir/src/application/use_cases/finish_match_use_case.cpp.obj"
 },
 {
   "directory": "C:/Code/C++/FlappyDappy/build-ninja",
-  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -IC:/Code/C++/FlappyDappy/src -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\flappy_application.dir\\src\\application\\use_cases\\game_loop_service.cpp.obj -c C:\\Code\\C++\\FlappyDappy\\src\\application\\use_cases\\game_loop_service.cpp",
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -DBOOST_CONTAINER_DYN_LINK -DBOOST_CONTAINER_NO_LIB -DBOOST_JSON_DYN_LINK=1 -DBOOST_JSON_NO_LIB=1 -IC:/Code/C++/FlappyDappy/src -isystem C:/dev/vcpkg/installed/x64-windows/include -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\flappy_application.dir\\src\\application\\use_cases\\game_loop_service.cpp.obj -c C:\\Code\\C++\\FlappyDappy\\src\\application\\use_cases\\game_loop_service.cpp",
   "file": "C:/Code/C++/FlappyDappy/src/application/use_cases/game_loop_service.cpp",
   "output": "C:/Code/C++/FlappyDappy/build-ninja/CMakeFiles/flappy_application.dir/src/application/use_cases/game_loop_service.cpp.obj"
 },
 {
   "directory": "C:/Code/C++/FlappyDappy/build-ninja",
-  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -IC:/Code/C++/FlappyDappy/src -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\flappy_application.dir\\src\\infrastructure\\logging\\console_logger.cpp.obj -c C:\\Code\\C++\\FlappyDappy\\src\\infrastructure\\logging\\console_logger.cpp",
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -DBOOST_CONTAINER_DYN_LINK -DBOOST_CONTAINER_NO_LIB -DBOOST_JSON_DYN_LINK=1 -DBOOST_JSON_NO_LIB=1 -IC:/Code/C++/FlappyDappy/src -isystem C:/dev/vcpkg/installed/x64-windows/include -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\flappy_application.dir\\src\\infrastructure\\logging\\console_logger.cpp.obj -c C:\\Code\\C++\\FlappyDappy\\src\\infrastructure\\logging\\console_logger.cpp",
   "file": "C:/Code/C++/FlappyDappy/src/infrastructure/logging/console_logger.cpp",
   "output": "C:/Code/C++/FlappyDappy/build-ninja/CMakeFiles/flappy_application.dir/src/infrastructure/logging/console_logger.cpp.obj"
 },
 {
   "directory": "C:/Code/C++/FlappyDappy/build-ninja",
-  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -IC:/Code/C++/FlappyDappy/src -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\flappy_application.dir\\src\\infrastructure\\logging\\console_session_broadcaster.cpp.obj -c C:\\Code\\C++\\FlappyDappy\\src\\infrastructure\\logging\\console_session_broadcaster.cpp",
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -DBOOST_CONTAINER_DYN_LINK -DBOOST_CONTAINER_NO_LIB -DBOOST_JSON_DYN_LINK=1 -DBOOST_JSON_NO_LIB=1 -IC:/Code/C++/FlappyDappy/src -isystem C:/dev/vcpkg/installed/x64-windows/include -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\flappy_application.dir\\src\\infrastructure\\logging\\console_session_broadcaster.cpp.obj -c C:\\Code\\C++\\FlappyDappy\\src\\infrastructure\\logging\\console_session_broadcaster.cpp",
   "file": "C:/Code/C++/FlappyDappy/src/infrastructure/logging/console_session_broadcaster.cpp",
   "output": "C:/Code/C++/FlappyDappy/build-ninja/CMakeFiles/flappy_application.dir/src/infrastructure/logging/console_session_broadcaster.cpp.obj"
 },
 {
   "directory": "C:/Code/C++/FlappyDappy/build-ninja",
-  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -IC:/Code/C++/FlappyDappy/src -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\flappy_server.dir\\src\\main.cpp.obj -c C:\\Code\\C++\\FlappyDappy\\src\\main.cpp",
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -DBOOST_CONTAINER_DYN_LINK -DBOOST_CONTAINER_NO_LIB -DBOOST_JSON_DYN_LINK=1 -DBOOST_JSON_NO_LIB=1 -IC:/Code/C++/FlappyDappy/src -isystem C:/dev/vcpkg/installed/x64-windows/include -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\flappy_application.dir\\src\\infrastructure\\net\\websocket_message_parser.cpp.obj -c C:\\Code\\C++\\FlappyDappy\\src\\infrastructure\\net\\websocket_message_parser.cpp",
+  "file": "C:/Code/C++/FlappyDappy/src/infrastructure/net/websocket_message_parser.cpp",
+  "output": "C:/Code/C++/FlappyDappy/build-ninja/CMakeFiles/flappy_application.dir/src/infrastructure/net/websocket_message_parser.cpp.obj"
+},
+{
+  "directory": "C:/Code/C++/FlappyDappy/build-ninja",
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -DBOOST_CONTAINER_DYN_LINK -DBOOST_CONTAINER_NO_LIB -DBOOST_JSON_DYN_LINK=1 -DBOOST_JSON_NO_LIB=1 -IC:/Code/C++/FlappyDappy/src -isystem C:/dev/vcpkg/installed/x64-windows/include -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\flappy_server.dir\\src\\main.cpp.obj -c C:\\Code\\C++\\FlappyDappy\\src\\main.cpp",
   "file": "C:/Code/C++/FlappyDappy/src/main.cpp",
   "output": "C:/Code/C++/FlappyDappy/build-ninja/CMakeFiles/flappy_server.dir/src/main.cpp.obj"
 },
 {
   "directory": "C:/Code/C++/FlappyDappy/build-ninja",
-  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -IC:/Code/C++/FlappyDappy/src -IC:/Code/C++/FlappyDappy/build-ninja/_deps/catch2-src/src/catch2/.. -IC:/Code/C++/FlappyDappy/build-ninja/_deps/catch2-build/generated-includes -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\flappy_tests.dir\\tests\\domain\\collision_service_tests.cpp.obj -c C:\\Code\\C++\\FlappyDappy\\tests\\domain\\collision_service_tests.cpp",
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -DBOOST_CONTAINER_DYN_LINK -DBOOST_CONTAINER_NO_LIB -DBOOST_JSON_DYN_LINK=1 -DBOOST_JSON_NO_LIB=1 -IC:/Code/C++/FlappyDappy/src -IC:/Code/C++/FlappyDappy/build-ninja/_deps/catch2-src/src/catch2/.. -IC:/Code/C++/FlappyDappy/build-ninja/_deps/catch2-build/generated-includes -isystem C:/dev/vcpkg/installed/x64-windows/include -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\flappy_tests.dir\\tests\\domain\\collision_service_tests.cpp.obj -c C:\\Code\\C++\\FlappyDappy\\tests\\domain\\collision_service_tests.cpp",
   "file": "C:/Code/C++/FlappyDappy/tests/domain/collision_service_tests.cpp",
   "output": "C:/Code/C++/FlappyDappy/build-ninja/CMakeFiles/flappy_tests.dir/tests/domain/collision_service_tests.cpp.obj"
 },
 {
   "directory": "C:/Code/C++/FlappyDappy/build-ninja",
-  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -IC:/Code/C++/FlappyDappy/src -IC:/Code/C++/FlappyDappy/build-ninja/_deps/catch2-src/src/catch2/.. -IC:/Code/C++/FlappyDappy/build-ninja/_deps/catch2-build/generated-includes -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\flappy_tests.dir\\tests\\domain\\game_session_tests.cpp.obj -c C:\\Code\\C++\\FlappyDappy\\tests\\domain\\game_session_tests.cpp",
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -DBOOST_CONTAINER_DYN_LINK -DBOOST_CONTAINER_NO_LIB -DBOOST_JSON_DYN_LINK=1 -DBOOST_JSON_NO_LIB=1 -IC:/Code/C++/FlappyDappy/src -IC:/Code/C++/FlappyDappy/build-ninja/_deps/catch2-src/src/catch2/.. -IC:/Code/C++/FlappyDappy/build-ninja/_deps/catch2-build/generated-includes -isystem C:/dev/vcpkg/installed/x64-windows/include -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\flappy_tests.dir\\tests\\domain\\game_session_tests.cpp.obj -c C:\\Code\\C++\\FlappyDappy\\tests\\domain\\game_session_tests.cpp",
   "file": "C:/Code/C++/FlappyDappy/tests/domain/game_session_tests.cpp",
   "output": "C:/Code/C++/FlappyDappy/build-ninja/CMakeFiles/flappy_tests.dir/tests/domain/game_session_tests.cpp.obj"
 },
 {
   "directory": "C:/Code/C++/FlappyDappy/build-ninja",
-  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -IC:/Code/C++/FlappyDappy/src -IC:/Code/C++/FlappyDappy/build-ninja/_deps/catch2-src/src/catch2/.. -IC:/Code/C++/FlappyDappy/build-ninja/_deps/catch2-build/generated-includes -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\flappy_tests.dir\\tests\\application\\use_cases_tests.cpp.obj -c C:\\Code\\C++\\FlappyDappy\\tests\\application\\use_cases_tests.cpp",
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -DBOOST_CONTAINER_DYN_LINK -DBOOST_CONTAINER_NO_LIB -DBOOST_JSON_DYN_LINK=1 -DBOOST_JSON_NO_LIB=1 -IC:/Code/C++/FlappyDappy/src -IC:/Code/C++/FlappyDappy/build-ninja/_deps/catch2-src/src/catch2/.. -IC:/Code/C++/FlappyDappy/build-ninja/_deps/catch2-build/generated-includes -isystem C:/dev/vcpkg/installed/x64-windows/include -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\flappy_tests.dir\\tests\\application\\use_cases_tests.cpp.obj -c C:\\Code\\C++\\FlappyDappy\\tests\\application\\use_cases_tests.cpp",
   "file": "C:/Code/C++/FlappyDappy/tests/application/use_cases_tests.cpp",
   "output": "C:/Code/C++/FlappyDappy/build-ninja/CMakeFiles/flappy_tests.dir/tests/application/use_cases_tests.cpp.obj"
 },

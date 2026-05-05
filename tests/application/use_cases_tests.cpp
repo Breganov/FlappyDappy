@@ -181,8 +181,9 @@ TEST_CASE("FinishMatchUseCase removes finished session") {
   FakeSessionBroadcaster broadcaster;
   SessionService sessions;
   SimpleIdGenerator ids;
+  GameConfig game_config{PhysicsConfig{}};
 
-  CreateSessionUseCase create(ids, sessions);
+  CreateSessionUseCase create(ids, sessions, game_config);
   SessionId id = create.Execute();
 
   PlayerId pid = PlayerId("player-1"); // надо написать такую же систему

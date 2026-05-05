@@ -22,8 +22,9 @@ int main() {
   SimpleIdGenerator ids;
   SessionService sessions;
   ConsoleSessionBroadcaster broadcaster(logger);
+  GameConfig game_config{PhysicsConfig{}};
 
-  CreateSessionUseCase session(ids, sessions);
+  CreateSessionUseCase session(ids, sessions, game_config);
   SessionId id = session.Execute();
   auto create_session = sessions.FindSession(id);
   if (!create_session) {
