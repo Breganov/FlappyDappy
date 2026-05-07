@@ -93,6 +93,7 @@ add_executable(flappy_tests
     tests/domain/collision_service_tests.cpp
     tests/domain/game_session_tests.cpp
     tests/application/use_cases_tests.cpp
+    tests/infrastructure/websocket_router_tests.cpp
 )
 
 target_include_directories(flappy_tests
