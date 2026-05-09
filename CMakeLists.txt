@@ -62,6 +62,8 @@ add_library(flappy_application
     src/infrastructure/logging/console_session_broadcaster.cpp
 
     src/infrastructure/net/websocket_message_parser.cpp
+    src/infrastructure/net/websocket_router.cpp
+    src/infrastructure/net/websocket_message_serializer.cpp
 )
 
 target_include_directories(flappy_application
@@ -94,6 +96,7 @@ add_executable(flappy_tests
     tests/domain/game_session_tests.cpp
     tests/application/use_cases_tests.cpp
     tests/infrastructure/websocket_router_tests.cpp
+    tests/infrastructure/websocket_messasge_serializer_tests.cpp
 )
 
 target_include_directories(flappy_tests

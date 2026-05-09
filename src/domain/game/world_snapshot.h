@@ -1,4 +1,4 @@
-// domain\game\world_snapshot.h
+// domain/game/world_snapshot.h
 #pragma once
 
 #include "../session/session_state.h"

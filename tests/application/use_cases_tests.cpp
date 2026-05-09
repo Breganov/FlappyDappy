@@ -266,6 +266,7 @@ TEST_CASE("GameLoopService ticks all sessions and cleans finished ones") {
   REQUIRE(session_ids.size() == SESSIONS_NUM);
   REQUIRE(player_ids.size() == SESSIONS_NUM);
   REQUIRE(broadcaster.snapshot_called);
+
   REQUIRE(broadcaster.match_finished_called);
   REQUIRE_FALSE(sessions.FindSession(session_ids[0]).has_value());
   // REQUIRE(sessions.FindSession(session_ids[1]).has_value()); // падает
