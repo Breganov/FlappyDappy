@@ -20,6 +20,13 @@ BUILD_TESTING:BOOL=ON
 //The directory containing a CMake configuration file for Boost.
 Boost_DIR:PATH=C:/dev/vcpkg/installed/x64-windows/share/boost
 
+//Path to a file.
+Boost_INCLUDE_DIR:PATH=C:/dev/vcpkg/installed/x64-windows/include
+
+Boost_JSON_LIBRARY_DEBUG:STRING=C:/dev/vcpkg/installed/x64-windows/debug/bin/boost_json-vc143-mt-gd-x64-1_90.dll
+
+Boost_JSON_LIBRARY_RELEASE:STRING=C:/dev/vcpkg/installed/x64-windows/bin/boost_json-vc143-mt-x64-1_90.dll
+
 //Read docs/configuration.md for details
 CATCH_CONFIG_ANDROID_LOGWRITE:BOOL=OFF
 
@@ -633,6 +640,8 @@ flappy_server_SOURCE_DIR:STATIC=C:/Code/C++/FlappyDappy
 # INTERNAL cache entries
 ########################
 
+//ADVANCED property for variable: Boost_DIR
+Boost_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CATCH_CONFIG_ANDROID_LOGWRITE
 CATCH_CONFIG_ANDROID_LOGWRITE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CATCH_CONFIG_BAZEL_SUPPORT
@@ -931,6 +940,8 @@ Catch2WithMain_GUID_CMAKE:INTERNAL=8bd3552a-2cfb-4a59-ab15-2031b97ada1e
 Catch2_GUID_CMAKE:INTERNAL=8d538cbe-01bf-4a2e-a98a-6c368fdf13d7
 //ADVANCED property for variable: DART_TESTING_TIMEOUT
 DART_TESTING_TIMEOUT-ADVANCED:INTERNAL=1
+//Details about finding Boost
+FIND_PACKAGE_MESSAGE_DETAILS_Boost:INTERNAL=[C:/dev/vcpkg/installed/x64-windows/share/boost/BoostConfig.cmake][found components: json system ][v1.90.0()]
 //ADVANCED property for variable: GITCOMMAND
 GITCOMMAND-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: GIT_EXECUTABLE

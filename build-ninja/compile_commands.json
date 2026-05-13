@@ -109,6 +109,12 @@
 },
 {
   "directory": "C:/Code/C++/FlappyDappy/build-ninja",
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -DBOOST_CONTAINER_DYN_LINK -DBOOST_CONTAINER_NO_LIB -DBOOST_JSON_DYN_LINK=1 -DBOOST_JSON_NO_LIB=1 -IC:/Code/C++/FlappyDappy/src -isystem C:/dev/vcpkg/installed/x64-windows/include -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\flappy_application.dir\\src\\infrastructure\\net\\websocket_session.cpp.obj -c C:\\Code\\C++\\FlappyDappy\\src\\infrastructure\\net\\websocket_session.cpp",
+  "file": "C:/Code/C++/FlappyDappy/src/infrastructure/net/websocket_session.cpp",
+  "output": "C:/Code/C++/FlappyDappy/build-ninja/CMakeFiles/flappy_application.dir/src/infrastructure/net/websocket_session.cpp.obj"
+},
+{
+  "directory": "C:/Code/C++/FlappyDappy/build-ninja",
   "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -DBOOST_CONTAINER_DYN_LINK -DBOOST_CONTAINER_NO_LIB -DBOOST_JSON_DYN_LINK=1 -DBOOST_JSON_NO_LIB=1 -IC:/Code/C++/FlappyDappy/src -isystem C:/dev/vcpkg/installed/x64-windows/include -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\flappy_server.dir\\src\\main.cpp.obj -c C:\\Code\\C++\\FlappyDappy\\src\\main.cpp",
   "file": "C:/Code/C++/FlappyDappy/src/main.cpp",
   "output": "C:/Code/C++/FlappyDappy/build-ninja/CMakeFiles/flappy_server.dir/src/main.cpp.obj"

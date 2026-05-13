@@ -5,18 +5,23 @@ project(flappy_server LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
-
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 if(POLICY CMP0167)
   cmake_policy(SET CMP0167 NEW)
 endif()
 
-find_package(Boost CONFIG REQUIRED COMPONENTS json)
+# ==================== Boost ====================
+find_package(Boost REQUIRED COMPONENTS json system)
 
-message(STATUS "Boost_FOUND=${Boost_FOUND}")
-message(STATUS "Boost_DIR=${Boost_DIR}")
+# Если Boost установлен через vcpkg / conan / system и не находит — можно добавить:
+# set(Boost_USE_STATIC_LIBS ON)
+# find_package(Boost REQUIRED COMPONENTS json system)
 
+message(STATUS "Boost version: ${Boost_VERSION}")
+message(STATUS "Boost include dirs: ${Boost_INCLUDE_DIRS}")
+
+# ==================== Catch2 ====================
 include(FetchContent)
 
 FetchContent_Declare(
@@ -29,6 +34,8 @@ FetchContent_MakeAvailable(Catch2)
 
 enable_testing()
 
+# ==================== Libraries ====================
+
 add_library(flappy_domain
     src/domain/game/collision_service.cpp
     src/domain/game/obstacle_generator.cpp
@@ -36,15 +43,8 @@ add_library(flappy_domain
     src/domain/session/game_session.cpp
 )
 
-target_include_directories(flappy_domain
-    PUBLIC
-        ${PROJECT_SOURCE_DIR}/src
-)
-
-target_compile_features(flappy_domain
-    PUBLIC
-        cxx_std_20
-)
+target_include_directories(flappy_domain PUBLIC ${PROJECT_SOURCE_DIR}/src)
+target_compile_features(flappy_domain PUBLIC cxx_std_20)
 
 add_library(flappy_application
     src/application/ports/simple_id_generator.cpp
@@ -64,32 +64,31 @@ add_library(flappy_application
     src/infrastructure/net/websocket_message_parser.cpp
     src/infrastructure/net/websocket_router.cpp
     src/infrastructure/net/websocket_message_serializer.cpp
+    src/infrastructure/net/websocket_session.cpp
 )
 
-target_include_directories(flappy_application
-    PUBLIC
-        ${PROJECT_SOURCE_DIR}/src
-)
+target_include_directories(flappy_application PUBLIC ${PROJECT_SOURCE_DIR}/src)
 
 target_link_libraries(flappy_application
     PUBLIC
         flappy_domain
         Boost::json
+        Boost::system
+        Boost::beast
 )
 
-add_executable(flappy_server
-    src/main.cpp
-)
+# Опционально, но рекомендуется явно:
+target_link_libraries(flappy_application INTERFACE Boost::headers)
 
-target_include_directories(flappy_server
-    PRIVATE
-        ${PROJECT_SOURCE_DIR}/src
-)
+# ==================== Executable ====================
 
-target_link_libraries(flappy_server
-    PRIVATE
-        flappy_application
-)
+add_executable(flappy_server src/main.cpp)
+
+target_include_directories(flappy_server PRIVATE ${PROJECT_SOURCE_DIR}/src)
+
+target_link_libraries(flappy_server PRIVATE flappy_application)
+
+# ==================== Tests ====================
 
 add_executable(flappy_tests
     tests/domain/collision_service_tests.cpp
@@ -99,10 +98,7 @@ add_executable(flappy_tests
     tests/infrastructure/websocket_messasge_serializer_tests.cpp
 )
 
-target_include_directories(flappy_tests
-    PRIVATE
-        ${PROJECT_SOURCE_DIR}/src
-)
+target_include_directories(flappy_tests PRIVATE ${PROJECT_SOURCE_DIR}/src)
 
 target_link_libraries(flappy_tests
     PRIVATE
@@ -112,6 +108,5 @@ target_link_libraries(flappy_tests
 
 include(CTest)
 include(${catch2_SOURCE_DIR}/extras/Catch.cmake)
-
 catch_discover_tests(flappy_tests)
 

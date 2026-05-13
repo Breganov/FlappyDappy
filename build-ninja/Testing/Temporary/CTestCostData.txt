@@ -1,30 +1,30 @@
-Bird hits top bound 8 0.00311285
-Bird hits bottom bound 8 0.00265991
-Bird does not collide inside the gap 8 0.00267061
-Bird collides with pipe when outside gap 8 0.0024824
-GameSession starts match only after countdown 8 0.00309166
-GameSession tick updates snapshot when match is in progress 8 0.00272495
-GameSession eventually finishes 8 0.00201151
-Tick does nothing before StartMatch 8 0.00267649
-Jump affects only the targeted player 8 0.00226054
-Distance increases while player is alive 8 0.00233676
-Player dies on collision 8 0.0027868
-BuildResult sorts players by distance 8 0.00240732
-BuildSnapshot conatains x position 8 0.00265329
-CreateSessionUseCase creates session in SessionService 8 0.00298216
-JoinSessionUseCase adds player and notifies broadcaster 8 0.00278189
-StartMatchUseCase transitions session to running state 8 0.00285814
-SubmitInputUseCase applies jump after tick 8 0.00380069
-TickSessionUseCase broadcasts snapshot 8 0.00311779
-TickSessionUseCase broadcasts match finished when session is finished 8 0.00242877
-FinishMatchUseCase removes finished session 8 0.00245719
-GameLoopService ticks all sessions and cleans finished ones 8 0.00227373
-WebSocketRouter returns error for invalid message. 8 0.00226575
-WebSocketRouter routes join message to JoinSessionUseCase 8 0.00242017
-WebSocketRouter routes jump message to SubmitInputUseCase 8 0.00225589
-WebSocketRouter returns error for unknown message type 7 0.00284534
+Bird hits top bound 10 0.00170008
+Bird hits bottom bound 10 0.0015381
+Bird does not collide inside the gap 10 0.00141384
+Bird collides with pipe when outside gap 10 0.00129705
+GameSession starts match only after countdown 10 0.00169754
+GameSession tick updates snapshot when match is in progress 10 0.00126073
+GameSession eventually finishes 10 0.00124372
+Tick does nothing before StartMatch 10 0.00130138
+Jump affects only the targeted player 10 0.00156563
+Distance increases while player is alive 10 0.00207366
+Player dies on collision 10 0.00131704
+BuildResult sorts players by distance 10 0.0018848
+BuildSnapshot conatains x position 10 0.00137663
+CreateSessionUseCase creates session in SessionService 10 0.00131894
+JoinSessionUseCase adds player and notifies broadcaster 10 0.00130879
+StartMatchUseCase transitions session to running state 10 0.00138658
+SubmitInputUseCase applies jump after tick 10 0.00137036
+TickSessionUseCase broadcasts snapshot 10 0.00183186
+TickSessionUseCase broadcasts match finished when session is finished 10 0.00157544
+FinishMatchUseCase removes finished session 10 0.00145419
+GameLoopService ticks all sessions and cleans finished ones 10 0.0015146
+WebSocketRouter returns error for invalid message. 10 0.00130002
+WebSocketRouter routes join message to JoinSessionUseCase 10 0.0015921
+WebSocketRouter routes jump message to SubmitInputUseCase 10 0.00143983
+WebSocketRouter returns error for unknown message type 9 0.00156121
 SerializeSnapshot returns valid json string 1 0.0219985
-WebSocketMessageSerializer serializes snapshot and match result 3 0.00637583
-WebSocketMessageSerializer::SerializeMatchResult produces valid JSON 1 0.0176589
-WebSocketMessageSerializer::SerializeMatchResult contains ranking fields 1 0.0259195
+WebSocketMessageSerializer serializes snapshot and match result 5 0.00261482
+WebSocketMessageSerializer::SerializeMatchResult produces valid JSON 3 0.00452357
+WebSocketMessageSerializer::SerializeMatchResult contains ranking fields 3 0.0049954
 ---
