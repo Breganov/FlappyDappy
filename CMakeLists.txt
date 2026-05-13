@@ -12,7 +12,7 @@ if(POLICY CMP0167)
 endif()
 
 # ==================== Boost ====================
-find_package(Boost REQUIRED COMPONENTS json system)
+find_package(Boost CONFIG REQUIRED COMPONENTS json system)
 
 # Если Boost установлен через vcpkg / conan / system и не находит — можно добавить:
 # set(Boost_USE_STATIC_LIBS ON)
@@ -62,9 +62,11 @@ add_library(flappy_application
     src/infrastructure/logging/console_session_broadcaster.cpp
 
     src/infrastructure/net/websocket_message_parser.cpp
-    src/infrastructure/net/websocket_router.cpp
     src/infrastructure/net/websocket_message_serializer.cpp
+    src/infrastructure/net/websocket_router.cpp
     src/infrastructure/net/websocket_session.cpp
+    src/infrastructure/net/websocket_message_handler.cpp
+    src/infrastructure/net/websocket_server.cpp
 )
 
 target_include_directories(flappy_application PUBLIC ${PROJECT_SOURCE_DIR}/src)
@@ -74,11 +76,11 @@ target_link_libraries(flappy_application
         flappy_domain
         Boost::json
         Boost::system
-        Boost::beast
+        # Boost::beast
 )
 
 # Опционально, но рекомендуется явно:
-target_link_libraries(flappy_application INTERFACE Boost::headers)
+# target_link_libraries(flappy_application INTERFACE Boost::headers)
 
 # ==================== Executable ====================
 
@@ -96,6 +98,7 @@ add_executable(flappy_tests
     tests/application/use_cases_tests.cpp
     tests/infrastructure/websocket_router_tests.cpp
     tests/infrastructure/websocket_messasge_serializer_tests.cpp
+    tests/infrastructure/websocket_message_parser_tests.cpp
 )
 
 target_include_directories(flappy_tests PRIVATE ${PROJECT_SOURCE_DIR}/src)

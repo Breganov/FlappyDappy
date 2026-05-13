@@ -16,6 +16,7 @@ private:
   MessageType ParseMessageType(std::string_view type_str) const;
   bool ReadRequiredStringField(const json::object &obj,
                                std::string_view field_name,
-                               std::string &out_value, std::string error) const;
+                               std::string &out_value,
+                               std::string &error) const;
   ParsedMessage MakeError(std::string message) const;
 };

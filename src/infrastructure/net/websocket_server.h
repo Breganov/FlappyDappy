@@ -27,7 +27,5 @@ private:
   tcp::acceptor acceptor_;
 
   WebSocketMessageHandler &handler_;
-  // WebSocketMessageParser &parser_;
-  // WebSocketRouter &router_;
   ILogger &logger_;
 };
