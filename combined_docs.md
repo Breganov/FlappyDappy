@@ -589,12 +589,15 @@ FlappyDappy
 │   │       ├── message_type.h
 │   │       ├── parsed_message.h
 │   │       ├── router_result.h
+│   │       ├── websocket_message_handler.cpp
+│   │       ├── websocket_message_handler.h
 │   │       ├── websocket_message_parser.cpp
 │   │       ├── websocket_message_parser.h
 │   │       ├── websocket_message_serializer.cpp
 │   │       ├── websocket_message_serializer.h
 │   │       ├── websocket_router.cpp
 │   │       ├── websocket_router.h
+│   │       ├── websocket_server.cpp
 │   │       ├── websocket_server.h
 │   │       ├── websocket_session.cpp
 │   │       └── websocket_session.h
@@ -612,8 +615,11 @@ FlappyDappy
     │   ├── collision_service_tests.cpp
     │   └── game_session_tests.cpp
     └── infrastructure
+        ├── websocket_message_handler_tests.cpp
+        ├── websocket_message_parser_tests.cpp
         ├── websocket_messasge_serializer_tests.cpp
-        └── websocket_router_tests.cpp
+        ├── websocket_router_tests.cpp
+        └── websocket_session_tests.cpp
 ```
 
 ## Files
@@ -74981,6 +74987,67 @@ struct RouteResult {
 };
 ```
 
+### `src/infrastructure/net/websocket_message_handler.cpp`
+
+```cpp
+// infrastructure/net/websocket_message_handler.cpp
+#include "websocket_message_handler.h"
+
+#include "infrastructure/net/router_result.h"
+
+#include <boost/json.hpp>
+#include <boost/json/object.hpp>
+#include <boost/json/serialize.hpp>
+
+namespace json = boost::json;
+
+WebSocketMessageHandler::WebSocketMessageHandler(WebSocketMessageParser &parser,
+                                                 WebSocketRouter &router)
+    : parser_(parser), router_(router) {}
+
+std::string WebSocketMessageHandler::ProcessIncomingMessage(
+    std::string_view json_text) const {
+  auto parsed_message = parser_.Parse(json_text);
+  auto router_message = router_.Route(parsed_message);
+
+  json::object response;
+
+  if (!router_message.is_handled) {
+    response["type"] = "error";
+    response["message"] = router_message.error;
+    return json::serialize(response);
+  }
+  response["type"] = "ack";
+  response["message"] = "handled";
+  return json::serialize(response);
+}
+```
+
+### `src/infrastructure/net/websocket_message_handler.h`
+
+```cpp
+// infrastructure/net/websocket_message_handler.h
+#pragma once
+
+#include "infrastructure/net/websocket_message_parser.h"
+#include "infrastructure/net/websocket_router.h"
+
+#include <string>
+#include <string_view>
+
+class WebSocketMessageHandler {
+public:
+  WebSocketMessageHandler(WebSocketMessageParser &parser,
+                          WebSocketRouter &router);
+
+  std::string ProcessIncomingMessage(std::string_view json_text) const;
+
+private:
+  WebSocketMessageParser &parser_;
+  WebSocketRouter &router_;
+};
+```
+
 ### `src/infrastructure/net/websocket_message_parser.cpp`
 
 ```cpp
@@ -74999,31 +75066,34 @@ ParsedMessage WebSocketMessageParser::Parse(std::string_view raw) const {
     json::value value = json::parse(raw);
     if (!value.is_object()) {
       result.error = "JSON root must be an object.";
+      return result;
     }
     const json::object &obj = value.as_object();
 
     std::string type_str;
+    std::string session_id;
+    std::string player_id;
     std::string error;
 
     if (!ReadRequiredStringField(obj, "type", type_str, error)) {
       return MakeError(error);
     }
 
-    ParsedMessage result{};
-    result.type = ParseMessageType(type_str);
+    if (!ReadRequiredStringField(obj, "session_id", session_id, error)) {
+      return MakeError(error);
+    }
 
+    if (!ReadRequiredStringField(obj, "player_id", player_id, error)) {
+      return MakeError(error);
+    }
+
+    result.type = ParseMessageType(type_str);
     if (result.type == MessageType::Unknown) {
       return MakeError("Unknown message type: " + type_str);
     }
 
-    if (!ReadRequiredStringField(obj, "session_id", type_str, error)) {
-      return MakeError(error);
-    }
-
-    if (!ReadRequiredStringField(obj, "player_id", type_str, error)) {
-      return MakeError(error);
-    }
-
+    result.session_id = session_id;
+    result.player_id = player_id;
     result.is_valid = true;
     return result;
   } catch (const std::exception &e) {
@@ -75046,7 +75116,7 @@ WebSocketMessageParser::ParseMessageType(std::string_view type_str) const {
 
 bool WebSocketMessageParser::ReadRequiredStringField(
     const json::object &obj, std::string_view field_name,
-    std::string &out_value, std::string error) const {
+    std::string &out_value, std::string &error) const {
   auto it = obj.find(field_name);
   if (it == obj.end()) {
     error = "Missing required field: " + std::string(field_name);
@@ -75091,7 +75161,8 @@ private:
   MessageType ParseMessageType(std::string_view type_str) const;
   bool ReadRequiredStringField(const json::object &obj,
                                std::string_view field_name,
-                               std::string &out_value, std::string error) const;
+                               std::string &out_value,
+                               std::string &error) const;
   ParsedMessage MakeError(std::string message) const;
 };
 ```
@@ -75244,9 +75315,111 @@ private:
 };
 ```
 
+### `src/infrastructure/net/websocket_server.cpp`
+
+```cpp
+// infrastructure/net/websocket_server.cpp
+#include "infrastructure/net/websocket_server.h"
+#include "infrastructure/net/websocket_session.h"
+#include <boost/system/detail/error_code.hpp>
+
+#include <memory>
+#include <string_view>
+
+WebSocketServer::WebSocketServer(net::io_context &io_context,
+                                 const tcp::endpoint &endpoint,
+                                 WebSocketMessageHandler &handler,
+                                 ILogger &logger)
+    : io_context_(io_context), acceptor_(io_context), handler_(handler),
+      logger_(logger) {
+  boost::system::error_code ec;
+
+  acceptor_.open(endpoint.protocol(), ec);
+  if (ec) {
+    logger_.Error(std::string("Failed to open acceptor: ") + ec.message());
+    return;
+  }
+
+  acceptor_.set_option(net::socket_base::reuse_address(true), ec);
+  if (ec) {
+    logger_.Error(std::string("Failed to set reuse_address: ") + ec.message());
+    return;
+  }
+
+  acceptor_.bind(endpoint, ec);
+  if (ec) {
+    logger_.Error(std::string("Failed to bind acceptor: ") + ec.message());
+    return;
+  }
+
+  acceptor_.listen(net::socket_base::max_listen_connections, ec);
+  if (ec) {
+    logger_.Error(std::string("Failed to listen: ") + ec.message());
+    return;
+  }
+}
+
+void WebSocketServer::Start() {
+  logger_.Info("WebSocket server starting.");
+  DoAccept();
+}
+
+void WebSocketServer::DoAccept() {
+  acceptor_.async_accept(
+      [this](boost::system::error_code ec, tcp::socket socket) {
+        OnAccept(ec, std::move(socket));
+      });
+}
+
+void WebSocketServer::OnAccept(boost::system::error_code ec,
+                               tcp::socket socket) {
+  if (ec) {
+    logger_.Error(std::string("Accept failed: ") + ec.message());
+  } else {
+    logger_.Info("Accepted incoming TCP connection.");
+
+    std::make_shared<WebSocketSession>(std::move(socket), handler_, logger_)
+        ->Start();
+  }
+
+  DoAccept();
+}
+```
+
 ### `src/infrastructure/net/websocket_server.h`
 
 ```cpp
+// infrastructure/net/websocket_server.h
+#pragma once
+
+#include "infrastructure/logging/logger.h"
+#include "infrastructure/net/websocket_message_handler.h"
+
+#include <boost/asio.hpp>
+#include <boost/asio/io_context.hpp>
+#include <boost/system/detail/error_code.hpp>
+
+namespace net = boost::asio;
+using tcp = net::ip::tcp;
+
+class WebSocketServer {
+public:
+  WebSocketServer(net::io_context &io_context, const tcp::endpoint &endpoint,
+                  WebSocketMessageHandler &handler, ILogger &logger);
+
+  void Start();
+
+private:
+  void DoAccept();
+  void OnAccept(boost::system::error_code ec, tcp::socket socket);
+
+private:
+  net::io_context &io_context_;
+  tcp::acceptor acceptor_;
+
+  WebSocketMessageHandler &handler_;
+  ILogger &logger_;
+};
 ```
 
 ### `src/infrastructure/net/websocket_session.cpp`
@@ -75255,9 +75428,6 @@ private:
 // infrastructure/net/websocket_session.cpp
 #include "websocket_session.h"
 
-#include "infrastructure/net/parsed_message.h"
-#include "infrastructure/net/router_result.h"
-
 #include <boost/beast/core/buffers_to_string.hpp>
 #include <boost/beast/websocket/error.hpp>
 #include <boost/json.hpp>
@@ -75265,10 +75435,9 @@ private:
 #include <utility>
 
 WebSocketSession::WebSocketSession(tcp::socket socket,
-                                   WebSocketMessageParser &parser,
-                                   WebSocketRouter &router, ILogger &logger)
-    : ws_(std::move(socket)), parser_(parser), router_(router),
-      logger_(logger) {
+                                   WebSocketMessageHandler &handler,
+                                   ILogger &logger)
+    : ws_(std::move(socket)), handler_(handler), logger_(logger) {
   ws_.set_option(
       websocket::stream_base::timeout::suggested(beast::role_type::server));
 }
@@ -75370,20 +75539,8 @@ void WebSocketSession::OnWrite(beast::error_code ec,
 // ==============================================================================
 
 void WebSocketSession::HandleMessage(std::string_view json_text) {
-  const ParsedMessage parsed = parser_.Parse(json_text);
-  const RouteResult router_result = router_.Route(parsed);
-
-  json::object response;
-  if (!router_result.is_handled) {
-    response["type"] = "error";
-    response["message"] = router_result.error;
-    Send(json::serialize(response));
-    return;
-  }
-
-  response["type"] = "ack";
-  response["message"] = "handled";
-  Send(json::serialize(response));
+  const std::string response = handler_.ProcessIncomingMessage(json_text);
+  Send(response);
 }
 ```
 
@@ -75393,8 +75550,7 @@ void WebSocketSession::HandleMessage(std::string_view json_text) {
 #pragma once
 
 #include "infrastructure/logging/logger.h"
-#include "infrastructure/net/websocket_message_parser.h"
-#include "infrastructure/net/websocket_router.h"
+#include "infrastructure/net/websocket_message_handler.h"
 
 #include <boost/asio.hpp>
 #include <boost/beast/core.hpp>
@@ -75416,8 +75572,11 @@ using tcp = net::ip::tcp;
 
 class WebSocketSession : public std::enable_shared_from_this<WebSocketSession> {
 public:
-  WebSocketSession(tcp::socket socket, WebSocketMessageParser &parser,
-                   WebSocketRouter &router, ILogger &logger);
+  // WebSocketSession(tcp::socket socket, WebSocketMessageParser &parser,
+  //                  WebSocketRouter &router, ILogger &logger);
+
+  WebSocketSession(tcp::socket socket, WebSocketMessageHandler &handler,
+                   ILogger &logger);
   void Start();
   void Send(std::string message);
 
@@ -75435,8 +75594,9 @@ private:
   beast::flat_buffer buffer_;
   std::deque<std::string> outgoing_messages_;
 
-  WebSocketMessageParser &parser_;
-  WebSocketRouter &router_;
+  // WebSocketMessageParser &parser_;
+  // WebSocketRouter &router_;
+  WebSocketMessageHandler &handler_;
   ILogger &logger_;
 };
 ```
@@ -76184,6 +76344,129 @@ TEST_CASE("BuildSnapshot conatains x position") {
 }
 ```
 
+### `tests/infrastructure/websocket_message_handler_tests.cpp`
+
+```cpp
+// infrastructure/websocket_message_handler_tests.cpp
+```
+
+### `tests/infrastructure/websocket_message_parser_tests.cpp`
+
+```cpp
+// infrastructure/websocket_message_parser_tests.cpp
+#include "application/ports/fake_session_broadcaster.h"
+#include "application/ports/simple_id_generator.h"
+#include "application/use_cases/create_session_use_case.h"
+#include "application/use_cases/game_config.h"
+#include "application/use_cases/join_session_use_case.h"
+#include "application/use_cases/session_service.h"
+#include "application/use_cases/submit_input_use_case.h"
+#include "infrastructure/net/websocket_message_handler.h"
+#include "infrastructure/net/websocket_message_parser.h"
+#include "infrastructure/net/websocket_router.h"
+
+#include <boost/json/detail/handler.hpp>
+#include <boost/json/parser.hpp>
+#include <catch2/catch_test_macros.hpp>
+#include <string>
+
+namespace json = boost::json;
+
+class MessageHandlerFixture {
+protected:
+  FakeSessionBroadcaster broadcaster_;
+  SessionService sessions_;
+  SimpleIdGenerator ids_;
+  GameConfig game_config_{PhysicsConfig{}};
+
+  CreateSessionUseCase create_{ids_, sessions_, game_config_};
+  JoinSessionUseCase join_{sessions_, broadcaster_};
+  SubmitInputUseCase submit_{sessions_};
+
+  WebSocketMessageParser parser_;
+  WebSocketRouter router_{join_, submit_};
+  WebSocketMessageHandler handler_{parser_, router_};
+
+  SessionId CreateSession() { return create_.Execute(); }
+};
+
+TEST_CASE_METHOD(
+    MessageHandlerFixture,
+    "ProccessIncomingMessage returns error response for invalid JSON",
+    "[message_handler]") {
+  const auto response = handler_.ProcessIncomingMessage("{invalid json");
+  const auto value = json::parse(response);
+  REQUIRE(value.is_object());
+
+  const auto &obj = value.as_object();
+  REQUIRE(std::string(obj.at("type").as_string()) == "error");
+  REQUIRE(obj.contains("message"));
+}
+
+TEST_CASE_METHOD(
+    MessageHandlerFixture,
+    "ProccessIncomingMessage returns error response for unknown message type",
+    "[message_handler]") {
+  const auto response = handler_.ProcessIncomingMessage(
+      R"({"type":"dance","sessions_id":"session-1","player_id":"player-1"})");
+
+  const auto value = json::parse(response);
+  REQUIRE(value.is_object());
+
+  const auto &obj = value.as_object();
+  REQUIRE(std::string(obj.at("type").as_string()) == "error");
+  REQUIRE(obj.contains("message"));
+}
+
+TEST_CASE_METHOD(MessageHandlerFixture,
+                 "ProcessIncomingMessage returns ack response for valid join",
+                 "[message_handler]") {
+  const auto session_id = CreateSession();
+
+  const std::string request = std::string(R"({"type":"join","session_id":")") +
+                              session_id.ToString() +
+                              R"(","player_id":"player-1"})";
+
+  const auto response = handler_.ProcessIncomingMessage(request);
+
+  const auto value = json::parse(response);
+  REQUIRE(value.is_object());
+
+  const auto &obj = value.as_object();
+  REQUIRE(std::string(obj.at("type").as_string()) == "ack");
+  REQUIRE(std::string(obj.at("message").as_string()) == "handled");
+
+  const auto session = sessions_.FindSession(session_id);
+  REQUIRE(session.has_value());
+  REQUIRE(session->get().GetPlayers().size() == 1);
+}
+
+TEST_CASE_METHOD(MessageHandlerFixture,
+                 "ProcessIncomingMessage returns ack response for valid jump",
+                 "[message_handler]") {
+  const auto session_id = CreateSession();
+
+  const std::string join_request =
+      std::string(R"({"type":"join","session_id":")") + session_id.ToString() +
+      R"(","player_id":"player-1"})";
+
+  handler_.ProcessIncomingMessage(join_request);
+
+  const std::string jump_request =
+      std::string(R"({"type":"jump","session_id":")") + session_id.ToString() +
+      R"(","player_id":"player-1"})";
+
+  const auto response = handler_.ProcessIncomingMessage(jump_request);
+
+  const auto value = json::parse(response);
+  REQUIRE(value.is_object());
+
+  const auto &obj = value.as_object();
+  REQUIRE(std::string(obj.at("type").as_string()) == "ack");
+  REQUIRE(std::string(obj.at("message").as_string()) == "handled");
+}
+```
+
 ### `tests/infrastructure/websocket_messasge_serializer_tests.cpp`
 
 ```cpp
@@ -76454,5 +76737,50 @@ TEST_CASE("WebSocketRouter returns error for unknown message type") {
   REQUIRE(result.is_handled);
   REQUIRE(result.error == "");
 }
+```
+
+### `tests/infrastructure/websocket_session_tests.cpp`
+
+```cpp
+// tests/infrastructure/websocket_session_tests.cpp
+
+#include "application/ports/fake_session_broadcaster.h"
+#include "application/ports/simple_id_generator.h"
+#include "application/use_cases/create_session_use_case.h"
+#include "application/use_cases/game_config.h"
+#include "application/use_cases/join_session_use_case.h"
+#include "application/use_cases/session_service.h"
+#include "domain/session/session_id.h"
+#include "infrastructure/logging/console_logger.h"
+#include "infrastructure/net/websocket_message_parser.h"
+#include "infrastructure/net/websocket_router.h"
+#include "infrastructure/net/websocket_session.h"
+
+#include "catch2/catch_test_macros.hpp"
+#include <boost/json/parse.hpp>
+
+namespace json = boost::json;
+
+class SessionMessageProcessingFixture {
+  /* Arrange, Act, Assert
+   * Что подготовили?
+   * Что вызывали?
+   * Что изменилось или что получили?
+   * */
+protected:
+  FakeSessionBroadcaster broadcaster_;
+  SessionService sessions_;
+  SimpleIdGenerator ids_;
+  GameConfig game_config_{PhysicsConfig{}};
+
+  CreateSessionUseCase create_{ids_, sessions_, game_config_};
+  JoinSessionUseCase join_{sessions_, broadcaster_};
+  SubmitInputUseCase submit_{sessions_};
+
+  WebSocketMessageParser parser_;
+  WebSocketRouter router_{join_, submit_};
+
+  SessionId CreateSession() { return create_.Execute(); }
+};
 ```
 
