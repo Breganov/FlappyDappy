@@ -61,12 +61,15 @@ add_library(flappy_application
     src/infrastructure/logging/console_logger.cpp
     src/infrastructure/logging/console_session_broadcaster.cpp
 
+    src/infrastructure/net/connection_registry.cpp
+    src/infrastructure/net/game_loop_timer.cpp
+    src/infrastructure/net/websocket_message_handler.cpp
     src/infrastructure/net/websocket_message_parser.cpp
     src/infrastructure/net/websocket_message_serializer.cpp
     src/infrastructure/net/websocket_router.cpp
-    src/infrastructure/net/websocket_session.cpp
-    src/infrastructure/net/websocket_message_handler.cpp
     src/infrastructure/net/websocket_server.cpp
+    src/infrastructure/net/websocket_session.cpp
+    src/infrastructure/net/websocket_session_broadcaster.cpp
 )
 
 target_include_directories(flappy_application PUBLIC ${PROJECT_SOURCE_DIR}/src)
@@ -97,7 +100,7 @@ add_executable(flappy_tests
     tests/domain/game_session_tests.cpp
     tests/application/use_cases_tests.cpp
     tests/infrastructure/websocket_router_tests.cpp
-    tests/infrastructure/websocket_messasge_serializer_tests.cpp
+    tests/infrastructure/websocket_message_serializer_tests.cpp
     tests/infrastructure/websocket_message_parser_tests.cpp
 )
 

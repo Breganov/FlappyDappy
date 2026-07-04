@@ -1,34 +1,36 @@
-Bird hits top bound 12 0.00231903
-Bird hits bottom bound 12 0.000743292
-Bird does not collide inside the gap 12 0.000782392
-Bird collides with pipe when outside gap 12 0.000714908
-GameSession starts match only after countdown 12 0.000654567
-GameSession tick updates snapshot when match is in progress 12 0.000710108
-GameSession eventually finishes 12 0.000733108
-Tick does nothing before StartMatch 12 0.000797283
-Jump affects only the targeted player 12 0.000667033
-Distance increases while player is alive 12 0.000710408
-Player dies on collision 12 0.000685092
-BuildResult sorts players by distance 12 0.000693092
-BuildSnapshot conatains x position 12 0.000800217
-CreateSessionUseCase creates session in SessionService 12 0.000667508
-JoinSessionUseCase adds player and notifies broadcaster 12 0.000735508
-StartMatchUseCase transitions session to running state 12 0.000654367
-SubmitInputUseCase applies jump after tick 12 0.000678767
-TickSessionUseCase broadcasts snapshot 12 0.000657317
-TickSessionUseCase broadcasts match finished when session is finished 12 0.000692533
-FinishMatchUseCase removes finished session 12 0.000762875
-GameLoopService ticks all sessions and cleans finished ones 12 0.000774083
-WebSocketRouter returns error for invalid message. 12 0.00078885
-WebSocketRouter routes join message to JoinSessionUseCase 12 0.00069135
-WebSocketRouter routes jump message to SubmitInputUseCase 12 0.000694183
-WebSocketRouter returns error for unknown message type 11 0.000722364
+Bird hits top bound 14 0.00334974
+Bird hits bottom bound 14 0.00112542
+Bird does not collide inside the gap 14 0.00109159
+Bird collides with pipe when outside gap 14 0.000958293
+GameSession starts match only after countdown 14 0.00105434
+GameSession tick updates snapshot when match is in progress 14 0.0010809
+GameSession eventually finishes 14 0.00114608
+Tick does nothing before StartMatch 14 0.00103537
+Jump affects only the targeted player 14 0.00108572
+Distance increases while player is alive 14 0.00110083
+Player dies on collision 14 0.00112007
+BuildResult sorts players by distance 14 0.00110466
+BuildSnapshot conatains x position 14 0.00106641
+CreateSessionUseCase creates session in SessionService 14 0.00106681
+JoinSessionUseCase adds player and notifies broadcaster 14 0.00107101
+StartMatchUseCase transitions session to running state 14 0.00102698
+SubmitInputUseCase applies jump after tick 14 0.00103826
+TickSessionUseCase broadcasts snapshot 14 0.00108092
+TickSessionUseCase broadcasts match finished when session is finished 14 0.00107299
+FinishMatchUseCase removes finished session 14 0.0011087
+GameLoopService ticks all sessions and cleans finished ones 14 0.00111689
+WebSocketRouter returns error for invalid message. 14 0.000994507
+WebSocketRouter routes join message to JoinSessionUseCase 14 0.00104824
+WebSocketRouter routes jump message to SubmitInputUseCase 14 0.0010575
+WebSocketRouter returns error for unknown message type 13 0.00119777
 SerializeSnapshot returns valid json string 1 0.0219985
-WebSocketMessageSerializer serializes snapshot and match result 7 0.00115476
-WebSocketMessageSerializer::SerializeMatchResult produces valid JSON 5 0.0016753
-WebSocketMessageSerializer::SerializeMatchResult contains ranking fields 5 0.00170542
+WebSocketMessageSerializer serializes snapshot and match result 9 0.00164076
+WebSocketMessageSerializer::SerializeMatchResult produces valid JSON 7 0.00216037
+WebSocketMessageSerializer::SerializeMatchResult contains ranking fields 7 0.00216374
 ProccessIncomingMessage returns error response for invalid JSON 2 0.0044969
 ProccessIncomingMessage returns error response for unknown message type 2 0.00404155
-ProcessIncomingMessage returns ack response for valid join 2 0.00422935
-ProcessIncomingMessage returns ack response for valid jump 2 0.004316
+ProcessIncomingMessage returns ack response for valid join 4 0.003531
+ProcessIncomingMessage returns ack response for valid jump 4 0.00435667
+ProcessIncomingMessage returns error response for invalid JSON 2 0.0074766
+ProcessIncomingMessage returns error response for unknown message type 2 0.0077249
 ---

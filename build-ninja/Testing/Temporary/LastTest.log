@@ -1,22 +1,22 @@
-Start testing: May 13 07:13 RTZ 2 (çèìà)
+Start testing: Jul 04 08:51 RTZ 2 (çèìà)
 ----------------------------------------------------------
 1/32 Testing: Bird hits top bound
 1/32 Test: Bird hits top bound
 Command: "C:/Code/C++/FlappyDappy/build-ninja/flappy_tests.exe" "Bird hits top bound"
 Directory: C:/Code/C++/FlappyDappy/build-ninja
-"Bird hits top bound" start time: May 13 07:13 RTZ 2 (çèìà)
+"Bird hits top bound" start time: Jul 04 08:51 RTZ 2 (çèìà)
 Output:
 ----------------------------------------------------------
 Filters: "Bird hits top bound"
-Randomness seeded to: 709299936
+Randomness seeded to: 216565729
 ===============================================================================
 All tests passed (1 assertion in 1 test case)
 
 <end of output>
-Test time =   0.03 sec
+Test time =   0.05 sec
 ----------------------------------------------------------
 Test Passed.
-"Bird hits top bound" end time: May 13 07:13 RTZ 2 (çèìà)
+"Bird hits top bound" end time: Jul 04 08:51 RTZ 2 (çèìà)
 "Bird hits top bound" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -24,19 +24,19 @@ Test Passed.
 2/32 Test: Bird hits bottom bound
 Command: "C:/Code/C++/FlappyDappy/build-ninja/flappy_tests.exe" "Bird hits bottom bound"
 Directory: C:/Code/C++/FlappyDappy/build-ninja
-"Bird hits bottom bound" start time: May 13 07:13 RTZ 2 (çèìà)
+"Bird hits bottom bound" start time: Jul 04 08:51 RTZ 2 (çèìà)
 Output:
 ----------------------------------------------------------
 Filters: "Bird hits bottom bound"
-Randomness seeded to: 2378553406
+Randomness seeded to: 3301875200
 ===============================================================================
 All tests passed (1 assertion in 1 test case)
 
 <end of output>
-Test time =   0.01 sec
+Test time =   0.02 sec
 ----------------------------------------------------------
 Test Passed.
-"Bird hits bottom bound" end time: May 13 07:13 RTZ 2 (çèìà)
+"Bird hits bottom bound" end time: Jul 04 08:51 RTZ 2 (çèìà)
 "Bird hits bottom bound" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -44,19 +44,19 @@ Test Passed.
 3/32 Test: Bird does not collide inside the gap
 Command: "C:/Code/C++/FlappyDappy/build-ninja/flappy_tests.exe" "Bird does not collide inside the gap"
 Directory: C:/Code/C++/FlappyDappy/build-ninja
-"Bird does not collide inside the gap" start time: May 13 07:13 RTZ 2 (çèìà)
+"Bird does not collide inside the gap" start time: Jul 04 08:51 RTZ 2 (çèìà)
 Output:
 ----------------------------------------------------------
 Filters: "Bird does not collide inside the gap"
-Randomness seeded to: 2560079575
+Randomness seeded to: 2283654213
 ===============================================================================
 All tests passed (1 assertion in 1 test case)
 
 <end of output>
-Test time =   0.01 sec
+Test time =   0.02 sec
 ----------------------------------------------------------
 Test Passed.
-"Bird does not collide inside the gap" end time: May 13 07:13 RTZ 2 (çèìà)
+"Bird does not collide inside the gap" end time: Jul 04 08:51 RTZ 2 (çèìà)
 "Bird does not collide inside the gap" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -64,11 +64,11 @@ Test Passed.
 4/32 Test: Bird collides with pipe when outside gap
 Command: "C:/Code/C++/FlappyDappy/build-ninja/flappy_tests.exe" "Bird collides with pipe when outside gap"
 Directory: C:/Code/C++/FlappyDappy/build-ninja
-"Bird collides with pipe when outside gap" start time: May 13 07:13 RTZ 2 (çèìà)
+"Bird collides with pipe when outside gap" start time: Jul 04 08:51 RTZ 2 (çèìà)
 Output:
 ----------------------------------------------------------
 Filters: "Bird collides with pipe when outside gap"
-Randomness seeded to: 1390833114
+Randomness seeded to: 270195638
 ===============================================================================
 All tests passed (1 assertion in 1 test case)
 
@@ -76,7 +76,7 @@ All tests passed (1 assertion in 1 test case)
 Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"Bird collides with pipe when outside gap" end time: May 13 07:13 RTZ 2 (çèìà)
+"Bird collides with pipe when outside gap" end time: Jul 04 08:51 RTZ 2 (çèìà)
 "Bird collides with pipe when outside gap" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -84,11 +84,11 @@ Test Passed.
 5/32 Test: GameSession starts match only after countdown
 Command: "C:/Code/C++/FlappyDappy/build-ninja/flappy_tests.exe" "GameSession starts match only after countdown"
 Directory: C:/Code/C++/FlappyDappy/build-ninja
-"GameSession starts match only after countdown" start time: May 13 07:13 RTZ 2 (çèìà)
+"GameSession starts match only after countdown" start time: Jul 04 08:51 RTZ 2 (çèìà)
 Output:
 ----------------------------------------------------------
 Filters: "GameSession starts match only after countdown"
-Randomness seeded to: 1556669917
+Randomness seeded to: 2441633330
 ===============================================================================
 All tests passed (3 assertions in 1 test case)
 
@@ -96,7 +96,7 @@ All tests passed (3 assertions in 1 test case)
 Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"GameSession starts match only after countdown" end time: May 13 07:13 RTZ 2 (çèìà)
+"GameSession starts match only after countdown" end time: Jul 04 08:51 RTZ 2 (çèìà)
 "GameSession starts match only after countdown" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -104,19 +104,19 @@ Test Passed.
 6/32 Test: GameSession tick updates snapshot when match is in progress
 Command: "C:/Code/C++/FlappyDappy/build-ninja/flappy_tests.exe" "GameSession tick updates snapshot when match is in progress"
 Directory: C:/Code/C++/FlappyDappy/build-ninja
-"GameSession tick updates snapshot when match is in progress" start time: May 13 07:13 RTZ 2 (çèìà)
+"GameSession tick updates snapshot when match is in progress" start time: Jul 04 08:51 RTZ 2 (çèìà)
 Output:
 ----------------------------------------------------------
 Filters: "GameSession tick updates snapshot when match is in progress"
-Randomness seeded to: 867905095
+Randomness seeded to: 1614968273
 ===============================================================================
 All tests passed (5 assertions in 1 test case)
 
 <end of output>
-Test time =   0.01 sec
+Test time =   0.02 sec
 ----------------------------------------------------------
 Test Passed.
-"GameSession tick updates snapshot when match is in progress" end time: May 13 07:13 RTZ 2 (çèìà)
+"GameSession tick updates snapshot when match is in progress" end time: Jul 04 08:51 RTZ 2 (çèìà)
 "GameSession tick updates snapshot when match is in progress" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -124,19 +124,19 @@ Test Passed.
 7/32 Test: GameSession eventually finishes
 Command: "C:/Code/C++/FlappyDappy/build-ninja/flappy_tests.exe" "GameSession eventually finishes"
 Directory: C:/Code/C++/FlappyDappy/build-ninja
-"GameSession eventually finishes" start time: May 13 07:13 RTZ 2 (çèìà)
+"GameSession eventually finishes" start time: Jul 04 08:51 RTZ 2 (çèìà)
 Output:
 ----------------------------------------------------------
 Filters: "GameSession eventually finishes"
-Randomness seeded to: 1700392506
+Randomness seeded to: 3079259800
 ===============================================================================
 All tests passed (2 assertions in 1 test case)
 
 <end of output>
-Test time =   0.01 sec
+Test time =   0.02 sec
 ----------------------------------------------------------
 Test Passed.
-"GameSession eventually finishes" end time: May 13 07:13 RTZ 2 (çèìà)
+"GameSession eventually finishes" end time: Jul 04 08:51 RTZ 2 (çèìà)
 "GameSession eventually finishes" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -144,11 +144,11 @@ Test Passed.
 8/32 Test: Tick does nothing before StartMatch
 Command: "C:/Code/C++/FlappyDappy/build-ninja/flappy_tests.exe" "Tick does nothing before StartMatch"
 Directory: C:/Code/C++/FlappyDappy/build-ninja
-"Tick does nothing before StartMatch" start time: May 13 07:13 RTZ 2 (çèìà)
+"Tick does nothing before StartMatch" start time: Jul 04 08:51 RTZ 2 (çèìà)
 Output:
 ----------------------------------------------------------
 Filters: "Tick does nothing before StartMatch"
-Randomness seeded to: 1676986401
+Randomness seeded to: 2056358417
 ===============================================================================
 All tests passed (1 assertion in 1 test case)
 
@@ -156,7 +156,7 @@ All tests passed (1 assertion in 1 test case)
 Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"Tick does nothing before StartMatch" end time: May 13 07:13 RTZ 2 (çèìà)
+"Tick does nothing before StartMatch" end time: Jul 04 08:51 RTZ 2 (çèìà)
 "Tick does nothing before StartMatch" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -164,19 +164,19 @@ Test Passed.
 9/32 Test: Jump affects only the targeted player
 Command: "C:/Code/C++/FlappyDappy/build-ninja/flappy_tests.exe" "Jump affects only the targeted player"
 Directory: C:/Code/C++/FlappyDappy/build-ninja
-"Jump affects only the targeted player" start time: May 13 07:13 RTZ 2 (çèìà)
+"Jump affects only the targeted player" start time: Jul 04 08:51 RTZ 2 (çèìà)
 Output:
 ----------------------------------------------------------
 Filters: "Jump affects only the targeted player"
-Randomness seeded to: 3227243746
+Randomness seeded to: 3035593475
 ===============================================================================
 All tests passed (2 assertions in 1 test case)
 
 <end of output>
-Test time =   0.01 sec
+Test time =   0.02 sec
 ----------------------------------------------------------
 Test Passed.
-"Jump affects only the targeted player" end time: May 13 07:13 RTZ 2 (çèìà)
+"Jump affects only the targeted player" end time: Jul 04 08:51 RTZ 2 (çèìà)
 "Jump affects only the targeted player" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -184,19 +184,19 @@ Test Passed.
 10/32 Test: Distance increases while player is alive
 Command: "C:/Code/C++/FlappyDappy/build-ninja/flappy_tests.exe" "Distance increases while player is alive"
 Directory: C:/Code/C++/FlappyDappy/build-ninja
-"Distance increases while player is alive" start time: May 13 07:13 RTZ 2 (çèìà)
+"Distance increases while player is alive" start time: Jul 04 08:51 RTZ 2 (çèìà)
 Output:
 ----------------------------------------------------------
 Filters: "Distance increases while player is alive"
-Randomness seeded to: 3550149462
+Randomness seeded to: 2238152037
 ===============================================================================
 All tests passed (3 assertions in 1 test case)
 
 <end of output>
-Test time =   0.01 sec
+Test time =   0.02 sec
 ----------------------------------------------------------
 Test Passed.
-"Distance increases while player is alive" end time: May 13 07:13 RTZ 2 (çèìà)
+"Distance increases while player is alive" end time: Jul 04 08:51 RTZ 2 (çèìà)
 "Distance increases while player is alive" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -204,19 +204,19 @@ Test Passed.
 11/32 Test: Player dies on collision
 Command: "C:/Code/C++/FlappyDappy/build-ninja/flappy_tests.exe" "Player dies on collision"
 Directory: C:/Code/C++/FlappyDappy/build-ninja
-"Player dies on collision" start time: May 13 07:13 RTZ 2 (çèìà)
+"Player dies on collision" start time: Jul 04 08:51 RTZ 2 (çèìà)
 Output:
 ----------------------------------------------------------
 Filters: "Player dies on collision"
-Randomness seeded to: 3717865974
+Randomness seeded to: 3045826373
 ===============================================================================
 All tests passed (2 assertions in 1 test case)
 
 <end of output>
-Test time =   0.01 sec
+Test time =   0.02 sec
 ----------------------------------------------------------
 Test Passed.
-"Player dies on collision" end time: May 13 07:13 RTZ 2 (çèìà)
+"Player dies on collision" end time: Jul 04 08:51 RTZ 2 (çèìà)
 "Player dies on collision" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -224,19 +224,19 @@ Test Passed.
 12/32 Test: BuildResult sorts players by distance
 Command: "C:/Code/C++/FlappyDappy/build-ninja/flappy_tests.exe" "BuildResult sorts players by distance"
 Directory: C:/Code/C++/FlappyDappy/build-ninja
-"BuildResult sorts players by distance" start time: May 13 07:13 RTZ 2 (çèìà)
+"BuildResult sorts players by distance" start time: Jul 04 08:51 RTZ 2 (çèìà)
 Output:
 ----------------------------------------------------------
 Filters: "BuildResult sorts players by distance"
-Randomness seeded to: 2114558390
+Randomness seeded to: 3509041598
 ===============================================================================
 All tests passed (2 assertions in 1 test case)
 
 <end of output>
-Test time =   0.01 sec
+Test time =   0.02 sec
 ----------------------------------------------------------
 Test Passed.
-"BuildResult sorts players by distance" end time: May 13 07:13 RTZ 2 (çèìà)
+"BuildResult sorts players by distance" end time: Jul 04 08:51 RTZ 2 (çèìà)
 "BuildResult sorts players by distance" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -244,11 +244,11 @@ Test Passed.
 13/32 Test: BuildSnapshot conatains x position
 Command: "C:/Code/C++/FlappyDappy/build-ninja/flappy_tests.exe" "BuildSnapshot conatains x position"
 Directory: C:/Code/C++/FlappyDappy/build-ninja
-"BuildSnapshot conatains x position" start time: May 13 07:13 RTZ 2 (çèìà)
+"BuildSnapshot conatains x position" start time: Jul 04 08:51 RTZ 2 (çèìà)
 Output:
 ----------------------------------------------------------
 Filters: "BuildSnapshot conatains x position"
-Randomness seeded to: 2650690380
+Randomness seeded to: 486680201
 ===============================================================================
 All tests passed (4 assertions in 1 test case)
 
@@ -256,7 +256,7 @@ All tests passed (4 assertions in 1 test case)
 Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"BuildSnapshot conatains x position" end time: May 13 07:13 RTZ 2 (çèìà)
+"BuildSnapshot conatains x position" end time: Jul 04 08:51 RTZ 2 (çèìà)
 "BuildSnapshot conatains x position" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -264,11 +264,11 @@ Test Passed.
 14/32 Test: CreateSessionUseCase creates session in SessionService
 Command: "C:/Code/C++/FlappyDappy/build-ninja/flappy_tests.exe" "CreateSessionUseCase creates session in SessionService"
 Directory: C:/Code/C++/FlappyDappy/build-ninja
-"CreateSessionUseCase creates session in SessionService" start time: May 13 07:13 RTZ 2 (çèìà)
+"CreateSessionUseCase creates session in SessionService" start time: Jul 04 08:51 RTZ 2 (çèìà)
 Output:
 ----------------------------------------------------------
 Filters: "CreateSessionUseCase creates session in SessionService"
-Randomness seeded to: 2038743690
+Randomness seeded to: 272884402
 ===============================================================================
 All tests passed (2 assertions in 1 test case)
 
@@ -276,7 +276,7 @@ All tests passed (2 assertions in 1 test case)
 Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"CreateSessionUseCase creates session in SessionService" end time: May 13 07:13 RTZ 2 (çèìà)
+"CreateSessionUseCase creates session in SessionService" end time: Jul 04 08:51 RTZ 2 (çèìà)
 "CreateSessionUseCase creates session in SessionService" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -284,11 +284,11 @@ Test Passed.
 15/32 Test: JoinSessionUseCase adds player and notifies broadcaster
 Command: "C:/Code/C++/FlappyDappy/build-ninja/flappy_tests.exe" "JoinSessionUseCase adds player and notifies broadcaster"
 Directory: C:/Code/C++/FlappyDappy/build-ninja
-"JoinSessionUseCase adds player and notifies broadcaster" start time: May 13 07:13 RTZ 2 (çèìà)
+"JoinSessionUseCase adds player and notifies broadcaster" start time: Jul 04 08:51 RTZ 2 (çèìà)
 Output:
 ----------------------------------------------------------
 Filters: "JoinSessionUseCase adds player and notifies broadcaster"
-Randomness seeded to: 1416721988
+Randomness seeded to: 1022690331
 ===============================================================================
 All tests passed (6 assertions in 1 test case)
 
@@ -296,7 +296,7 @@ All tests passed (6 assertions in 1 test case)
 Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"JoinSessionUseCase adds player and notifies broadcaster" end time: May 13 07:13 RTZ 2 (çèìà)
+"JoinSessionUseCase adds player and notifies broadcaster" end time: Jul 04 08:51 RTZ 2 (çèìà)
 "JoinSessionUseCase adds player and notifies broadcaster" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -304,11 +304,11 @@ Test Passed.
 16/32 Test: StartMatchUseCase transitions session to running state
 Command: "C:/Code/C++/FlappyDappy/build-ninja/flappy_tests.exe" "StartMatchUseCase transitions session to running state"
 Directory: C:/Code/C++/FlappyDappy/build-ninja
-"StartMatchUseCase transitions session to running state" start time: May 13 07:13 RTZ 2 (çèìà)
+"StartMatchUseCase transitions session to running state" start time: Jul 04 08:51 RTZ 2 (çèìà)
 Output:
 ----------------------------------------------------------
 Filters: "StartMatchUseCase transitions session to running state"
-Randomness seeded to: 1788549687
+Randomness seeded to: 1883288206
 ===============================================================================
 All tests passed (2 assertions in 1 test case)
 
@@ -316,7 +316,7 @@ All tests passed (2 assertions in 1 test case)
 Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"StartMatchUseCase transitions session to running state" end time: May 13 07:13 RTZ 2 (çèìà)
+"StartMatchUseCase transitions session to running state" end time: Jul 04 08:51 RTZ 2 (çèìà)
 "StartMatchUseCase transitions session to running state" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -324,11 +324,11 @@ Test Passed.
 17/32 Test: SubmitInputUseCase applies jump after tick
 Command: "C:/Code/C++/FlappyDappy/build-ninja/flappy_tests.exe" "SubmitInputUseCase applies jump after tick"
 Directory: C:/Code/C++/FlappyDappy/build-ninja
-"SubmitInputUseCase applies jump after tick" start time: May 13 07:13 RTZ 2 (çèìà)
+"SubmitInputUseCase applies jump after tick" start time: Jul 04 08:51 RTZ 2 (çèìà)
 Output:
 ----------------------------------------------------------
 Filters: "SubmitInputUseCase applies jump after tick"
-Randomness seeded to: 2145471156
+Randomness seeded to: 3720446830
 ===============================================================================
 All tests passed (3 assertions in 1 test case)
 
@@ -336,7 +336,7 @@ All tests passed (3 assertions in 1 test case)
 Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"SubmitInputUseCase applies jump after tick" end time: May 13 07:13 RTZ 2 (çèìà)
+"SubmitInputUseCase applies jump after tick" end time: Jul 04 08:51 RTZ 2 (çèìà)
 "SubmitInputUseCase applies jump after tick" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -344,19 +344,19 @@ Test Passed.
 18/32 Test: TickSessionUseCase broadcasts snapshot
 Command: "C:/Code/C++/FlappyDappy/build-ninja/flappy_tests.exe" "TickSessionUseCase broadcasts snapshot"
 Directory: C:/Code/C++/FlappyDappy/build-ninja
-"TickSessionUseCase broadcasts snapshot" start time: May 13 07:13 RTZ 2 (çèìà)
+"TickSessionUseCase broadcasts snapshot" start time: Jul 04 08:51 RTZ 2 (çèìà)
 Output:
 ----------------------------------------------------------
 Filters: "TickSessionUseCase broadcasts snapshot"
-Randomness seeded to: 1568133348
+Randomness seeded to: 1507991756
 ===============================================================================
 All tests passed (3 assertions in 1 test case)
 
 <end of output>
-Test time =   0.01 sec
+Test time =   0.02 sec
 ----------------------------------------------------------
 Test Passed.
-"TickSessionUseCase broadcasts snapshot" end time: May 13 07:13 RTZ 2 (çèìà)
+"TickSessionUseCase broadcasts snapshot" end time: Jul 04 08:51 RTZ 2 (çèìà)
 "TickSessionUseCase broadcasts snapshot" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -364,19 +364,19 @@ Test Passed.
 19/32 Test: TickSessionUseCase broadcasts match finished when session is finished
 Command: "C:/Code/C++/FlappyDappy/build-ninja/flappy_tests.exe" "TickSessionUseCase broadcasts match finished when session is finished"
 Directory: C:/Code/C++/FlappyDappy/build-ninja
-"TickSessionUseCase broadcasts match finished when session is finished" start time: May 13 07:13 RTZ 2 (çèìà)
+"TickSessionUseCase broadcasts match finished when session is finished" start time: Jul 04 08:51 RTZ 2 (çèìà)
 Output:
 ----------------------------------------------------------
 Filters: "TickSessionUseCase broadcasts match finished when session is finished"
-Randomness seeded to: 443062419
+Randomness seeded to: 2853561713
 ===============================================================================
 All tests passed (53 assertions in 1 test case)
 
 <end of output>
-Test time =   0.01 sec
+Test time =   0.02 sec
 ----------------------------------------------------------
 Test Passed.
-"TickSessionUseCase broadcasts match finished when session is finished" end time: May 13 07:13 RTZ 2 (çèìà)
+"TickSessionUseCase broadcasts match finished when session is finished" end time: Jul 04 08:51 RTZ 2 (çèìà)
 "TickSessionUseCase broadcasts match finished when session is finished" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -384,19 +384,19 @@ Test Passed.
 20/32 Test: FinishMatchUseCase removes finished session
 Command: "C:/Code/C++/FlappyDappy/build-ninja/flappy_tests.exe" "FinishMatchUseCase removes finished session"
 Directory: C:/Code/C++/FlappyDappy/build-ninja
-"FinishMatchUseCase removes finished session" start time: May 13 07:13 RTZ 2 (çèìà)
+"FinishMatchUseCase removes finished session" start time: Jul 04 08:51 RTZ 2 (çèìà)
 Output:
 ----------------------------------------------------------
 Filters: "FinishMatchUseCase removes finished session"
-Randomness seeded to: 1680880024
+Randomness seeded to: 1357284761
 ===============================================================================
 All tests passed (52 assertions in 1 test case)
 
 <end of output>
-Test time =   0.01 sec
+Test time =   0.02 sec
 ----------------------------------------------------------
 Test Passed.
-"FinishMatchUseCase removes finished session" end time: May 13 07:13 RTZ 2 (çèìà)
+"FinishMatchUseCase removes finished session" end time: Jul 04 08:51 RTZ 2 (çèìà)
 "FinishMatchUseCase removes finished session" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -404,19 +404,19 @@ Test Passed.
 21/32 Test: GameLoopService ticks all sessions and cleans finished ones
 Command: "C:/Code/C++/FlappyDappy/build-ninja/flappy_tests.exe" "GameLoopService ticks all sessions and cleans finished ones"
 Directory: C:/Code/C++/FlappyDappy/build-ninja
-"GameLoopService ticks all sessions and cleans finished ones" start time: May 13 07:13 RTZ 2 (çèìà)
+"GameLoopService ticks all sessions and cleans finished ones" start time: Jul 04 08:51 RTZ 2 (çèìà)
 Output:
 ----------------------------------------------------------
 Filters: "GameLoopService ticks all sessions and cleans finished ones"
-Randomness seeded to: 3913548734
+Randomness seeded to: 2258367712
 ===============================================================================
 All tests passed (5 assertions in 1 test case)
 
 <end of output>
-Test time =   0.01 sec
+Test time =   0.02 sec
 ----------------------------------------------------------
 Test Passed.
-"GameLoopService ticks all sessions and cleans finished ones" end time: May 13 07:13 RTZ 2 (çèìà)
+"GameLoopService ticks all sessions and cleans finished ones" end time: Jul 04 08:51 RTZ 2 (çèìà)
 "GameLoopService ticks all sessions and cleans finished ones" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -424,11 +424,11 @@ Test Passed.
 22/32 Test: WebSocketRouter returns error for invalid message.
 Command: "C:/Code/C++/FlappyDappy/build-ninja/flappy_tests.exe" "WebSocketRouter returns error for invalid message."
 Directory: C:/Code/C++/FlappyDappy/build-ninja
-"WebSocketRouter returns error for invalid message." start time: May 13 07:13 RTZ 2 (çèìà)
+"WebSocketRouter returns error for invalid message." start time: Jul 04 08:51 RTZ 2 (çèìà)
 Output:
 ----------------------------------------------------------
 Filters: "WebSocketRouter returns error for invalid message."
-Randomness seeded to: 585669232
+Randomness seeded to: 1351604046
 ===============================================================================
 All tests passed (2 assertions in 1 test case)
 
@@ -436,7 +436,7 @@ All tests passed (2 assertions in 1 test case)
 Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"WebSocketRouter returns error for invalid message." end time: May 13 07:13 RTZ 2 (çèìà)
+"WebSocketRouter returns error for invalid message." end time: Jul 04 08:51 RTZ 2 (çèìà)
 "WebSocketRouter returns error for invalid message." time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -444,11 +444,11 @@ Test Passed.
 23/32 Test: WebSocketRouter routes join message to JoinSessionUseCase
 Command: "C:/Code/C++/FlappyDappy/build-ninja/flappy_tests.exe" "WebSocketRouter routes join message to JoinSessionUseCase"
 Directory: C:/Code/C++/FlappyDappy/build-ninja
-"WebSocketRouter routes join message to JoinSessionUseCase" start time: May 13 07:13 RTZ 2 (çèìà)
+"WebSocketRouter routes join message to JoinSessionUseCase" start time: Jul 04 08:51 RTZ 2 (çèìà)
 Output:
 ----------------------------------------------------------
 Filters: "WebSocketRouter routes join message to JoinSessionUseCase"
-Randomness seeded to: 2850418065
+Randomness seeded to: 333645614
 ===============================================================================
 All tests passed (7 assertions in 1 test case)
 
@@ -456,7 +456,7 @@ All tests passed (7 assertions in 1 test case)
 Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"WebSocketRouter routes join message to JoinSessionUseCase" end time: May 13 07:13 RTZ 2 (çèìà)
+"WebSocketRouter routes join message to JoinSessionUseCase" end time: Jul 04 08:51 RTZ 2 (çèìà)
 "WebSocketRouter routes join message to JoinSessionUseCase" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -464,11 +464,11 @@ Test Passed.
 24/32 Test: WebSocketRouter routes jump message to SubmitInputUseCase
 Command: "C:/Code/C++/FlappyDappy/build-ninja/flappy_tests.exe" "WebSocketRouter routes jump message to SubmitInputUseCase"
 Directory: C:/Code/C++/FlappyDappy/build-ninja
-"WebSocketRouter routes jump message to SubmitInputUseCase" start time: May 13 07:13 RTZ 2 (çèìà)
+"WebSocketRouter routes jump message to SubmitInputUseCase" start time: Jul 04 08:51 RTZ 2 (çèìà)
 Output:
 ----------------------------------------------------------
 Filters: "WebSocketRouter routes jump message to SubmitInputUseCase"
-Randomness seeded to: 3206170440
+Randomness seeded to: 3979542379
 ===============================================================================
 All tests passed (10 assertions in 1 test case)
 
@@ -476,7 +476,7 @@ All tests passed (10 assertions in 1 test case)
 Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"WebSocketRouter routes jump message to SubmitInputUseCase" end time: May 13 07:13 RTZ 2 (çèìà)
+"WebSocketRouter routes jump message to SubmitInputUseCase" end time: Jul 04 08:51 RTZ 2 (çèìà)
 "WebSocketRouter routes jump message to SubmitInputUseCase" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -484,19 +484,19 @@ Test Passed.
 25/32 Test: WebSocketRouter returns error for unknown message type
 Command: "C:/Code/C++/FlappyDappy/build-ninja/flappy_tests.exe" "WebSocketRouter returns error for unknown message type"
 Directory: C:/Code/C++/FlappyDappy/build-ninja
-"WebSocketRouter returns error for unknown message type" start time: May 13 07:13 RTZ 2 (çèìà)
+"WebSocketRouter returns error for unknown message type" start time: Jul 04 08:51 RTZ 2 (çèìà)
 Output:
 ----------------------------------------------------------
 Filters: "WebSocketRouter returns error for unknown message type"
-Randomness seeded to: 1388617690
+Randomness seeded to: 61196302
 ===============================================================================
 All tests passed (2 assertions in 1 test case)
 
 <end of output>
-Test time =   0.01 sec
+Test time =   0.02 sec
 ----------------------------------------------------------
 Test Passed.
-"WebSocketRouter returns error for unknown message type" end time: May 13 07:13 RTZ 2 (çèìà)
+"WebSocketRouter returns error for unknown message type" end time: Jul 04 08:51 RTZ 2 (çèìà)
 "WebSocketRouter returns error for unknown message type" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -504,11 +504,11 @@ Test Passed.
 26/32 Test: WebSocketMessageSerializer serializes snapshot and match result
 Command: "C:/Code/C++/FlappyDappy/build-ninja/flappy_tests.exe" "WebSocketMessageSerializer serializes snapshot and match result"
 Directory: C:/Code/C++/FlappyDappy/build-ninja
-"WebSocketMessageSerializer serializes snapshot and match result" start time: May 13 07:13 RTZ 2 (çèìà)
+"WebSocketMessageSerializer serializes snapshot and match result" start time: Jul 04 08:51 RTZ 2 (çèìà)
 Output:
 ----------------------------------------------------------
 Filters: "WebSocketMessageSerializer serializes snapshot and match result"
-Randomness seeded to: 2630557051
+Randomness seeded to: 1749064155
 ===============================================================================
 All tests passed (18 assertions in 1 test case)
 
@@ -516,7 +516,7 @@ All tests passed (18 assertions in 1 test case)
 Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"WebSocketMessageSerializer serializes snapshot and match result" end time: May 13 07:13 RTZ 2 (çèìà)
+"WebSocketMessageSerializer serializes snapshot and match result" end time: Jul 04 08:51 RTZ 2 (çèìà)
 "WebSocketMessageSerializer serializes snapshot and match result" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -524,19 +524,19 @@ Test Passed.
 27/32 Test: WebSocketMessageSerializer::SerializeMatchResult produces valid JSON
 Command: "C:/Code/C++/FlappyDappy/build-ninja/flappy_tests.exe" "WebSocketMessageSerializer::SerializeMatchResult produces valid JSON"
 Directory: C:/Code/C++/FlappyDappy/build-ninja
-"WebSocketMessageSerializer::SerializeMatchResult produces valid JSON" start time: May 13 07:13 RTZ 2 (çèìà)
+"WebSocketMessageSerializer::SerializeMatchResult produces valid JSON" start time: Jul 04 08:51 RTZ 2 (çèìà)
 Output:
 ----------------------------------------------------------
 Filters: "WebSocketMessageSerializer::SerializeMatchResult produces valid JSON"
-Randomness seeded to: 3112609822
+Randomness seeded to: 3282451723
 ===============================================================================
 All tests passed (7 assertions in 1 test case)
 
 <end of output>
-Test time =   0.01 sec
+Test time =   0.02 sec
 ----------------------------------------------------------
 Test Passed.
-"WebSocketMessageSerializer::SerializeMatchResult produces valid JSON" end time: May 13 07:13 RTZ 2 (çèìà)
+"WebSocketMessageSerializer::SerializeMatchResult produces valid JSON" end time: Jul 04 08:51 RTZ 2 (çèìà)
 "WebSocketMessageSerializer::SerializeMatchResult produces valid JSON" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -544,31 +544,31 @@ Test Passed.
 28/32 Test: WebSocketMessageSerializer::SerializeMatchResult contains ranking fields
 Command: "C:/Code/C++/FlappyDappy/build-ninja/flappy_tests.exe" "WebSocketMessageSerializer::SerializeMatchResult contains ranking fields"
 Directory: C:/Code/C++/FlappyDappy/build-ninja
-"WebSocketMessageSerializer::SerializeMatchResult contains ranking fields" start time: May 13 07:13 RTZ 2 (çèìà)
+"WebSocketMessageSerializer::SerializeMatchResult contains ranking fields" start time: Jul 04 08:51 RTZ 2 (çèìà)
 Output:
 ----------------------------------------------------------
 Filters: "WebSocketMessageSerializer::SerializeMatchResult contains ranking fields"
-Randomness seeded to: 1102437824
+Randomness seeded to: 2935369402
 ===============================================================================
 All tests passed (12 assertions in 1 test case)
 
 <end of output>
-Test time =   0.01 sec
+Test time =   0.02 sec
 ----------------------------------------------------------
 Test Passed.
-"WebSocketMessageSerializer::SerializeMatchResult contains ranking fields" end time: May 13 07:13 RTZ 2 (çèìà)
+"WebSocketMessageSerializer::SerializeMatchResult contains ranking fields" end time: Jul 04 08:51 RTZ 2 (çèìà)
 "WebSocketMessageSerializer::SerializeMatchResult contains ranking fields" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-29/32 Testing: ProccessIncomingMessage returns error response for invalid JSON
-29/32 Test: ProccessIncomingMessage returns error response for invalid JSON
-Command: "C:/Code/C++/FlappyDappy/build-ninja/flappy_tests.exe" "ProccessIncomingMessage returns error response for invalid JSON"
+29/32 Testing: ProcessIncomingMessage returns error response for invalid JSON
+29/32 Test: ProcessIncomingMessage returns error response for invalid JSON
+Command: "C:/Code/C++/FlappyDappy/build-ninja/flappy_tests.exe" "ProcessIncomingMessage returns error response for invalid JSON"
 Directory: C:/Code/C++/FlappyDappy/build-ninja
-"ProccessIncomingMessage returns error response for invalid JSON" start time: May 13 07:13 RTZ 2 (çèìà)
+"ProcessIncomingMessage returns error response for invalid JSON" start time: Jul 04 08:51 RTZ 2 (çèìà)
 Output:
 ----------------------------------------------------------
-Filters: "ProccessIncomingMessage returns error response for invalid JSON"
-Randomness seeded to: 1859125682
+Filters: "ProcessIncomingMessage returns error response for invalid JSON"
+Randomness seeded to: 3784864332
 ===============================================================================
 All tests passed (3 assertions in 1 test case)
 
@@ -576,39 +576,39 @@ All tests passed (3 assertions in 1 test case)
 Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"ProccessIncomingMessage returns error response for invalid JSON" end time: May 13 07:13 RTZ 2 (çèìà)
-"ProccessIncomingMessage returns error response for invalid JSON" time elapsed: 00:00:00
+"ProcessIncomingMessage returns error response for invalid JSON" end time: Jul 04 08:51 RTZ 2 (çèìà)
+"ProcessIncomingMessage returns error response for invalid JSON" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-30/32 Testing: ProccessIncomingMessage returns error response for unknown message type
-30/32 Test: ProccessIncomingMessage returns error response for unknown message type
-Command: "C:/Code/C++/FlappyDappy/build-ninja/flappy_tests.exe" "ProccessIncomingMessage returns error response for unknown message type"
+30/32 Testing: ProcessIncomingMessage returns error response for unknown message type
+30/32 Test: ProcessIncomingMessage returns error response for unknown message type
+Command: "C:/Code/C++/FlappyDappy/build-ninja/flappy_tests.exe" "ProcessIncomingMessage returns error response for unknown message type"
 Directory: C:/Code/C++/FlappyDappy/build-ninja
-"ProccessIncomingMessage returns error response for unknown message type" start time: May 13 07:13 RTZ 2 (çèìà)
+"ProcessIncomingMessage returns error response for unknown message type" start time: Jul 04 08:51 RTZ 2 (çèìà)
 Output:
 ----------------------------------------------------------
-Filters: "ProccessIncomingMessage returns error response for unknown message type"
-Randomness seeded to: 3426369440
+Filters: "ProcessIncomingMessage returns error response for unknown message type"
+Randomness seeded to: 3173613095
 ===============================================================================
 All tests passed (3 assertions in 1 test case)
 
 <end of output>
-Test time =   0.01 sec
+Test time =   0.02 sec
 ----------------------------------------------------------
 Test Passed.
-"ProccessIncomingMessage returns error response for unknown message type" end time: May 13 07:13 RTZ 2 (çèìà)
-"ProccessIncomingMessage returns error response for unknown message type" time elapsed: 00:00:00
+"ProcessIncomingMessage returns error response for unknown message type" end time: Jul 04 08:51 RTZ 2 (çèìà)
+"ProcessIncomingMessage returns error response for unknown message type" time elapsed: 00:00:00
 ----------------------------------------------------------
 
 31/32 Testing: ProcessIncomingMessage returns ack response for valid join
 31/32 Test: ProcessIncomingMessage returns ack response for valid join
 Command: "C:/Code/C++/FlappyDappy/build-ninja/flappy_tests.exe" "ProcessIncomingMessage returns ack response for valid join"
 Directory: C:/Code/C++/FlappyDappy/build-ninja
-"ProcessIncomingMessage returns ack response for valid join" start time: May 13 07:13 RTZ 2 (çèìà)
+"ProcessIncomingMessage returns ack response for valid join" start time: Jul 04 08:51 RTZ 2 (çèìà)
 Output:
 ----------------------------------------------------------
 Filters: "ProcessIncomingMessage returns ack response for valid join"
-Randomness seeded to: 2695744360
+Randomness seeded to: 2444902059
 ===============================================================================
 All tests passed (5 assertions in 1 test case)
 
@@ -616,7 +616,7 @@ All tests passed (5 assertions in 1 test case)
 Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"ProcessIncomingMessage returns ack response for valid join" end time: May 13 07:13 RTZ 2 (çèìà)
+"ProcessIncomingMessage returns ack response for valid join" end time: Jul 04 08:51 RTZ 2 (çèìà)
 "ProcessIncomingMessage returns ack response for valid join" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -624,20 +624,20 @@ Test Passed.
 32/32 Test: ProcessIncomingMessage returns ack response for valid jump
 Command: "C:/Code/C++/FlappyDappy/build-ninja/flappy_tests.exe" "ProcessIncomingMessage returns ack response for valid jump"
 Directory: C:/Code/C++/FlappyDappy/build-ninja
-"ProcessIncomingMessage returns ack response for valid jump" start time: May 13 07:13 RTZ 2 (çèìà)
+"ProcessIncomingMessage returns ack response for valid jump" start time: Jul 04 08:51 RTZ 2 (çèìà)
 Output:
 ----------------------------------------------------------
 Filters: "ProcessIncomingMessage returns ack response for valid jump"
-Randomness seeded to: 830005430
+Randomness seeded to: 2145956884
 ===============================================================================
 All tests passed (3 assertions in 1 test case)
 
 <end of output>
-Test time =   0.01 sec
+Test time =   0.02 sec
 ----------------------------------------------------------
 Test Passed.
-"ProcessIncomingMessage returns ack response for valid jump" end time: May 13 07:13 RTZ 2 (çèìà)
+"ProcessIncomingMessage returns ack response for valid jump" end time: Jul 04 08:51 RTZ 2 (çèìà)
 "ProcessIncomingMessage returns ack response for valid jump" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: May 13 07:13 RTZ 2 (çèìà)
+End testing: Jul 04 08:51 RTZ 2 (çèìà)

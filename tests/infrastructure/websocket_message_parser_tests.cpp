@@ -30,16 +30,18 @@ protected:
 
   WebSocketMessageParser parser_;
   WebSocketRouter router_{join_, submit_};
-  WebSocketMessageHandler handler_{parser_, router_};
+  ConnectionRegistry registry_;
+  WebSocketMessageHandler handler_{parser_, router_, registry_};
 
   SessionId CreateSession() { return create_.Execute(); }
 };
 
 TEST_CASE_METHOD(
     MessageHandlerFixture,
-    "ProccessIncomingMessage returns error response for invalid JSON",
+    "ProcessIncomingMessage returns error response for invalid JSON",
     "[message_handler]") {
-  const auto response = handler_.ProcessIncomingMessage("{invalid json");
+  const auto response =
+      handler_.ProcessIncomingMessage("{invalid json", nullptr);
   const auto value = json::parse(response);
   REQUIRE(value.is_object());
 
@@ -50,10 +52,11 @@ TEST_CASE_METHOD(
 
 TEST_CASE_METHOD(
     MessageHandlerFixture,
-    "ProccessIncomingMessage returns error response for unknown message type",
+    "ProcessIncomingMessage returns error response for unknown message type",
     "[message_handler]") {
   const auto response = handler_.ProcessIncomingMessage(
-      R"({"type":"dance","sessions_id":"session-1","player_id":"player-1"})");
+      R"({"type":"dance","session_id":"session-1","player_id":"player-1"})",
+      nullptr);
 
   const auto value = json::parse(response);
   REQUIRE(value.is_object());
@@ -72,7 +75,7 @@ TEST_CASE_METHOD(MessageHandlerFixture,
                               session_id.ToString() +
                               R"(","player_id":"player-1"})";
 
-  const auto response = handler_.ProcessIncomingMessage(request);
+  const auto response = handler_.ProcessIncomingMessage(request, nullptr);
 
   const auto value = json::parse(response);
   REQUIRE(value.is_object());
@@ -95,13 +98,13 @@ TEST_CASE_METHOD(MessageHandlerFixture,
       std::string(R"({"type":"join","session_id":")") + session_id.ToString() +
       R"(","player_id":"player-1"})";
 
-  handler_.ProcessIncomingMessage(join_request);
+  handler_.ProcessIncomingMessage(join_request, nullptr);
 
   const std::string jump_request =
       std::string(R"({"type":"jump","session_id":")") + session_id.ToString() +
       R"(","player_id":"player-1"})";
 
-  const auto response = handler_.ProcessIncomingMessage(jump_request);
+  const auto response = handler_.ProcessIncomingMessage(jump_request, nullptr);
 
   const auto value = json::parse(response);
   REQUIRE(value.is_object());

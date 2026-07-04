@@ -91,6 +91,24 @@
 },
 {
   "directory": "C:/Code/C++/FlappyDappy/build-ninja",
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -DBOOST_CONTAINER_DYN_LINK -DBOOST_CONTAINER_NO_LIB -DBOOST_JSON_DYN_LINK=1 -DBOOST_JSON_NO_LIB=1 -IC:/Code/C++/FlappyDappy/src -isystem C:/dev/vcpkg/installed/x64-windows/include -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\flappy_application.dir\\src\\infrastructure\\net\\connection_registry.cpp.obj -c C:\\Code\\C++\\FlappyDappy\\src\\infrastructure\\net\\connection_registry.cpp",
+  "file": "C:/Code/C++/FlappyDappy/src/infrastructure/net/connection_registry.cpp",
+  "output": "C:/Code/C++/FlappyDappy/build-ninja/CMakeFiles/flappy_application.dir/src/infrastructure/net/connection_registry.cpp.obj"
+},
+{
+  "directory": "C:/Code/C++/FlappyDappy/build-ninja",
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -DBOOST_CONTAINER_DYN_LINK -DBOOST_CONTAINER_NO_LIB -DBOOST_JSON_DYN_LINK=1 -DBOOST_JSON_NO_LIB=1 -IC:/Code/C++/FlappyDappy/src -isystem C:/dev/vcpkg/installed/x64-windows/include -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\flappy_application.dir\\src\\infrastructure\\net\\game_loop_timer.cpp.obj -c C:\\Code\\C++\\FlappyDappy\\src\\infrastructure\\net\\game_loop_timer.cpp",
+  "file": "C:/Code/C++/FlappyDappy/src/infrastructure/net/game_loop_timer.cpp",
+  "output": "C:/Code/C++/FlappyDappy/build-ninja/CMakeFiles/flappy_application.dir/src/infrastructure/net/game_loop_timer.cpp.obj"
+},
+{
+  "directory": "C:/Code/C++/FlappyDappy/build-ninja",
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -DBOOST_CONTAINER_DYN_LINK -DBOOST_CONTAINER_NO_LIB -DBOOST_JSON_DYN_LINK=1 -DBOOST_JSON_NO_LIB=1 -IC:/Code/C++/FlappyDappy/src -isystem C:/dev/vcpkg/installed/x64-windows/include -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\flappy_application.dir\\src\\infrastructure\\net\\websocket_message_handler.cpp.obj -c C:\\Code\\C++\\FlappyDappy\\src\\infrastructure\\net\\websocket_message_handler.cpp",
+  "file": "C:/Code/C++/FlappyDappy/src/infrastructure/net/websocket_message_handler.cpp",
+  "output": "C:/Code/C++/FlappyDappy/build-ninja/CMakeFiles/flappy_application.dir/src/infrastructure/net/websocket_message_handler.cpp.obj"
+},
+{
+  "directory": "C:/Code/C++/FlappyDappy/build-ninja",
   "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -DBOOST_CONTAINER_DYN_LINK -DBOOST_CONTAINER_NO_LIB -DBOOST_JSON_DYN_LINK=1 -DBOOST_JSON_NO_LIB=1 -IC:/Code/C++/FlappyDappy/src -isystem C:/dev/vcpkg/installed/x64-windows/include -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\flappy_application.dir\\src\\infrastructure\\net\\websocket_message_parser.cpp.obj -c C:\\Code\\C++\\FlappyDappy\\src\\infrastructure\\net\\websocket_message_parser.cpp",
   "file": "C:/Code/C++/FlappyDappy/src/infrastructure/net/websocket_message_parser.cpp",
   "output": "C:/Code/C++/FlappyDappy/build-ninja/CMakeFiles/flappy_application.dir/src/infrastructure/net/websocket_message_parser.cpp.obj"
@@ -109,21 +127,21 @@
 },
 {
   "directory": "C:/Code/C++/FlappyDappy/build-ninja",
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -DBOOST_CONTAINER_DYN_LINK -DBOOST_CONTAINER_NO_LIB -DBOOST_JSON_DYN_LINK=1 -DBOOST_JSON_NO_LIB=1 -IC:/Code/C++/FlappyDappy/src -isystem C:/dev/vcpkg/installed/x64-windows/include -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\flappy_application.dir\\src\\infrastructure\\net\\websocket_server.cpp.obj -c C:\\Code\\C++\\FlappyDappy\\src\\infrastructure\\net\\websocket_server.cpp",
+  "file": "C:/Code/C++/FlappyDappy/src/infrastructure/net/websocket_server.cpp",
+  "output": "C:/Code/C++/FlappyDappy/build-ninja/CMakeFiles/flappy_application.dir/src/infrastructure/net/websocket_server.cpp.obj"
+},
+{
+  "directory": "C:/Code/C++/FlappyDappy/build-ninja",
   "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -DBOOST_CONTAINER_DYN_LINK -DBOOST_CONTAINER_NO_LIB -DBOOST_JSON_DYN_LINK=1 -DBOOST_JSON_NO_LIB=1 -IC:/Code/C++/FlappyDappy/src -isystem C:/dev/vcpkg/installed/x64-windows/include -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\flappy_application.dir\\src\\infrastructure\\net\\websocket_session.cpp.obj -c C:\\Code\\C++\\FlappyDappy\\src\\infrastructure\\net\\websocket_session.cpp",
   "file": "C:/Code/C++/FlappyDappy/src/infrastructure/net/websocket_session.cpp",
   "output": "C:/Code/C++/FlappyDappy/build-ninja/CMakeFiles/flappy_application.dir/src/infrastructure/net/websocket_session.cpp.obj"
 },
 {
   "directory": "C:/Code/C++/FlappyDappy/build-ninja",
-  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -DBOOST_CONTAINER_DYN_LINK -DBOOST_CONTAINER_NO_LIB -DBOOST_JSON_DYN_LINK=1 -DBOOST_JSON_NO_LIB=1 -IC:/Code/C++/FlappyDappy/src -isystem C:/dev/vcpkg/installed/x64-windows/include -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\flappy_application.dir\\src\\infrastructure\\net\\websocket_message_handler.cpp.obj -c C:\\Code\\C++\\FlappyDappy\\src\\infrastructure\\net\\websocket_message_handler.cpp",
-  "file": "C:/Code/C++/FlappyDappy/src/infrastructure/net/websocket_message_handler.cpp",
-  "output": "C:/Code/C++/FlappyDappy/build-ninja/CMakeFiles/flappy_application.dir/src/infrastructure/net/websocket_message_handler.cpp.obj"
-},
-{
-  "directory": "C:/Code/C++/FlappyDappy/build-ninja",
-  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -DBOOST_CONTAINER_DYN_LINK -DBOOST_CONTAINER_NO_LIB -DBOOST_JSON_DYN_LINK=1 -DBOOST_JSON_NO_LIB=1 -IC:/Code/C++/FlappyDappy/src -isystem C:/dev/vcpkg/installed/x64-windows/include -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\flappy_application.dir\\src\\infrastructure\\net\\websocket_server.cpp.obj -c C:\\Code\\C++\\FlappyDappy\\src\\infrastructure\\net\\websocket_server.cpp",
-  "file": "C:/Code/C++/FlappyDappy/src/infrastructure/net/websocket_server.cpp",
-  "output": "C:/Code/C++/FlappyDappy/build-ninja/CMakeFiles/flappy_application.dir/src/infrastructure/net/websocket_server.cpp.obj"
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -DBOOST_CONTAINER_DYN_LINK -DBOOST_CONTAINER_NO_LIB -DBOOST_JSON_DYN_LINK=1 -DBOOST_JSON_NO_LIB=1 -IC:/Code/C++/FlappyDappy/src -isystem C:/dev/vcpkg/installed/x64-windows/include -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\flappy_application.dir\\src\\infrastructure\\net\\websocket_session_broadcaster.cpp.obj -c C:\\Code\\C++\\FlappyDappy\\src\\infrastructure\\net\\websocket_session_broadcaster.cpp",
+  "file": "C:/Code/C++/FlappyDappy/src/infrastructure/net/websocket_session_broadcaster.cpp",
+  "output": "C:/Code/C++/FlappyDappy/build-ninja/CMakeFiles/flappy_application.dir/src/infrastructure/net/websocket_session_broadcaster.cpp.obj"
 },
 {
   "directory": "C:/Code/C++/FlappyDappy/build-ninja",
@@ -157,9 +175,9 @@
 },
 {
   "directory": "C:/Code/C++/FlappyDappy/build-ninja",
-  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -DBOOST_CONTAINER_DYN_LINK -DBOOST_CONTAINER_NO_LIB -DBOOST_JSON_DYN_LINK=1 -DBOOST_JSON_NO_LIB=1 -IC:/Code/C++/FlappyDappy/src -IC:/Code/C++/FlappyDappy/build-ninja/_deps/catch2-src/src/catch2/.. -IC:/Code/C++/FlappyDappy/build-ninja/_deps/catch2-build/generated-includes -isystem C:/dev/vcpkg/installed/x64-windows/include -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\flappy_tests.dir\\tests\\infrastructure\\websocket_messasge_serializer_tests.cpp.obj -c C:\\Code\\C++\\FlappyDappy\\tests\\infrastructure\\websocket_messasge_serializer_tests.cpp",
-  "file": "C:/Code/C++/FlappyDappy/tests/infrastructure/websocket_messasge_serializer_tests.cpp",
-  "output": "C:/Code/C++/FlappyDappy/build-ninja/CMakeFiles/flappy_tests.dir/tests/infrastructure/websocket_messasge_serializer_tests.cpp.obj"
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -DBOOST_CONTAINER_DYN_LINK -DBOOST_CONTAINER_NO_LIB -DBOOST_JSON_DYN_LINK=1 -DBOOST_JSON_NO_LIB=1 -IC:/Code/C++/FlappyDappy/src -IC:/Code/C++/FlappyDappy/build-ninja/_deps/catch2-src/src/catch2/.. -IC:/Code/C++/FlappyDappy/build-ninja/_deps/catch2-build/generated-includes -isystem C:/dev/vcpkg/installed/x64-windows/include -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\flappy_tests.dir\\tests\\infrastructure\\websocket_message_serializer_tests.cpp.obj -c C:\\Code\\C++\\FlappyDappy\\tests\\infrastructure\\websocket_message_serializer_tests.cpp",
+  "file": "C:/Code/C++/FlappyDappy/tests/infrastructure/websocket_message_serializer_tests.cpp",
+  "output": "C:/Code/C++/FlappyDappy/build-ninja/CMakeFiles/flappy_tests.dir/tests/infrastructure/websocket_message_serializer_tests.cpp.obj"
 },
 {
   "directory": "C:/Code/C++/FlappyDappy/build-ninja",

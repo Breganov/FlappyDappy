@@ -29,7 +29,7 @@ void WebSocketSession::Start() {
     self->DoRead();
   });
 
-  DoRead();
+  // DoRead(); // Удалил по рекомендации Opus. Вроде бы нормальная идея.
 }
 
 // Отправка
@@ -112,6 +112,7 @@ void WebSocketSession::OnWrite(beast::error_code ec,
 // ==============================================================================
 
 void WebSocketSession::HandleMessage(std::string_view json_text) {
-  const std::string response = handler_.ProcessIncomingMessage(json_text);
+  const std::string response =
+      handler_.ProcessIncomingMessage(json_text, shared_from_this());
   Send(response);
 }

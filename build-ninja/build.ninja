@@ -253,6 +253,42 @@ build CMakeFiles/flappy_application.dir/src/infrastructure/logging/console_sessi
   TARGET_PDB = flappy_application.pdb
   TARGET_SUPPORT_DIR = CMakeFiles\flappy_application.dir
 
+build CMakeFiles/flappy_application.dir/src/infrastructure/net/connection_registry.cpp.obj: CXX_COMPILER__flappy_application_unscanned_Debug C$:/Code/C++/FlappyDappy/src/infrastructure/net/connection_registry.cpp || cmake_object_order_depends_target_flappy_application
+  CONFIG = Debug
+  DEFINES = -DBOOST_CONTAINER_DYN_LINK -DBOOST_CONTAINER_NO_LIB -DBOOST_JSON_DYN_LINK=1 -DBOOST_JSON_NO_LIB=1
+  DEP_FILE = CMakeFiles\flappy_application.dir\src\infrastructure\net\connection_registry.cpp.obj.d
+  FLAGS = -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
+  INCLUDES = -IC:/Code/C++/FlappyDappy/src -isystem C:/dev/vcpkg/installed/x64-windows/include
+  OBJECT_DIR = CMakeFiles\flappy_application.dir
+  OBJECT_FILE_DIR = CMakeFiles\flappy_application.dir\src\infrastructure\net
+  TARGET_COMPILE_PDB = CMakeFiles\flappy_application.dir\flappy_application.pdb
+  TARGET_PDB = flappy_application.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\flappy_application.dir
+
+build CMakeFiles/flappy_application.dir/src/infrastructure/net/game_loop_timer.cpp.obj: CXX_COMPILER__flappy_application_unscanned_Debug C$:/Code/C++/FlappyDappy/src/infrastructure/net/game_loop_timer.cpp || cmake_object_order_depends_target_flappy_application
+  CONFIG = Debug
+  DEFINES = -DBOOST_CONTAINER_DYN_LINK -DBOOST_CONTAINER_NO_LIB -DBOOST_JSON_DYN_LINK=1 -DBOOST_JSON_NO_LIB=1
+  DEP_FILE = CMakeFiles\flappy_application.dir\src\infrastructure\net\game_loop_timer.cpp.obj.d
+  FLAGS = -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
+  INCLUDES = -IC:/Code/C++/FlappyDappy/src -isystem C:/dev/vcpkg/installed/x64-windows/include
+  OBJECT_DIR = CMakeFiles\flappy_application.dir
+  OBJECT_FILE_DIR = CMakeFiles\flappy_application.dir\src\infrastructure\net
+  TARGET_COMPILE_PDB = CMakeFiles\flappy_application.dir\flappy_application.pdb
+  TARGET_PDB = flappy_application.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\flappy_application.dir
+
+build CMakeFiles/flappy_application.dir/src/infrastructure/net/websocket_message_handler.cpp.obj: CXX_COMPILER__flappy_application_unscanned_Debug C$:/Code/C++/FlappyDappy/src/infrastructure/net/websocket_message_handler.cpp || cmake_object_order_depends_target_flappy_application
+  CONFIG = Debug
+  DEFINES = -DBOOST_CONTAINER_DYN_LINK -DBOOST_CONTAINER_NO_LIB -DBOOST_JSON_DYN_LINK=1 -DBOOST_JSON_NO_LIB=1
+  DEP_FILE = CMakeFiles\flappy_application.dir\src\infrastructure\net\websocket_message_handler.cpp.obj.d
+  FLAGS = -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
+  INCLUDES = -IC:/Code/C++/FlappyDappy/src -isystem C:/dev/vcpkg/installed/x64-windows/include
+  OBJECT_DIR = CMakeFiles\flappy_application.dir
+  OBJECT_FILE_DIR = CMakeFiles\flappy_application.dir\src\infrastructure\net
+  TARGET_COMPILE_PDB = CMakeFiles\flappy_application.dir\flappy_application.pdb
+  TARGET_PDB = flappy_application.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\flappy_application.dir
+
 build CMakeFiles/flappy_application.dir/src/infrastructure/net/websocket_message_parser.cpp.obj: CXX_COMPILER__flappy_application_unscanned_Debug C$:/Code/C++/FlappyDappy/src/infrastructure/net/websocket_message_parser.cpp || cmake_object_order_depends_target_flappy_application
   CONFIG = Debug
   DEFINES = -DBOOST_CONTAINER_DYN_LINK -DBOOST_CONTAINER_NO_LIB -DBOOST_JSON_DYN_LINK=1 -DBOOST_JSON_NO_LIB=1
@@ -289,6 +325,18 @@ build CMakeFiles/flappy_application.dir/src/infrastructure/net/websocket_router.
   TARGET_PDB = flappy_application.pdb
   TARGET_SUPPORT_DIR = CMakeFiles\flappy_application.dir
 
+build CMakeFiles/flappy_application.dir/src/infrastructure/net/websocket_server.cpp.obj: CXX_COMPILER__flappy_application_unscanned_Debug C$:/Code/C++/FlappyDappy/src/infrastructure/net/websocket_server.cpp || cmake_object_order_depends_target_flappy_application
+  CONFIG = Debug
+  DEFINES = -DBOOST_CONTAINER_DYN_LINK -DBOOST_CONTAINER_NO_LIB -DBOOST_JSON_DYN_LINK=1 -DBOOST_JSON_NO_LIB=1
+  DEP_FILE = CMakeFiles\flappy_application.dir\src\infrastructure\net\websocket_server.cpp.obj.d
+  FLAGS = -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
+  INCLUDES = -IC:/Code/C++/FlappyDappy/src -isystem C:/dev/vcpkg/installed/x64-windows/include
+  OBJECT_DIR = CMakeFiles\flappy_application.dir
+  OBJECT_FILE_DIR = CMakeFiles\flappy_application.dir\src\infrastructure\net
+  TARGET_COMPILE_PDB = CMakeFiles\flappy_application.dir\flappy_application.pdb
+  TARGET_PDB = flappy_application.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\flappy_application.dir
+
 build CMakeFiles/flappy_application.dir/src/infrastructure/net/websocket_session.cpp.obj: CXX_COMPILER__flappy_application_unscanned_Debug C$:/Code/C++/FlappyDappy/src/infrastructure/net/websocket_session.cpp || cmake_object_order_depends_target_flappy_application
   CONFIG = Debug
   DEFINES = -DBOOST_CONTAINER_DYN_LINK -DBOOST_CONTAINER_NO_LIB -DBOOST_JSON_DYN_LINK=1 -DBOOST_JSON_NO_LIB=1
@@ -301,22 +349,10 @@ build CMakeFiles/flappy_application.dir/src/infrastructure/net/websocket_session
   TARGET_PDB = flappy_application.pdb
   TARGET_SUPPORT_DIR = CMakeFiles\flappy_application.dir
 
-build CMakeFiles/flappy_application.dir/src/infrastructure/net/websocket_message_handler.cpp.obj: CXX_COMPILER__flappy_application_unscanned_Debug C$:/Code/C++/FlappyDappy/src/infrastructure/net/websocket_message_handler.cpp || cmake_object_order_depends_target_flappy_application
+build CMakeFiles/flappy_application.dir/src/infrastructure/net/websocket_session_broadcaster.cpp.obj: CXX_COMPILER__flappy_application_unscanned_Debug C$:/Code/C++/FlappyDappy/src/infrastructure/net/websocket_session_broadcaster.cpp || cmake_object_order_depends_target_flappy_application
   CONFIG = Debug
   DEFINES = -DBOOST_CONTAINER_DYN_LINK -DBOOST_CONTAINER_NO_LIB -DBOOST_JSON_DYN_LINK=1 -DBOOST_JSON_NO_LIB=1
-  DEP_FILE = CMakeFiles\flappy_application.dir\src\infrastructure\net\websocket_message_handler.cpp.obj.d
-  FLAGS = -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
-  INCLUDES = -IC:/Code/C++/FlappyDappy/src -isystem C:/dev/vcpkg/installed/x64-windows/include
-  OBJECT_DIR = CMakeFiles\flappy_application.dir
-  OBJECT_FILE_DIR = CMakeFiles\flappy_application.dir\src\infrastructure\net
-  TARGET_COMPILE_PDB = CMakeFiles\flappy_application.dir\flappy_application.pdb
-  TARGET_PDB = flappy_application.pdb
-  TARGET_SUPPORT_DIR = CMakeFiles\flappy_application.dir
-
-build CMakeFiles/flappy_application.dir/src/infrastructure/net/websocket_server.cpp.obj: CXX_COMPILER__flappy_application_unscanned_Debug C$:/Code/C++/FlappyDappy/src/infrastructure/net/websocket_server.cpp || cmake_object_order_depends_target_flappy_application
-  CONFIG = Debug
-  DEFINES = -DBOOST_CONTAINER_DYN_LINK -DBOOST_CONTAINER_NO_LIB -DBOOST_JSON_DYN_LINK=1 -DBOOST_JSON_NO_LIB=1
-  DEP_FILE = CMakeFiles\flappy_application.dir\src\infrastructure\net\websocket_server.cpp.obj.d
+  DEP_FILE = CMakeFiles\flappy_application.dir\src\infrastructure\net\websocket_session_broadcaster.cpp.obj.d
   FLAGS = -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
   INCLUDES = -IC:/Code/C++/FlappyDappy/src -isystem C:/dev/vcpkg/installed/x64-windows/include
   OBJECT_DIR = CMakeFiles\flappy_application.dir
@@ -333,7 +369,7 @@ build CMakeFiles/flappy_application.dir/src/infrastructure/net/websocket_server.
 #############################################
 # Link the static library flappy_application.lib
 
-build flappy_application.lib: CXX_STATIC_LIBRARY_LINKER__flappy_application_Debug CMakeFiles/flappy_application.dir/src/application/ports/simple_id_generator.cpp.obj CMakeFiles/flappy_application.dir/src/application/use_cases/session_service.cpp.obj CMakeFiles/flappy_application.dir/src/application/use_cases/create_session_use_case.cpp.obj CMakeFiles/flappy_application.dir/src/application/use_cases/join_session_use_case.cpp.obj CMakeFiles/flappy_application.dir/src/application/use_cases/start_match_use_case.cpp.obj CMakeFiles/flappy_application.dir/src/application/use_cases/submit_input_use_case.cpp.obj CMakeFiles/flappy_application.dir/src/application/use_cases/tick_session_use_case.cpp.obj CMakeFiles/flappy_application.dir/src/application/use_cases/finish_match_use_case.cpp.obj CMakeFiles/flappy_application.dir/src/application/use_cases/game_loop_service.cpp.obj CMakeFiles/flappy_application.dir/src/infrastructure/logging/console_logger.cpp.obj CMakeFiles/flappy_application.dir/src/infrastructure/logging/console_session_broadcaster.cpp.obj CMakeFiles/flappy_application.dir/src/infrastructure/net/websocket_message_parser.cpp.obj CMakeFiles/flappy_application.dir/src/infrastructure/net/websocket_message_serializer.cpp.obj CMakeFiles/flappy_application.dir/src/infrastructure/net/websocket_router.cpp.obj CMakeFiles/flappy_application.dir/src/infrastructure/net/websocket_session.cpp.obj CMakeFiles/flappy_application.dir/src/infrastructure/net/websocket_message_handler.cpp.obj CMakeFiles/flappy_application.dir/src/infrastructure/net/websocket_server.cpp.obj || flappy_domain.lib
+build flappy_application.lib: CXX_STATIC_LIBRARY_LINKER__flappy_application_Debug CMakeFiles/flappy_application.dir/src/application/ports/simple_id_generator.cpp.obj CMakeFiles/flappy_application.dir/src/application/use_cases/session_service.cpp.obj CMakeFiles/flappy_application.dir/src/application/use_cases/create_session_use_case.cpp.obj CMakeFiles/flappy_application.dir/src/application/use_cases/join_session_use_case.cpp.obj CMakeFiles/flappy_application.dir/src/application/use_cases/start_match_use_case.cpp.obj CMakeFiles/flappy_application.dir/src/application/use_cases/submit_input_use_case.cpp.obj CMakeFiles/flappy_application.dir/src/application/use_cases/tick_session_use_case.cpp.obj CMakeFiles/flappy_application.dir/src/application/use_cases/finish_match_use_case.cpp.obj CMakeFiles/flappy_application.dir/src/application/use_cases/game_loop_service.cpp.obj CMakeFiles/flappy_application.dir/src/infrastructure/logging/console_logger.cpp.obj CMakeFiles/flappy_application.dir/src/infrastructure/logging/console_session_broadcaster.cpp.obj CMakeFiles/flappy_application.dir/src/infrastructure/net/connection_registry.cpp.obj CMakeFiles/flappy_application.dir/src/infrastructure/net/game_loop_timer.cpp.obj CMakeFiles/flappy_application.dir/src/infrastructure/net/websocket_message_handler.cpp.obj CMakeFiles/flappy_application.dir/src/infrastructure/net/websocket_message_parser.cpp.obj CMakeFiles/flappy_application.dir/src/infrastructure/net/websocket_message_serializer.cpp.obj CMakeFiles/flappy_application.dir/src/infrastructure/net/websocket_router.cpp.obj CMakeFiles/flappy_application.dir/src/infrastructure/net/websocket_server.cpp.obj CMakeFiles/flappy_application.dir/src/infrastructure/net/websocket_session.cpp.obj CMakeFiles/flappy_application.dir/src/infrastructure/net/websocket_session_broadcaster.cpp.obj || flappy_domain.lib
   CONFIG = Debug
   LANGUAGE_COMPILE_FLAGS = -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
   OBJECT_DIR = CMakeFiles\flappy_application.dir
@@ -444,10 +480,10 @@ build CMakeFiles/flappy_tests.dir/tests/infrastructure/websocket_router_tests.cp
   TARGET_PDB = flappy_tests.pdb
   TARGET_SUPPORT_DIR = CMakeFiles\flappy_tests.dir
 
-build CMakeFiles/flappy_tests.dir/tests/infrastructure/websocket_messasge_serializer_tests.cpp.obj: CXX_COMPILER__flappy_tests_unscanned_Debug C$:/Code/C++/FlappyDappy/tests/infrastructure/websocket_messasge_serializer_tests.cpp || cmake_object_order_depends_target_flappy_tests
+build CMakeFiles/flappy_tests.dir/tests/infrastructure/websocket_message_serializer_tests.cpp.obj: CXX_COMPILER__flappy_tests_unscanned_Debug C$:/Code/C++/FlappyDappy/tests/infrastructure/websocket_message_serializer_tests.cpp || cmake_object_order_depends_target_flappy_tests
   CONFIG = Debug
   DEFINES = -DBOOST_CONTAINER_DYN_LINK -DBOOST_CONTAINER_NO_LIB -DBOOST_JSON_DYN_LINK=1 -DBOOST_JSON_NO_LIB=1
-  DEP_FILE = CMakeFiles\flappy_tests.dir\tests\infrastructure\websocket_messasge_serializer_tests.cpp.obj.d
+  DEP_FILE = CMakeFiles\flappy_tests.dir\tests\infrastructure\websocket_message_serializer_tests.cpp.obj.d
   FLAGS = -O0 -g -Xclang -gcodeview -std=c++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
   INCLUDES = -IC:/Code/C++/FlappyDappy/src -IC:/Code/C++/FlappyDappy/build-ninja/_deps/catch2-src/src/catch2/.. -IC:/Code/C++/FlappyDappy/build-ninja/_deps/catch2-build/generated-includes -isystem C:/dev/vcpkg/installed/x64-windows/include
   OBJECT_DIR = CMakeFiles\flappy_tests.dir
@@ -476,7 +512,7 @@ build CMakeFiles/flappy_tests.dir/tests/infrastructure/websocket_message_parser_
 #############################################
 # Link the executable flappy_tests.exe
 
-build flappy_tests.exe flappy_tests-b12d07c_tests.cmake | ${cmake_ninja_workdir}flappy_tests-b12d07c_tests.cmake: CXX_EXECUTABLE_LINKER__flappy_tests_Debug CMakeFiles/flappy_tests.dir/tests/domain/collision_service_tests.cpp.obj CMakeFiles/flappy_tests.dir/tests/domain/game_session_tests.cpp.obj CMakeFiles/flappy_tests.dir/tests/application/use_cases_tests.cpp.obj CMakeFiles/flappy_tests.dir/tests/infrastructure/websocket_router_tests.cpp.obj CMakeFiles/flappy_tests.dir/tests/infrastructure/websocket_messasge_serializer_tests.cpp.obj CMakeFiles/flappy_tests.dir/tests/infrastructure/websocket_message_parser_tests.cpp.obj | flappy_application.lib _deps/catch2-build/src/Catch2Maind.lib flappy_domain.lib C$:/dev/vcpkg/installed/x64-windows/debug/lib/boost_json-vc143-mt-gd-x64-1_90.lib C$:/dev/vcpkg/installed/x64-windows/debug/lib/boost_container-vc143-mt-gd-x64-1_90.lib _deps/catch2-build/src/Catch2d.lib || _deps/catch2-build/src/Catch2Maind.lib _deps/catch2-build/src/Catch2d.lib flappy_application.lib flappy_domain.lib
+build flappy_tests.exe flappy_tests-b12d07c_tests.cmake | ${cmake_ninja_workdir}flappy_tests-b12d07c_tests.cmake: CXX_EXECUTABLE_LINKER__flappy_tests_Debug CMakeFiles/flappy_tests.dir/tests/domain/collision_service_tests.cpp.obj CMakeFiles/flappy_tests.dir/tests/domain/game_session_tests.cpp.obj CMakeFiles/flappy_tests.dir/tests/application/use_cases_tests.cpp.obj CMakeFiles/flappy_tests.dir/tests/infrastructure/websocket_router_tests.cpp.obj CMakeFiles/flappy_tests.dir/tests/infrastructure/websocket_message_serializer_tests.cpp.obj CMakeFiles/flappy_tests.dir/tests/infrastructure/websocket_message_parser_tests.cpp.obj | flappy_application.lib _deps/catch2-build/src/Catch2Maind.lib flappy_domain.lib C$:/dev/vcpkg/installed/x64-windows/debug/lib/boost_json-vc143-mt-gd-x64-1_90.lib C$:/dev/vcpkg/installed/x64-windows/debug/lib/boost_container-vc143-mt-gd-x64-1_90.lib _deps/catch2-build/src/Catch2d.lib || _deps/catch2-build/src/Catch2Maind.lib _deps/catch2-build/src/Catch2d.lib flappy_application.lib flappy_domain.lib
   CONFIG = Debug
   FLAGS = -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
   LINK_FLAGS = -Xlinker /subsystem:console -fuse-ld=lld-link

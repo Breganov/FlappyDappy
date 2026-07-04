@@ -19,5 +19,10 @@ void JoinSessionUseCase::Execute(const SessionId &id,
     return;
   }
   session->get().AddPlayer(player_id);
+
+  // TODO: временно до фазы 5 = матч стартует сразу при входе игрока.
+  session->get().StartCountdown();
+  session->get().StartMatch();
+
   broadcaster_.NotifyPlayerJoined(id, player_id);
 }

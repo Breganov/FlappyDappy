@@ -10,11 +10,13 @@
 namespace json = boost::json;
 
 WebSocketMessageHandler::WebSocketMessageHandler(WebSocketMessageParser &parser,
-                                                 WebSocketRouter &router)
-    : parser_(parser), router_(router) {}
+                                                 WebSocketRouter &router,
+                                                 ConnectionRegistry &registry)
+    : parser_(parser), router_(router), registry_(registry) {}
 
 std::string WebSocketMessageHandler::ProcessIncomingMessage(
-    std::string_view json_text) const {
+    std::string_view json_text,
+    std::shared_ptr<WebSocketSession> sender) const {
   auto parsed_message = parser_.Parse(json_text);
   auto router_message = router_.Route(parsed_message);
 
@@ -25,6 +27,12 @@ std::string WebSocketMessageHandler::ProcessIncomingMessage(
     response["message"] = router_message.error;
     return json::serialize(response);
   }
+
+  if (router_message.is_handled && parsed_message.is_valid &&
+      parsed_message.type == MessageType::Join) {
+    registry_.Register(parsed_message.session_id, sender);
+  }
+
   response["type"] = "ack";
   response["message"] = "handled";
   return json::serialize(response);

@@ -2,79 +2,82 @@
 #include "application/ports/simple_id_generator.h"
 #include "application/use_cases/create_session_use_case.h"
 #include "application/use_cases/finish_match_use_case.h"
+#include "application/use_cases/game_loop_service.h"
 #include "application/use_cases/join_session_use_case.h"
 #include "application/use_cases/session_service.h"
-#include "application/use_cases/start_match_use_case.h"
 #include "application/use_cases/submit_input_use_case.h"
 #include "application/use_cases/tick_session_use_case.h"
-#include "domain/player/player_id.h"
-#include "domain/session/input_command.h"
-#include "infrastructure/logging/console_logger.h"
-#include "infrastructure/logging/console_session_broadcaster.h"
 
+#include "domain/session/input_command.h"
+#include "domain/session/session_id.h"
+
+#include "infrastructure/logging/console_logger.h"
+// #include "infrastructure/logging/console_session_broadcaster.h"
+#include "infrastructure/net/connection_registry.h"
+#include "infrastructure/net/game_loop_timer.h"
+#include "infrastructure/net/websocket_message_handler.h"
+#include "infrastructure/net/websocket_message_parser.h"
+#include "infrastructure/net/websocket_message_serializer.h"
+#include "infrastructure/net/websocket_router.h"
+#include "infrastructure/net/websocket_server.h"
+#include "infrastructure/net/websocket_session_broadcaster.h"
+
+// #include "application/use_cases/start_match_use_case.h"
+// #include "domain/player/player_id.h"
+
+// #include <chrono>
 #include <chrono>
 #include <string>
 
+#include <boost/asio.hpp>
+
 int main() {
   ConsoleLogger logger;
-  logger.Info("Starting a new server.");
+  logger.Info("Starting flappy server.");
+
+  // --- Composition root: build the whole object graph in one place. ---
+  // Order matters: dependencies are constructed before their users,
+  // and everything lives on the stack for the lifetime of main().
 
   SimpleIdGenerator ids;
   SessionService sessions;
-  ConsoleSessionBroadcaster broadcaster(logger);
+
+  ConnectionRegistry registry;
+  WebSocketMessageSerializer serializer;
+  WebSocketSessionBroadcaster broadcaster(registry, serializer);
+  // ConsoleSessionBroadcaster broadcaster(logger);
   GameConfig game_config{PhysicsConfig{}};
 
-  CreateSessionUseCase session(ids, sessions, game_config);
-  SessionId id = session.Execute();
-  auto create_session = sessions.FindSession(id);
-  if (!create_session) {
-    logger.Error("Session was not found right after creation: " +
-                 id.ToString());
-    return 1;
-  }
+  CreateSessionUseCase create_session(ids, sessions, game_config);
+  JoinSessionUseCase join_session(sessions, broadcaster);
+  SubmitInputUseCase submit_input(sessions);
+  TickSessionUseCase tick_session(sessions, broadcaster);
+  FinishMatchUseCase finish_match(sessions);
+  GameLoopService game_loop(sessions, tick_session, finish_match);
 
-  logger.Info("Session found right after creation.");
-  logger.Info("IDs generated.");
-  logger.Info("Sessions created.");
+  // Message pipeline (infrestructure layer):
+  // raw JSON -> parser -> router -> use cases.
+  WebSocketMessageParser parser;
+  WebSocketRouter router(join_session, submit_input);
 
-  JoinSessionUseCase join_session_use_case(sessions, broadcaster);
+  WebSocketMessageHandler handler(parser, router, registry);
 
-  PlayerId player_id("player-1");
-  join_session_use_case.Execute(id, player_id);
-  logger.Info("Player " + player_id.ToString() + " added.");
+  // Temporary: one session created at startup so clients can join it.
+  // Phase -- replace this with a "create" network message.
+  const SessionId bootstrap_id = create_session.Execute();
+  logger.Info("Bootstrap session created: " + bootstrap_id.ToString());
 
-  StartMatchUseCase start_match_use_case(sessions);
-  start_match_use_case.Execute(id);
-  logger.Info("Match " + id.ToString() + " started.");
+  // --- The event loop. Everything async runs on this single thread.
+  boost::asio::io_context io_context;
 
-  SubmitInputUseCase submit_input_use_case(sessions);
-  TickSessionUseCase tick_session_use_case(sessions, broadcaster);
-  FinishMatchUseCase finish_match_use_case(sessions);
+  const auto endpoint = tcp::endpoint(tcp::v4(), 8080);
+  WebSocketServer server(io_context, endpoint, handler, logger);
+  GameLoopTimer game_loop_timer(io_context, game_loop,
+                                std::chrono::milliseconds(16));
+  game_loop_timer.Start();
+  server.Start();
+  logger.Info("Listening on ws://localhost:8080");
 
-  for (int i = 0; i < 300; ++i) {
-    auto session_instance = sessions.FindSession(id);
-    if (!session_instance) {
-      logger.Info("Session wasn't found.");
-      break;
-    }
-
-    if (session_instance->get().IsFinished()) {
-      logger.Info("Session is finished.");
-      break;
-    }
-
-    logger.Info("tick=" + std::to_string(i));
-    if ((i + 1) % 20 == 0) {
-      submit_input_use_case.Execute(id,
-                                    InputCommand{player_id, InputType::Jump});
-      logger.Info("Jump by " + player_id.ToString() +
-                  " sent at tick=" + std::to_string(i));
-    }
-
-    tick_session_use_case.Execute(id, std::chrono::milliseconds(16));
-  }
-
-  finish_match_use_case.Execute(id);
-  logger.Info("Session " + id.ToString() + " finished.");
+  io_context.run(); // blocks; all callbacks fire on this thread
   return 0;
 }
